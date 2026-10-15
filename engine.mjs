@@ -45,10 +45,11 @@ export function parseScript(text) {
     kicker: get(/Kicker:\s*([^\n]+)/i),
     variants: [],
   };
-  for (const k of ['A', 'B', 'C']) {
+  // Single-hook format ("Hook — spoken: / screen:"). Older A/B/C scripts still parse; only the first hook is used.
+  for (const k of ['', 'A', 'B', 'C']) {
     const spoken = get(new RegExp(`Hook ${k}\\s*[—-]+\\s*spoken:\\s*([^\\n]+)`, 'i'));
-    const screen = get(new RegExp(`Hook ${k}[\\s\\S]*?screen:\\s*([^\\n]+)`, 'i'));
-    if (spoken && screen) job.variants.push({ key: k, spoken, screen });
+    const screen = get(new RegExp(`Hook ${k}\\s*[—-]+\\s*spoken:[^\\n]*\\n\\s*screen:\\s*([^\\n]+)`, 'i'));
+    if (spoken && screen) { job.variants.push({ key: k || 'A', spoken, screen }); break; }
   }
   job.body = get(/Body:\s*\n([\s\S]*?)\n\s*CTA:/i)?.replace(/\s*\n\s*/g, ' ');
   job.cta = get(/CTA:\s*([^\n]+)/i);
@@ -178,9 +179,19 @@ function captionsASS(body, seconds) {
 }
 
 // ---------- main ----------
+// A job can hold one script or a whole batch (several "SCRIPT #" blocks). Each script runs on its own;
+// one bad script is skipped and logged, the rest still render.
 async function main() {
   const raw = env.JOB_B64 ? Buffer.from(env.JOB_B64, 'base64').toString('utf8') : (env.JOB_FILE ? fs.readFileSync(env.JOB_FILE, 'utf8') : null);
   if (!raw) { log('No job set. Idle.'); return; }
+  const scripts = raw.trim().startsWith('{') ? [raw] : raw.split(/(?=SCRIPT\s*#\s*\d+)/i).map(s => s.trim()).filter(s => /SCRIPT\s*#/i.test(s));
+  log(`Batch: ${scripts.length} script(s)`);
+  for (const s of scripts) {
+    try { await runOne(s); } catch (e) { log('SCRIPT FAILED:', (s.match(/SCRIPT\s*#\s*\d+/i) || ['?'])[0], e.message); }
+  }
+  log('BATCH DONE');
+}
+async function runOne(raw) {
   const job = { avatarId: env.AVATAR_ID, avatarType: env.AVATAR_TYPE || 'talking_photo', voiceId: env.VOICE_ID, engine: env.ENGINE || 'iv', count: '', ...parseScript(raw) };
   if (job.only) job.variants = job.variants.filter(v => job.only.includes(v.key));
   const errs = validate(job);
@@ -191,7 +202,7 @@ async function main() {
   const id = crypto.createHash('sha1').update(JSON.stringify([job.variants, job.body, job.cta, job.avatarId, job.voiceId, job.engine, job.avatarType])).digest('hex').slice(0, 12);
   const pre = `jobs/${job.number ? 'script' + String(job.number).padStart(2, '0') + '-' : ''}${id}`;
   const state = (await getJSON(`${pre}/state.json`)) || { clips: {} };
-  if (state.done) { log('Already finished:'); for (const [k, u] of Object.entries(state.outputs)) log('RESULT', k, u); return; }
+  if (state.done) { log('Already finished:'); for (const u of Object.values(state.outputs)) log('RESULT', `SCRIPT ${job.number ?? id}`, 'done', u); return; }
 
   // cost guard: estimate seconds before spending anything
   const texts = { body: job.body, cta: job.cta, ...Object.fromEntries(job.variants.map(v => ['hook' + v.key, v.spoken])) };
@@ -235,9 +246,9 @@ async function main() {
     run('ffmpeg', ['-y', '-loglevel', 'error', '-i', path.join(work, `seg-hook${v.key}.mp4`), '-i', path.join(work, 'seg-body.mp4'), '-i', path.join(work, 'seg-end.mp4'), '-loop', '1', '-i', path.join(work, 'bar.png'), '-filter_complex',
       `[0:v][0:a][1:v][1:a][2:v][2:a]concat=n=3:v=1:a=1[cv][ca];[cv][3:v]overlay=x='-${W}+${W}*t/${total.toFixed(3)}':y=0:shortest=1[v];[ca]loudnorm=I=-14:TP=-1.5:LRA=11[a]`,
       '-map', '[v]', '-map', '[a]', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '19', '-preset', 'medium', '-c:a', 'aac', '-b:a', '160k', '-ar', '48000', '-movflags', '+faststart', out]);
-    const name = `HomePros-${job.number ? 'Script' + String(job.number).padStart(2, '0') : id}-Hook${v.key}.mp4`;
+    const name = `HomePros-${job.number ? 'Script' + String(job.number).padStart(2, '0') : id}${job.variants.length > 1 ? '-Hook' + v.key : ''}.mp4`;
     outputs[v.key] = await putFile(`${pre}/${name}`, fs.readFileSync(out), 'video/mp4');
-    log('RESULT', v.key, `${dur(out).toFixed(1)}s`, outputs[v.key]);
+    log('RESULT', `SCRIPT ${job.number ?? id}`, `${dur(out).toFixed(1)}s`, outputs[v.key]);
   }
   await putJSON(`${pre}/state.json`, { ...state, done: true, outputs, caption: job.caption, hashtags: job.hashtags });
   log('JOB DONE', pre);
