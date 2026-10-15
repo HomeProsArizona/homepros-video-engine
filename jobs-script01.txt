@@ -1,0 +1,25 @@
+SCRIPT #1 | Audience: CONSUMER | Hook style: WARNING
+Topic: Short sale
+Chip: OJO
+Kicker: Antes de perderla
+
+Hook A — spoken: Mira, si ya te atrasaste con la hipoteca, no te escondas del banco.
+         screen: ¿Atrasado con / la hipoteca? / *OJO*
+Hook B — spoken: Si ya no puedes pagar tu casa, una ejecución hipotecaria no es tu única opción.
+         screen: ¿No puedes / pagar tu / *CASA?*
+Hook C — spoken: Hay una opción que muchos propietarios conocen demasiado tarde: el short sale.
+         screen: La opción que / muchos / descubren / *TARDE*
+
+Body:
+Existe algo llamado short sale, o venta corta: vendes tu casa por menos de lo que debes, pero el banco tiene que aprobarlo.
+Y ojo, no es magia. Puede afectar tu *crédito* y tener consecuencias de *impuestos*.
+Pero para algunas familias es una opción antes de una ejecución hipotecaria.
+Lo peor que puedes hacer es esconder la cabeza y esperar. Habla con tu banco y busca ayuda profesional.
+Soy Josh Marquez, de HomePros.
+
+CTA: Si estás pasando por algo así, comenta CASA y te mando información.
+
+Caption: ¿Te estás atrasando con tu hipoteca? No ignores el problema. Un short sale puede ser una opción en algunos casos, pero también puede afectar tu crédito y tener consecuencias fiscales. Comenta CASA.
+Hashtags: #shortsale #hipoteca #bienesraicesarizona #phoenix #HomePros
+
+Word count: hook A 13 / hook B 15 / hook C 12 / body 73 / CTA 12

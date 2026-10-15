@@ -1,0 +1,22 @@
+:root{--blue:#147EFB;--gold:#FDBF00;--ink:#0B0B0C;--white:#FFFFFF;--soft:rgba(255,255,255,.62);--line:rgba(255,255,255,.14)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;font-family:Montserrat,sans-serif;color:var(--white)}
+.scene{position:absolute;inset:0;overflow:hidden;background:var(--ink);color:var(--white)}
+.scene:before{content:"";position:absolute;inset:0;background:
+  radial-gradient(120% 60% at 0% 100%,rgba(20,126,251,.38),transparent 60%),
+  radial-gradient(80% 40% at 100% 0%,rgba(253,191,0,.12),transparent 60%)}
+.scene:after{content:"";position:absolute;inset:0;background-image:
+  linear-gradient(var(--line) 2px,transparent 2px),linear-gradient(90deg,var(--line) 2px,transparent 2px);
+  background-size:108px 108px;opacity:.16;
+  -webkit-mask-image:linear-gradient(180deg,#000 0%,transparent 70%);mask-image:linear-gradient(180deg,#000 0%,transparent 70%)}
+.inner{position:absolute;left:88px;right:88px;top:150px;bottom:290px;display:flex;flex-direction:column;z-index:1}
+.logo{display:flex;align-items:center;gap:26px;font-weight:900;font-size:84px;letter-spacing:-.03em;white-space:nowrap;color:var(--white)}
+.logo .mark{width:34px;height:34px;border-radius:7px;background:var(--blue);box-shadow:18px 18px 0 var(--gold);margin-right:14px}
+.logo .wm{white-space:nowrap}.logo .wm b{font-weight:900;color:var(--gold)}
+.mono{font-family:"JetBrains Mono",monospace;font-weight:500;letter-spacing:.14em;text-transform:uppercase}
+.hl{position:relative;display:inline-block;padding:0 22px;margin-left:-6px;z-index:0;color:var(--white);animation:ink .3s var(--hd,.55s) ease-out both}
+.hl:before{content:"";position:absolute;inset:14px 0 6px;background:var(--gold);border-radius:14px;z-index:-1;transform-origin:left;animation:swipe .45s var(--sd,.45s) cubic-bezier(.2,.8,.2,1) both}
+@keyframes swipe{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes ink{from{color:#FFFFFF}to{color:#0B0B0C}}
+@keyframes rise{from{transform:translateY(110%)}to{transform:none}}
+@keyframes fadeup{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}

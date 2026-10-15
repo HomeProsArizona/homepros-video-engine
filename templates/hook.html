@@ -1,0 +1,33 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><style>/*FONTS*//*BASE*/
+.top{display:flex;justify-content:space-between;align-items:center}
+.chip{font-size:30px;color:var(--gold);border:3px solid rgba(253,191,0,.55);padding:16px 26px;border-radius:99px;white-space:nowrap}
+.head{margin:auto 0}
+.kicker{font-size:32px;color:var(--soft);margin-bottom:48px;display:flex;align-items:center;gap:26px}
+.kicker:before{content:"";width:70px;height:3px;background:var(--soft)}
+.ln{display:block;overflow:hidden;line-height:1.08;padding-bottom:6px}
+.ln>span{display:inline-block;white-space:nowrap;font-size:var(--hs,128px);font-weight:900;letter-spacing:-.035em;color:var(--white);animation:rise .6s cubic-bezier(.2,.8,.2,1) both}
+.ln:nth-child(2)>span{animation-delay:.12s}.ln:nth-child(3)>span{animation-delay:.24s}.ln:nth-child(4)>span{animation-delay:.36s}.ln:nth-child(5)>span{animation-delay:.48s}
+.foot{display:flex;justify-content:space-between;align-items:flex-end;border-top:3px solid var(--line);padding-top:40px}
+.who{font-size:44px;font-weight:700;color:var(--white)}
+.who small{display:block;font-size:28px;color:var(--soft);margin-top:12px;font-weight:500}
+.count{font-size:30px;color:var(--soft)}
+</style></head><body>
+<div class="scene"><div class="inner">
+  <div class="top">
+    <div class="logo"><span class="mark"></span><span class="wm">Home<b>Pros</b></span></div>
+    <div class="chip mono">{{CHIP}}</div>
+  </div>
+  <div class="head"><div class="kicker mono">{{KICKER}}</div>{{LINES}}</div>
+  <div class="foot">
+    <div class="who">Josh Marquez<small class="mono">Broker · Arizona</small></div>
+    <div class="count mono">{{COUNT}}</div>
+  </div>
+</div></div>
+<script>
+window.seek=function(ms){document.getAnimations().forEach(a=>{a.pause();a.currentTime=ms});};
+(function(){var spans=[...document.querySelectorAll('.ln>span')],max=1080-176,s=140;
+ document.documentElement.style.setProperty('--hs',s+'px');
+ document.fonts.ready.then(function(){var w=Math.max(...spans.map(x=>x.getBoundingClientRect().width));
+  if(w>max){s=Math.floor(s*max/w);document.documentElement.style.setProperty('--hs',s+'px');}
+  window.__ready=true;});})();
+</script></body></html>

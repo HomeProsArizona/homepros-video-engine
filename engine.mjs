@@ -1,0 +1,255 @@
+// HomePros Content Studio — render engine
+// Job in → HeyGen avatar clips → branded hook frame + captions + end card → finished MP4s in the bucket.
+// Safe to restart: HeyGen video IDs are saved the moment they're submitted, so a restart never pays twice.
+import fs from 'fs';
+import path from 'path';
+import crypto from 'crypto';
+import { execFileSync, spawn } from 'child_process';
+import { chromium } from 'playwright-core';
+import { S3Client, GetObjectCommand, PutObjectCommand } from '@aws-sdk/client-s3';
+import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
+
+const ROOT = path.dirname(new URL(import.meta.url).pathname);
+const env = process.env;
+const log = (...a) => console.log(new Date().toISOString().slice(11, 19), ...a);
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const W = 1080, H = 1920, FPS = 30;
+
+// ---------- storage (Railway bucket, or local folder when testing) ----------
+const s3 = env.BUCKET ? new S3Client({
+  endpoint: env.BUCKET_ENDPOINT, region: env.BUCKET_REGION || 'auto', forcePathStyle: false,
+  credentials: { accessKeyId: env.BUCKET_ACCESS_KEY_ID, secretAccessKey: env.BUCKET_SECRET_ACCESS_KEY },
+}) : null;
+async function getJSON(key) {
+  if (!s3) { const f = path.join(ROOT, 'local-store', key); return fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, 'utf8')) : null; }
+  try { const r = await s3.send(new GetObjectCommand({ Bucket: env.BUCKET, Key: key })); return JSON.parse(await r.Body.transformToString()); }
+  catch (e) { if (e.name === 'NoSuchKey' || e.$metadata?.httpStatusCode === 404) return null; throw e; }
+}
+async function putFile(key, body, type) {
+  if (!s3) { const f = path.join(ROOT, 'local-store', key); fs.mkdirSync(path.dirname(f), { recursive: true }); fs.writeFileSync(f, body); return 'file://' + f; }
+  await s3.send(new PutObjectCommand({ Bucket: env.BUCKET, Key: key, Body: body, ContentType: type }));
+  return getSignedUrl(s3, new GetObjectCommand({ Bucket: env.BUCKET, Key: key }), { expiresIn: 7 * 24 * 3600 });
+}
+const putJSON = (key, obj) => putFile(key, JSON.stringify(obj, null, 2), 'application/json');
+
+// ---------- script parsing (accepts JSON, or the Content Studio text format) ----------
+export function parseScript(text) {
+  const t = text.trim();
+  if (t.startsWith('{')) return JSON.parse(t);
+  const get = re => (t.match(re) || [])[1]?.trim();
+  const job = {
+    number: get(/SCRIPT\s*#\s*(\d+)/i),
+    style: get(/Hook style:\s*([^\n|]+)/i),
+    topic: get(/Topic:\s*([^\n]+)/i),
+    chip: get(/Chip:\s*([^\n]+)/i),
+    kicker: get(/Kicker:\s*([^\n]+)/i),
+    variants: [],
+  };
+  for (const k of ['A', 'B', 'C']) {
+    const spoken = get(new RegExp(`Hook ${k}\\s*[—-]+\\s*spoken:\\s*([^\\n]+)`, 'i'));
+    const screen = get(new RegExp(`Hook ${k}[\\s\\S]*?screen:\\s*([^\\n]+)`, 'i'));
+    if (spoken && screen) job.variants.push({ key: k, spoken, screen });
+  }
+  job.body = get(/Body:\s*\n([\s\S]*?)\n\s*CTA:/i)?.replace(/\s*\n\s*/g, ' ');
+  job.cta = get(/CTA:\s*([^\n]+)/i);
+  job.caption = get(/Caption:\s*([^\n]+)/i);
+  job.hashtags = get(/Hashtags:\s*([^\n]+)/i);
+  return job;
+}
+function validate(job) {
+  const errs = [];
+  if (!job.variants?.length) errs.push('no hooks found');
+  for (const v of job.variants || []) {
+    const lines = v.screen.split('/').map(s => s.trim()).filter(Boolean);
+    if (lines.length < 2 || lines.length > 5) errs.push(`hook ${v.key}: screen needs 2-5 lines`);
+    for (const l of lines) if (l.replace(/\*/g, '').length > 14) errs.push(`hook ${v.key}: screen line too long "${l}"`);
+    if (lines.filter(l => /^\*.+\*$/.test(l)).length !== 1) errs.push(`hook ${v.key}: needs exactly one *PUNCH* line`);
+  }
+  if (!job.body) errs.push('body missing');
+  if (!job.cta) errs.push('CTA missing');
+  if (!/HomePros/.test(job.body || '')) errs.push('body must name HomePros');
+  return errs;
+}
+const plain = s => s.replace(/\*/g, '');
+const words = s => plain(s).split(/\s+/).filter(Boolean).length;
+
+// ---------- HeyGen ----------
+const HG = 'https://api.heygen.com';
+async function hg(method, p, body) {
+  if (env.MOCK_HEYGEN) return mockHeygen(method, p, body);
+  const r = await fetch(HG + p, { method, headers: { 'X-Api-Key': env.HEYGEN_API_KEY, 'content-type': 'application/json', accept: 'application/json' }, body: body ? JSON.stringify(body) : undefined });
+  const txt = await r.text(); let j; try { j = JSON.parse(txt); } catch { j = { raw: txt.slice(0, 400) }; }
+  if (!r.ok || j.error) throw new Error(`HeyGen ${p} ${r.status}: ${JSON.stringify(j.error || j).slice(0, 400)}`);
+  return j;
+}
+async function submitClip(text, job) {
+  const character = job.avatarType === 'avatar'
+    ? { type: 'avatar', avatar_id: job.avatarId, avatar_style: 'normal' }
+    : { type: 'talking_photo', talking_photo_id: job.avatarId, use_avatar_iv_model: job.engine !== 'iii' };
+  const j = await hg('POST', '/v2/video/generate', {
+    video_inputs: [{ character, voice: { type: 'text', input_text: plain(text), voice_id: job.voiceId } }],
+    dimension: { width: W, height: H },
+  });
+  return j.data.video_id;
+}
+async function waitClip(id) {
+  for (let i = 0; i < 120; i++) {
+    const j = await hg('GET', `/v1/video_status.get?video_id=${id}`);
+    const d = j.data || {};
+    if (d.status === 'completed') return d.video_url;
+    if (d.status === 'failed') throw new Error(`HeyGen render ${id} failed: ${JSON.stringify(d.error).slice(0, 300)}`);
+    await sleep(15000);
+  }
+  throw new Error(`HeyGen render ${id} timed out`);
+}
+function mockHeygen(method, p, body) { // local testing only: fake clip whose length follows the word count
+  if (method === 'POST') return { data: { video_id: 'mock:' + Math.max(2, words(body.video_inputs[0].voice.input_text) / 2.6).toFixed(2) } };
+  return { data: { status: 'completed', video_url: p.split('video_id=')[1] } };
+}
+async function download(url, out) {
+  if (url.startsWith('mock:')) {
+    const d = url.slice(5);
+    run('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'lavfi', '-i', `testsrc2=s=720x1280:r=25:d=${d}`, '-f', 'lavfi', '-i', `sine=frequency=330:duration=${d}`, '-shortest', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-c:a', 'aac', out]);
+    return;
+  }
+  const r = await fetch(url); if (!r.ok) throw new Error(`download ${r.status}`);
+  fs.writeFileSync(out, Buffer.from(await r.arrayBuffer()));
+}
+
+// ---------- media helpers ----------
+function run(cmd, args) { execFileSync(cmd, args, { stdio: ['ignore', 'inherit', 'inherit'] }); }
+const dur = f => parseFloat(execFileSync('ffprobe', ['-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', f]).toString());
+function fontsCSS() {
+  const f = (fam, w, file) => `@font-face{font-family:"${fam}";font-weight:${w};font-display:block;src:url(data:font/woff2;base64,${fs.readFileSync(path.join(ROOT, 'fonts', file)).toString('base64')}) format("woff2")}`;
+  return [600, 700, 800, 900].map(w => f('Montserrat', w, `montserrat-latin-${w}-normal.woff2`)).join('') + f('JetBrains Mono', 500, 'jetbrains-mono-latin-500-normal.woff2');
+}
+const esc = s => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;');
+function fill(name, vars) {
+  let h = fs.readFileSync(path.join(ROOT, 'templates', name), 'utf8').replace('/*FONTS*/', fontsCSS()).replace('/*BASE*/', fs.readFileSync(path.join(ROOT, 'templates', 'base.css'), 'utf8'));
+  for (const [k, v] of Object.entries(vars)) h = h.replace(`{{${k}}}`, v);
+  return h;
+}
+let browser;
+async function page(html, work, name) {
+  browser ||= await chromium.launch({ executablePath: env.CHROME_PATH || undefined, args: ['--no-sandbox'] });
+  const f = path.join(work, name); fs.writeFileSync(f, html);
+  const p = await browser.newPage({ viewport: { width: W, height: H } });
+  await p.goto('file://' + f); await p.waitForFunction('window.__ready === true', null, { timeout: 30000 });
+  return p;
+}
+async function renderAnim(html, seconds, out, work) {
+  const p = await page(html, work, path.basename(out) + '.html');
+  const ff = spawn('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', String(FPS), '-i', '-', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '18', '-preset', 'veryfast', out]);
+  const n = Math.round(seconds * FPS);
+  for (let i = 0; i < n; i++) {
+    await p.evaluate(ms => window.seek(ms), (i / FPS) * 1000);
+    const png = await p.screenshot({ type: 'png' });
+    if (!ff.stdin.write(png)) await new Promise(r => ff.stdin.once('drain', r));
+  }
+  ff.stdin.end(); await new Promise((res, rej) => ff.on('close', c => c ? rej(new Error('ffmpeg ' + c)) : res())); await p.close();
+}
+async function renderPNG(html, out, work) {
+  const p = await page(html, work, path.basename(out) + '.html');
+  fs.writeFileSync(out, await p.screenshot({ type: 'png', omitBackground: true })); await p.close();
+}
+function hookLines(screen) {
+  return screen.split('/').map(s => s.trim()).filter(Boolean).map(l => {
+    const m = l.match(/^\*(.+)\*$/);
+    return `<span class="ln"><span>${m ? `<span class="hl">${esc(m[1])}</span>` : esc(l)}</span></span>`;
+  }).join('');
+}
+// Captions: 2-3 word chunks, timed by character length across the spoken duration. *words* in the body turn gold.
+function captionsASS(body, seconds) {
+  const toks = body.split(/\s+/).filter(Boolean).map(w => ({ w: plain(w).toUpperCase(), gold: /\*/.test(w) }));
+  const chunks = []; let cur = [];
+  for (const t of toks) { cur.push(t); const len = cur.map(x => x.w).join(' ').length; if (cur.length === 3 || len > 16 || /[.,;:?!]$/.test(t.w)) { chunks.push(cur); cur = []; } }
+  if (cur.length) chunks.push(cur);
+  const start = 0.15, end = Math.max(start + 1, seconds - 0.25);
+  const total = chunks.reduce((s, c) => s + c.map(x => x.w).join(' ').length + 2, 0);
+  const ts = s => { const h = Math.floor(s / 3600), m = Math.floor(s / 60) % 60, x = (s % 60).toFixed(2).padStart(5, '0'); return `${h}:${String(m).padStart(2, '0')}:${x}`; };
+  let t = start; const ev = [];
+  for (const c of chunks) {
+    const d = (end - start) * (c.map(x => x.w).join(' ').length + 2) / total;
+    const txt = c.map(x => x.gold ? `{\\c&H00BFFD&}${x.w}{\\c&HFFFFFF&}` : x.w).join(' ');
+    ev.push(`Dialogue: 0,${ts(t)},${ts(t + d)},Cap,,0,0,0,,{\\fad(60,0)}${txt}`); t += d;
+  }
+  return `[Script Info]\nScriptType: v4.00+\nPlayResX: ${W}\nPlayResY: ${H}\nWrapStyle: 0\n\n[V4+ Styles]\nFormat: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding\nStyle: Cap,${env.CAPTION_FONT || 'Montserrat Thin Black'},92,&H00FFFFFF,&H00FFFFFF,&H000B0B0B,&H64000000,0,0,0,0,100,100,-1,0,1,7,3,5,80,80,0,1\n\n[Events]\nFormat: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text\n` +
+    ev.map(e => e.replace('{\\fad', '{\\pos(540,1060)\\fad')).join('\n') + '\n';
+}
+
+// ---------- main ----------
+async function main() {
+  const raw = env.JOB_B64 ? Buffer.from(env.JOB_B64, 'base64').toString('utf8') : (env.JOB_FILE ? fs.readFileSync(env.JOB_FILE, 'utf8') : null);
+  if (!raw) { log('No job set. Idle.'); return; }
+  const job = { avatarId: env.AVATAR_ID, avatarType: env.AVATAR_TYPE || 'talking_photo', voiceId: env.VOICE_ID, engine: env.ENGINE || 'iv', count: '', ...parseScript(raw) };
+  if (job.only) job.variants = job.variants.filter(v => job.only.includes(v.key));
+  const errs = validate(job);
+  if (errs.length) { log('JOB REJECTED:', errs.join(' | ')); return; }
+  job.count ||= job.number ? `${String(job.number).padStart(2, '0')} / 30` : '';
+  job.chip ||= job.number ? `Mito #${String(job.number).padStart(2, '0')}` : 'HomePros';
+  job.kicker ||= 'Nadie te lo dice';
+  const id = crypto.createHash('sha1').update(JSON.stringify([job.variants, job.body, job.cta, job.avatarId, job.voiceId, job.engine, job.avatarType])).digest('hex').slice(0, 12);
+  const pre = `jobs/${job.number ? 'script' + String(job.number).padStart(2, '0') + '-' : ''}${id}`;
+  const state = (await getJSON(`${pre}/state.json`)) || { clips: {} };
+  if (state.done) { log('Already finished:'); for (const [k, u] of Object.entries(state.outputs)) log('RESULT', k, u); return; }
+
+  // cost guard: estimate seconds before spending anything
+  const texts = { body: job.body, cta: job.cta, ...Object.fromEntries(job.variants.map(v => ['hook' + v.key, v.spoken])) };
+  const estSec = Object.values(texts).reduce((s, t) => s + words(t) / 2.6 + 0.6, 0);
+  const rate = { talking_photo: { iv: 0.0385, iii: 0.0165 }, avatar: { iv: 0.0805, iii: 0.01, v: 0.12 } }[job.avatarType]?.[job.engine] ?? 0.12;
+  log(`Job ${pre}: ${job.variants.length} hook(s), ~${estSec.toFixed(0)}s of avatar video, est. $${(estSec * rate).toFixed(2)}`);
+  if (estSec > Number(env.MAX_SECONDS || 150)) { log(`JOB REJECTED: ~${estSec.toFixed(0)}s exceeds MAX_SECONDS`); return; }
+
+  // 1. submit every clip once (IDs saved immediately)
+  for (const [k, t] of Object.entries(texts)) if (!state.clips[k]) {
+    state.clips[k] = await submitClip(t, job); await putJSON(`${pre}/state.json`, state); log('submitted', k, state.clips[k]);
+  }
+  // 2. wait + download
+  const work = fs.mkdtempSync('/tmp/job-');
+  const clip = {};
+  for (const [k, vid] of Object.entries(state.clips)) { const url = await waitClip(vid); clip[k] = path.join(work, 'clip-' + k + '.mp4'); await download(url, clip[k]); log('clip ready', k, dur(clip[k]).toFixed(1) + 's'); }
+
+  // 3. shared pieces: body segment with name card + captions, end card with CTA voice
+  await renderPNG(fill('card.html', {}), path.join(work, 'card.png'), work);
+  const bodyLen = dur(clip.body);
+  fs.writeFileSync(path.join(work, 'cap.ass'), captionsASS(job.body, bodyLen));
+  const fontsdir = path.join(ROOT, 'fonts');
+  run('ffmpeg', ['-y', '-loglevel', 'error', '-i', clip.body, '-i', path.join(work, 'card.png'), '-filter_complex',
+    `[0:v]scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H},fps=${FPS},setsar=1[v];[v][1:v]overlay=0:0,ass=${path.join(work, 'cap.ass')}:fontsdir=${fontsdir}[o];[0:a]aresample=48000,aformat=channel_layouts=stereo[a]`,
+    '-map', '[o]', '-map', '[a]', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '19', '-preset', 'veryfast', '-c:a', 'aac', '-b:a', '160k', path.join(work, 'seg-body.mp4')]);
+  const ctaLen = dur(clip.cta), endLen = Math.max(3.6, ctaLen + 1.0);
+  await renderAnim(fill('end.html', {}), endLen, path.join(work, 'end.mp4'), work);
+  voiceOver(path.join(work, 'end.mp4'), clip.cta, endLen, path.join(work, 'seg-end.mp4'), 0.35);
+
+  // progress bar strip (gradient), slid across the whole video
+  run('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'lavfi', '-i', `gradients=s=${W}x10:c0=0x147EFB:c1=0xFDBF00:x0=0:y0=0:x1=${W}:y1=0:d=1`, '-frames:v', '1', path.join(work, 'bar.png')]);
+
+  // 4. one finished video per hook variant
+  const outputs = {};
+  for (const v of job.variants) {
+    const hk = clip['hook' + v.key], hookLen = Math.max(2.8, dur(hk) + 0.35);
+    await renderAnim(fill('hook.html', { CHIP: esc(job.chip), KICKER: esc(job.kicker), COUNT: esc(job.count), LINES: hookLines(v.screen) }), hookLen, path.join(work, `hook${v.key}.mp4`), work);
+    voiceOver(path.join(work, `hook${v.key}.mp4`), hk, hookLen, path.join(work, `seg-hook${v.key}.mp4`), 0.0);
+    const out = path.join(work, `final-${v.key}.mp4`);
+    const total = hookLen + dur(path.join(work, 'seg-body.mp4')) + endLen;
+    run('ffmpeg', ['-y', '-loglevel', 'error', '-i', path.join(work, `seg-hook${v.key}.mp4`), '-i', path.join(work, 'seg-body.mp4'), '-i', path.join(work, 'seg-end.mp4'), '-loop', '1', '-i', path.join(work, 'bar.png'), '-filter_complex',
+      `[0:v][0:a][1:v][1:a][2:v][2:a]concat=n=3:v=1:a=1[cv][ca];[cv][3:v]overlay=x='-${W}+${W}*t/${total.toFixed(3)}':y=0:shortest=1[v];[ca]loudnorm=I=-14:TP=-1.5:LRA=11[a]`,
+      '-map', '[v]', '-map', '[a]', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '19', '-preset', 'medium', '-c:a', 'aac', '-b:a', '160k', '-ar', '48000', '-movflags', '+faststart', out]);
+    const name = `HomePros-${job.number ? 'Script' + String(job.number).padStart(2, '0') : id}-Hook${v.key}.mp4`;
+    outputs[v.key] = await putFile(`${pre}/${name}`, fs.readFileSync(out), 'video/mp4');
+    log('RESULT', v.key, `${dur(out).toFixed(1)}s`, outputs[v.key]);
+  }
+  await putJSON(`${pre}/state.json`, { ...state, done: true, outputs, caption: job.caption, hashtags: job.hashtags });
+  log('JOB DONE', pre);
+}
+// silent animation + voice clip → one segment of exact length
+function voiceOver(videoIn, voiceClip, seconds, out, delay) {
+  run('ffmpeg', ['-y', '-loglevel', 'error', '-i', videoIn, '-i', voiceClip, '-filter_complex',
+    `[0:v]fps=${FPS},setsar=1[v];[1:a]aresample=48000,aformat=channel_layouts=stereo,adelay=${Math.round(delay * 1000)}:all=1,apad[a]`,
+    '-map', '[v]', '-map', '[a]', '-t', seconds.toFixed(3), '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '19', '-preset', 'veryfast', '-c:a', 'aac', '-b:a', '160k', out]);
+}
+
+main().catch(e => { log('JOB FAILED:', e.message); }).finally(async () => {
+  if (browser) await browser.close();
+  if (env.STAY_ALIVE !== '0') { log('Idle (set a new JOB_B64 to run another).'); setInterval(() => {}, 1 << 30); }
+});

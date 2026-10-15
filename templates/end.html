@@ -1,0 +1,40 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><style>/*FONTS*//*BASE*/
+.inner>*,.mid>*{animation-name:fadeup;animation-duration:.5s;animation-timing-function:cubic-bezier(.2,.8,.2,1);animation-fill-mode:both}
+.logo{animation-delay:.05s}.q{animation-delay:.15s}.cta{animation-delay:.25s}.box{animation-delay:.55s}.sub2{animation-delay:.75s}.bottom{animation-delay:.85s}
+.mid{margin:auto 0;animation:none!important}
+.q{font-size:32px;color:var(--soft);margin-bottom:40px}
+.cta{font-size:150px;font-weight:900;letter-spacing:-.035em;line-height:1.02;color:var(--white)}
+.cta .hl{--hd:.5s;--sd:.4s}
+.box{margin-top:64px;display:flex;gap:30px;align-items:center}
+.field{flex:1;display:flex;align-items:center;height:124px;background:rgba(255,255,255,.08);border:3px solid rgba(255,255,255,.25);border-radius:99px;padding:0 52px;font-size:50px;font-weight:800;letter-spacing:.06em;color:var(--white)}
+.typed{display:inline-block;overflow:hidden;white-space:nowrap;width:0;animation:type .6s 1.0s steps(4) both}
+@keyframes type{from{width:0}to{width:4.4ch}}
+.cursor{width:6px;height:58px;background:var(--gold);margin-left:8px;animation:blink .8s step-end 0s 12 both}
+@keyframes blink{0%{opacity:1}50%{opacity:0}100%{opacity:1}}
+.send{width:124px;height:124px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;flex:none;animation:press .35s 1.8s ease-out both}
+.send svg{width:56px;height:56px;margin-left:8px}
+@keyframes press{0%{transform:scale(1)}50%{transform:scale(.82)}100%{transform:scale(1)}}
+.sub2{font-size:42px;color:var(--soft);margin-top:52px;line-height:1.45;font-weight:600}
+.contact{border-radius:48px;padding:44px 52px;background:linear-gradient(135deg,#147EFB,#0d5fc4);color:var(--white)}
+.contact .n{font-size:40px;font-weight:700;color:rgba(255,255,255,.92)}
+.contact .p{font-size:88px;font-weight:900;letter-spacing:-.01em;margin-top:6px;color:var(--white)}
+.legal{font-size:26px;color:rgba(255,255,255,.55);margin-top:34px;line-height:1.6;text-align:center;font-weight:600}
+</style></head><body>
+<div class="scene"><div class="inner">
+  <div class="logo"><span class="mark"></span><span class="wm">Home<b>Pros</b></span></div>
+  <div class="mid">
+    <div class="q mono">¿Tienes esta duda?</div>
+    <div class="cta">Comenta<br><span class="hl">CASA</span></div>
+    <div class="box"><div class="field"><span class="typed">CASA</span><span class="cursor"></span></div>
+      <div class="send"><svg viewBox="0 0 24 24"><path d="M3 20.5 21 12 3 3.5v6.6L15 12 3 13.9z" fill="#0B0B0C"/></svg></div></div>
+    <div class="sub2">Te mando la respuesta por mensaje.<br>Sin pena, sin compromiso.</div>
+  </div>
+  <div class="bottom">
+    <div class="contact"><div class="n">Josh Marquez · Broker</div><div class="p">602-693-0218</div></div>
+    <div class="legal">HomePros · Josh Marquez, Designated Broker · Lic. #BR568376000<br>Información educativa. No es asesoría legal ni financiera.</div>
+  </div>
+</div></div>
+<script>
+window.seek=function(ms){document.getAnimations().forEach(a=>{a.pause();a.currentTime=ms});};
+document.fonts.ready.then(()=>{window.__ready=true});
+</script></body></html>
