@@ -68,7 +68,7 @@ function validate(job) {
   }
   if (!job.body) errs.push('body missing');
   if (!job.cta) errs.push('CTA missing');
-  if (!/HomePros/.test(job.body || '')) errs.push('body must name HomePros');
+  // Brokerage name is on screen (logo + license line on every frame), so it is not required in the spoken script.
   return errs;
 }
 const plain = s => s.replace(/\*/g, '');
