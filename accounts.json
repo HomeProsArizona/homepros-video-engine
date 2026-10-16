@@ -45,5 +45,28 @@
     "subAccountId": "urn:li:person:74bCQTQlEz",
     "name": "Josh Marquez - Broker"
   },
-  "_rules": "Facebook pages: title must be under 255 chars -> short headline as title, full caption in description. YouTube: short title + caption in description."
+  "_rules": "Facebook pages: title must be under 255 chars -> short headline as title, full caption in description. YouTube: short title + caption in description.",
+  "_agent_list": [
+    "linkedin_josh",
+    "instagram_josh",
+    "tiktok_josh",
+    "facebook_avance",
+    "facebook_homepros"
+  ],
+  "_consumer_list": [
+    "instagram_josh",
+    "instagram_crossover",
+    "tiktok_josh",
+    "tiktok_homepros",
+    "youtube_homepros",
+    "facebook_crossover",
+    "facebook_homepros",
+    "linkedin_josh"
+  ],
+  "facebook_avance": {
+    "postAccountId": "68e73eca87424263ce02d263",
+    "subAccountId": "156744840845650",
+    "mediaType": "reel",
+    "name": "Avance School of Real Estate"
+  }
 }
