@@ -43,6 +43,8 @@ export function parseScript(text) {
     topic: get(/Topic:\s*([^\n]+)/i),
     chip: get(/Chip:\s*([^\n]+)/i),
     kicker: get(/Kicker:\s*([^\n]+)/i),
+    keyword: get(/Keyword:\s*([^\n]+)/i),
+    audience: get(/Audience:\s*([A-Z]+)/i),
     variants: [],
   };
   // Single-hook format ("Hook — spoken: / screen:"). Older A/B/C scripts still parse; only the first hook is used.
@@ -127,7 +129,7 @@ function fontsCSS() {
 const esc = s => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;');
 function fill(name, vars) {
   let h = fs.readFileSync(path.join(ROOT, 'templates', name), 'utf8').replace('/*FONTS*/', fontsCSS()).replace('/*BASE*/', fs.readFileSync(path.join(ROOT, 'templates', 'base.css'), 'utf8'));
-  for (const [k, v] of Object.entries(vars)) h = h.replace(`{{${k}}}`, v);
+  for (const [k, v] of Object.entries(vars)) h = h.replaceAll(`{{${k}}}`, v);
   return h;
 }
 let browser;
@@ -229,7 +231,11 @@ async function runOne(raw) {
     `[0:v]scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H},fps=${FPS},setsar=1[v];[v][1:v]overlay=0:0,ass=${path.join(work, 'cap.ass')}:fontsdir=${fontsdir}[o];[0:a]aresample=48000,aformat=channel_layouts=stereo[a]`,
     '-map', '[o]', '-map', '[a]', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '19', '-preset', 'veryfast', '-c:a', 'aac', '-b:a', '160k', path.join(work, 'seg-body.mp4')]);
   const ctaLen = dur(clip.cta), endLen = Math.max(3.6, ctaLen + 1.0);
-  await renderAnim(fill('end.html', {}), endLen, path.join(work, 'end.mp4'), work);
+  const kw = (job.keyword || (/agent/i.test(job.audience || '') ? 'AGENTE' : 'CASA')).toUpperCase().replace(/[^A-ZÁÉÍÓÚÑ]/g, '');
+  const agent = /agent/i.test(job.audience || '');
+  const endVars = { Q: agent ? '¿Eres agente?' : '¿Tienes esta duda?', KW: esc(kw), N: String(kw.length), W: (kw.length * 1.1).toFixed(1),
+    SUB: agent ? 'Te mando la información por mensaje.' : 'Te mando la respuesta por mensaje.<br>Sin pena, sin compromiso.' };
+  await renderAnim(fill('end.html', endVars), endLen, path.join(work, 'end.mp4'), work);
   voiceOver(path.join(work, 'end.mp4'), clip.cta, endLen, path.join(work, 'seg-end.mp4'), 0.35);
 
   // progress bar strip (gradient), slid across the whole video
