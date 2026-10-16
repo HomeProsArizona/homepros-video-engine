@@ -194,7 +194,11 @@ async function main() {
   log('BATCH DONE');
 }
 async function runOne(raw) {
-  const job = { avatarId: env.AVATAR_ID, avatarType: env.AVATAR_TYPE || 'talking_photo', voiceId: env.VOICE_ID, engine: env.ENGINE || 'iv', count: '', ...parseScript(raw) };
+  const parsed = parseScript(raw);
+  const isAgent = /agent/i.test(parsed.audience || '');
+  // AGENT scripts use their own look when AGENT_AVATAR_ID is set (suit); CONSUMER scripts use AVATAR_ID (striped shirt).
+  const job = { avatarId: (isAgent && env.AGENT_AVATAR_ID) || env.AVATAR_ID, avatarType: (isAgent && env.AGENT_AVATAR_ID ? env.AGENT_AVATAR_TYPE : env.AVATAR_TYPE) || 'talking_photo',
+    voiceId: env.VOICE_ID, engine: env.ENGINE || 'iv', count: '', ...parsed };
   if (job.only) job.variants = job.variants.filter(v => job.only.includes(v.key));
   const errs = validate(job);
   if (errs.length) { log('JOB REJECTED:', errs.join(' | ')); return; }
