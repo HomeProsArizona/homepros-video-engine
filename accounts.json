@@ -1,11 +1,49 @@
 {
   "_note": "Standard OpusClip posting targets for every HomePros Content Studio video (confirmed by Josh 2026-10-15)",
-  "instagram_josh":   { "postAccountId": "68e73f9c87424263ce02d2d2", "subAccountId": "17841400647044239", "mediaType": "reel", "name": "@josh.marquez.broker" },
-  "instagram_crossover": { "postAccountId": "698bd00939291985bafdccb3", "subAccountId": "17841448557371152", "mediaType": "reel", "name": "@crossover.podcast.az" },
-  "tiktok_josh":      { "postAccountId": "68e73dfb34f6d8f76e5d8b78", "privacy": "public", "name": "@joshazbroker" },
-  "tiktok_homepros":  { "postAccountId": "6952e7af3e17f73ab9ce95f8", "privacy": "public", "name": "@homeprosarizona" },
-  "youtube_homepros": { "postAccountId": "68e891bb2dc33caf3caa0fc4", "mediaType": "short", "privacy": "public", "name": "HomePros AZ | Bienes Raíces en Español" },
-  "facebook_crossover": { "postAccountId": "68e73eca87424263ce02d263", "subAccountId": "904744536057330", "mediaType": "reel", "name": "Crossover Podcast" },
-  "facebook_homepros":  { "postAccountId": "68e73eca87424263ce02d263", "subAccountId": "168112063729405", "mediaType": "reel", "name": "HomePros" },
-  "linkedin_josh":    { "postAccountId": "696bf2b48a9b4289aee62c55", "subAccountId": "urn:li:person:74bCQTQlEz", "name": "Josh Marquez - Broker" }
+  "instagram_josh": {
+    "postAccountId": "68e73f9c87424263ce02d2d2",
+    "subAccountId": "17841400647044239",
+    "mediaType": "reel",
+    "name": "@josh.marquez.broker"
+  },
+  "instagram_crossover": {
+    "postAccountId": "698bd00939291985bafdccb3",
+    "subAccountId": "17841448557371152",
+    "mediaType": "reel",
+    "name": "@crossover.podcast.az"
+  },
+  "tiktok_josh": {
+    "postAccountId": "68e73dfb34f6d8f76e5d8b78",
+    "privacy": "public",
+    "name": "@joshazbroker"
+  },
+  "tiktok_homepros": {
+    "postAccountId": "6952e7af3e17f73ab9ce95f8",
+    "privacy": "public",
+    "name": "@homeprosarizona"
+  },
+  "youtube_homepros": {
+    "postAccountId": "68e891bb2dc33caf3caa0fc4",
+    "mediaType": "short",
+    "privacy": "public",
+    "name": "HomePros AZ | Bienes Raíces en Español"
+  },
+  "facebook_crossover": {
+    "postAccountId": "68e73eca87424263ce02d263",
+    "subAccountId": "904744536057330",
+    "mediaType": "reel",
+    "name": "Crossover Podcast"
+  },
+  "facebook_homepros": {
+    "postAccountId": "68e73eca87424263ce02d263",
+    "subAccountId": "168112063729405",
+    "mediaType": "reel",
+    "name": "HomePros"
+  },
+  "linkedin_josh": {
+    "postAccountId": "696bf2b48a9b4289aee62c55",
+    "subAccountId": "urn:li:person:74bCQTQlEz",
+    "name": "Josh Marquez - Broker"
+  },
+  "_rules": "Facebook pages: title must be under 255 chars -> short headline as title, full caption in description. YouTube: short title + caption in description."
 }
