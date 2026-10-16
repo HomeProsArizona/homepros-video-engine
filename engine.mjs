@@ -70,10 +70,19 @@ function validate(job) {
   }
   if (!job.body) errs.push('body missing');
   if (!job.cta) errs.push('CTA missing');
+  const kw = (job.keyword || 'CASA').toUpperCase();
+  const spoken = [job.variants?.[0]?.spoken, job.body, job.cta].filter(Boolean).join(' ');
+  const ac = acronyms(spoken, kw);
+  if (ac.length) errs.push(`acronym(s) in spoken text, the voice would spell them out: ${ac.join(', ')} (write them out in words, or add to PRONOUNCE)`);
   // Brokerage name is on screen (logo + license line on every frame), so it is not required in the spoken script.
   return errs;
 }
 const plain = s => s.replace(/\*/g, '');
+// Words the Spanish voice would spell letter by letter. Spoken text only; captions and screen keep the original.
+export const PRONOUNCE = { BINSR: 'binser' };
+const speakable = s => plain(s).replace(/\b[A-ZÁÉÍÓÚÑ]{2,}\b/g, w => PRONOUNCE[w] ?? w);
+// Acronyms the voice would spell out: any ALL-CAPS word of 2+ letters that is not the CTA keyword and not in PRONOUNCE.
+const acronyms = (s, keyword) => [...new Set((plain(s).match(/\b[A-ZÁÉÍÓÚÑ]{2,}\b/g) || []).filter(w => w !== keyword && !(w in PRONOUNCE)))];
 const words = s => plain(s).split(/\s+/).filter(Boolean).length;
 
 // ---------- HeyGen ----------
@@ -90,7 +99,7 @@ async function submitClip(text, job) {
     ? { type: 'avatar', avatar_id: job.avatarId, avatar_style: 'normal' }
     : { type: 'talking_photo', talking_photo_id: job.avatarId, use_avatar_iv_model: job.engine !== 'iii' };
   const j = await hg('POST', '/v2/video/generate', {
-    video_inputs: [{ character, voice: { type: 'text', input_text: plain(text), voice_id: job.voiceId } }],
+    video_inputs: [{ character, voice: { type: 'text', input_text: speakable(text), voice_id: job.voiceId } }],
     dimension: { width: W, height: H },
   });
   return j.data.video_id;
