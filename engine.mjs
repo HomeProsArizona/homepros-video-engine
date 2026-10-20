@@ -132,6 +132,13 @@ async function download(url, out) {
   fs.writeFileSync(out, Buffer.from(await r.arrayBuffer()));
 }
 
+// HeyGen API wallet balance in USD (null if unavailable). Used to log the real cost of each batch.
+async function wallet() {
+  if (env.MOCK_HEYGEN) return null;
+  try { const j = await hg('GET', '/v3/users/me'); const b = Number(j.data?.wallet?.remaining_balance); return isNaN(b) ? null : b; }
+  catch (e) { log('wallet check failed:', e.message); return null; }
+}
+
 // ---------- media helpers ----------
 function run(cmd, args) { execFileSync(cmd, args, { stdio: ['ignore', 'inherit', 'inherit'] }); }
 const dur = f => parseFloat(execFileSync('ffprobe', ['-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', f]).toString());
@@ -201,8 +208,16 @@ async function main() {
   if (!raw) { log('No job set. Idle.'); return; }
   const scripts = raw.trim().startsWith('{') ? [raw] : raw.split(/(?=SCRIPT\s*#\s*\d+)/i).map(s => s.trim()).filter(s => /SCRIPT\s*#/i.test(s));
   log(`Batch: ${scripts.length} script(s)`);
+  const before = await wallet();
+  let rendered = 0;
   for (const s of scripts) {
-    try { await runOne(s); } catch (e) { log('SCRIPT FAILED:', (s.match(/SCRIPT\s*#\s*\d+/i) || ['?'])[0], e.message); }
+    try { if (await runOne(s)) rendered++; } catch (e) { log('SCRIPT FAILED:', (s.match(/SCRIPT\s*#\s*\d+/i) || ['?'])[0], e.message); }
+  }
+  const after = await wallet();
+  if (before != null && after != null) {
+    const spent = before - after;
+    log(`COST batch: wallet $${before.toFixed(2)} -> $${after.toFixed(2)}, spent $${spent.toFixed(2)} on ${rendered} new video(s)` +
+      (rendered ? `, ~$${(spent / rendered).toFixed(2)} per video` : ''));
   }
   log('BATCH DONE');
 }
@@ -242,7 +257,7 @@ async function runOne(raw) {
 
   // 1. submit every clip once (IDs saved immediately)
   for (const [k, t] of Object.entries(texts)) if (!state.clips[k]) {
-    state.clips[k] = await submitClip(t, job); await putJSON(`${pre}/state.json`, state); log('submitted', k, state.clips[k]);
+    state.clips[k] = await submitClip(t, job); job.newClips = true; await putJSON(`${pre}/state.json`, state); log('submitted', k, state.clips[k]);
   }
   // 2. wait + download
   const work = fs.mkdtempSync('/tmp/job-');
@@ -286,6 +301,7 @@ async function runOne(raw) {
   }
   await putJSON(`${pre}/state.json`, { ...state, done: true, outputs, caption: job.caption, hashtags: job.hashtags });
   log('JOB DONE', pre);
+  return !!job.newClips;
 }
 // BLUR_BOX="x,y,w,h" (1080x1920 coordinates): blurs a band of the avatar video, e.g. captions burned into the
 // avatar's training footage. Applied before the name card and our captions, so those stay sharp on top.
