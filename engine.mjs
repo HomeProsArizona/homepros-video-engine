@@ -250,11 +250,12 @@ async function runOne(raw) {
   for (const [k, vid] of Object.entries(state.clips)) { const url = await waitClip(vid); clip[k] = path.join(work, 'clip-' + k + '.mp4'); await download(url, clip[k]); log('clip ready', k, dur(clip[k]).toFixed(1) + 's'); }
 
   // 3. shared pieces: body segment with name card + captions, end card with CTA voice
-  await renderPNG(fill('card.html', {}), path.join(work, 'card.png'), work);
+  await renderPNG(fill('card.html', { CARD_MODE: env.CARD_MODE === 'cover' ? 'cover' : '' }), path.join(work, 'card.png'), work);
   const bodyLen = dur(clip.body);
   fs.writeFileSync(path.join(work, 'cap.ass'), captionsASS(job.body, bodyLen));
   const fontsdir = path.join(ROOT, 'fonts');
-  run('ffmpeg', ['-y', '-loglevel', 'error', '-i', clip.body, '-i', path.join(work, 'card.png'), '-filter_complex',
+  const blurIn = makeBlurMask(work, bodyLen);
+  run('ffmpeg', ['-y', '-loglevel', 'error', '-i', clip.body, '-i', path.join(work, 'card.png'), ...blurIn, '-filter_complex',
     `[0:v]scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H},fps=${FPS},setsar=1${blurFilter()}[v];[v][1:v]overlay=0:0,ass=${path.join(work, 'cap.ass')}:fontsdir=${fontsdir}[o];[0:a]aresample=48000,aformat=channel_layouts=stereo[a]`,
     '-map', '[o]', '-map', '[a]', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '19', '-preset', 'veryfast', '-c:a', 'aac', '-b:a', '160k', path.join(work, 'seg-body.mp4')]);
   const ctaLen = dur(clip.cta), endLen = Math.max(3.6, ctaLen + 1.0);
@@ -288,11 +289,19 @@ async function runOne(raw) {
 }
 // BLUR_BOX="x,y,w,h" (1080x1920 coordinates): blurs a band of the avatar video, e.g. captions burned into the
 // avatar's training footage. Applied before the name card and our captions, so those stay sharp on top.
+const blurBox = () => { const b = (env.BLUR_BOX || '').split(',').map(Number); return b.length === 4 && !b.some(isNaN) ? b : null; };
+// soft-edged mask so the blurred band fades out instead of showing a hard rectangle
+function makeBlurMask(work, seconds) {
+  const b = blurBox(); if (!b) return [];
+  const [, , w, h] = b, f = path.join(work, 'blurmask.png'), e = 26;
+  run('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'lavfi', '-i', `color=c=black:s=${w}x${h}`, '-vf',
+    `drawbox=x=${e}:y=${e}:w=${w - 2 * e}:h=${h - 2 * e}:color=white:t=fill,gblur=sigma=${e / 2},format=gray`, '-frames:v', '1', f]);
+  return ['-loop', '1', '-t', (seconds + 1).toFixed(2), '-i', f]; // bounded so the encode always ends
+}
 function blurFilter() {
-  const b = (env.BLUR_BOX || '').split(',').map(Number);
-  if (b.length !== 4 || b.some(isNaN)) return '';
+  const b = blurBox(); if (!b) return '';
   const [x, y, w, h] = b;
-  return `,split[bg][bb];[bb]crop=${w}:${h}:${x}:${y},gblur=sigma=28[bl];[bg][bl]overlay=${x}:${y}`;
+  return `,split[bg][bb];[2:v]format=gray[mk];[bb]crop=${w}:${h}:${x}:${y},gblur=sigma=30,format=yuva420p[b0];[b0][mk]alphamerge[bl];[bg][bl]overlay=${x}:${y}`;
 }
 // silent animation + voice clip → one segment of exact length
 function voiceOver(videoIn, voiceClip, seconds, out, delay) {

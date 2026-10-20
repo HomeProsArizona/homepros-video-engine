@@ -9,7 +9,12 @@ html,body{background:transparent}
 .live{position:absolute;top:150px;left:56px;font-size:28px;display:flex;align-items:center;gap:18px;color:#fff;
   background:rgba(11,11,12,.45);padding:14px 26px;border-radius:99px}
 .live:before{content:"";width:18px;height:18px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 8px rgba(20,126,251,.3)}
-</style></head><body>
+/* COVER mode: taller, solid bar placed over captions burned into some avatar footage */
+.cover .card{bottom:455px;height:250px;box-sizing:border-box;padding:0 48px;background:#0b0b0c;border-color:rgba(255,255,255,.22)}
+.cover .name{font-size:54px}
+.cover .name small{font-size:30px;margin-top:10px}
+.cover .card .logo{font-size:70px}
+</style></head><body class="{{CARD_MODE}}">
 <div class="live mono">HomePros · Bienes raíces</div>
 <div class="card">
   <div class="name">Josh Marquez<small class="mono">Designated Broker</small></div>
