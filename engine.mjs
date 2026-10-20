@@ -301,7 +301,7 @@ function makeBlurMask(work, seconds) {
 function blurFilter() {
   const b = blurBox(); if (!b) return '';
   const [x, y, w, h] = b;
-  return `,split[bg][bb];[2:v]format=gray[mk];[bb]crop=${w}:${h}:${x}:${y},gblur=sigma=30,format=yuva420p[b0];[b0][mk]alphamerge[bl];[bg][bl]overlay=${x}:${y}`;
+  return `,split[bg][bb];[2:v]format=gray[mk];[bb]crop=${w}:${h}:${x}:${y},gblur=sigma=30,format=yuva420p[b0];[b0][mk]alphamerge=shortest=1[bl];[bg][bl]overlay=${x}:${y}:shortest=1`;
 }
 // silent animation + voice clip → one segment of exact length
 function voiceOver(videoIn, voiceClip, seconds, out, delay) {
