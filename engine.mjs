@@ -98,8 +98,12 @@ async function submitClip(text, job) {
   const character = job.avatarType === 'avatar'
     ? { type: 'avatar', avatar_id: job.avatarId, avatar_style: 'normal' }
     : { type: 'talking_photo', talking_photo_id: job.avatarId, use_avatar_iv_model: job.engine !== 'iii' };
+  // Background swap: HeyGen cuts the avatar out of its own background (matting) and puts our image behind it.
+  if (job.bgUrl) character.matting = true;
+  const scene = { character, voice: { type: 'text', input_text: speakable(text), voice_id: job.voiceId } };
+  if (job.bgUrl) scene.background = { type: 'image', url: job.bgUrl, fit: 'cover' };
   const j = await hg('POST', '/v2/video/generate', {
-    video_inputs: [{ character, voice: { type: 'text', input_text: speakable(text), voice_id: job.voiceId } }],
+    video_inputs: [scene],
     dimension: { width: W, height: H },
   });
   return j.data.video_id;
@@ -208,13 +212,21 @@ async function runOne(raw) {
   // AGENT scripts use their own look when AGENT_AVATAR_ID is set (suit); CONSUMER scripts use AVATAR_ID (striped shirt).
   const job = { avatarId: (isAgent && env.AGENT_AVATAR_ID) || env.AVATAR_ID, avatarType: (isAgent && env.AGENT_AVATAR_ID ? env.AGENT_AVATAR_TYPE : env.AVATAR_TYPE) || 'talking_photo',
     voiceId: env.VOICE_ID, engine: env.ENGINE || 'iv', count: '', ...parsed };
+  // Optional background image from assets/backgrounds/ (already 1080x1920, so it fills the portrait frame).
+  // AGENT_BACKGROUND / BACKGROUND = file name, e.g. "studio.jpg". Unset = avatar keeps its own background.
+  job.background = (isAgent && env.AGENT_BACKGROUND) || env.BACKGROUND || '';
   if (job.only) job.variants = job.variants.filter(v => job.only.includes(v.key));
   const errs = validate(job);
   if (errs.length) { log('JOB REJECTED:', errs.join(' | ')); return; }
   job.count ||= job.number ? `${String(job.number).padStart(2, '0')} / 30` : '';
   job.chip ||= job.number ? `Mito #${String(job.number).padStart(2, '0')}` : 'HomePros';
   job.kicker ||= 'Nadie te lo dice';
-  const id = crypto.createHash('sha1').update(JSON.stringify([job.variants, job.body, job.cta, job.avatarId, job.voiceId, job.engine, job.avatarType])).digest('hex').slice(0, 12);
+  const id = crypto.createHash('sha1').update(JSON.stringify([job.variants, job.body, job.cta, job.avatarId, job.voiceId, job.engine, job.avatarType, ...(job.background ? [job.background] : [])])).digest('hex').slice(0, 12);
+  if (job.background) {
+    const f = path.join(ROOT, 'assets', 'backgrounds', path.basename(job.background));
+    if (!fs.existsSync(f)) { log('JOB REJECTED: background not found', job.background); return; }
+    job.bgUrl = await putFile(`assets/backgrounds/${path.basename(f)}`, fs.readFileSync(f), 'image/jpeg');
+  }
   const pre = `jobs/${job.number ? 'script' + String(job.number).padStart(2, '0') + '-' : ''}${id}`;
   const state = (await getJSON(`${pre}/state.json`)) || { clips: {} };
   if (state.done) { log('Already finished:'); for (const u of Object.values(state.outputs)) log('RESULT', `SCRIPT ${job.number ?? id}`, 'done', u); return; }
