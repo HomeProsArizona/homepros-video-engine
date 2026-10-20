@@ -229,6 +229,8 @@ async function runOne(raw) {
   }
   const pre = `jobs/${job.number ? 'script' + String(job.number).padStart(2, '0') + '-' : ''}${id}`;
   const state = (await getJSON(`${pre}/state.json`)) || { clips: {} };
+  // RECOMPOSE=1 rebuilds a finished job from the clips HeyGen already rendered (no new HeyGen cost).
+  if (state.done && env.RECOMPOSE === '1') { log('Recomposing from existing clips'); delete state.done; }
   if (state.done) { log('Already finished:'); for (const u of Object.values(state.outputs)) log('RESULT', `SCRIPT ${job.number ?? id}`, 'done', u); return; }
 
   // cost guard: estimate seconds before spending anything
@@ -253,7 +255,7 @@ async function runOne(raw) {
   fs.writeFileSync(path.join(work, 'cap.ass'), captionsASS(job.body, bodyLen));
   const fontsdir = path.join(ROOT, 'fonts');
   run('ffmpeg', ['-y', '-loglevel', 'error', '-i', clip.body, '-i', path.join(work, 'card.png'), '-filter_complex',
-    `[0:v]scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H},fps=${FPS},setsar=1[v];[v][1:v]overlay=0:0,ass=${path.join(work, 'cap.ass')}:fontsdir=${fontsdir}[o];[0:a]aresample=48000,aformat=channel_layouts=stereo[a]`,
+    `[0:v]scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H},fps=${FPS},setsar=1${blurFilter()}[v];[v][1:v]overlay=0:0,ass=${path.join(work, 'cap.ass')}:fontsdir=${fontsdir}[o];[0:a]aresample=48000,aformat=channel_layouts=stereo[a]`,
     '-map', '[o]', '-map', '[a]', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '19', '-preset', 'veryfast', '-c:a', 'aac', '-b:a', '160k', path.join(work, 'seg-body.mp4')]);
   const ctaLen = dur(clip.cta), endLen = Math.max(3.6, ctaLen + 1.0);
   const kw = (job.keyword || (/agent/i.test(job.audience || '') ? 'AGENTE' : 'CASA')).toUpperCase().replace(/[^A-ZÁÉÍÓÚÑ]/g, '');
@@ -283,6 +285,14 @@ async function runOne(raw) {
   }
   await putJSON(`${pre}/state.json`, { ...state, done: true, outputs, caption: job.caption, hashtags: job.hashtags });
   log('JOB DONE', pre);
+}
+// BLUR_BOX="x,y,w,h" (1080x1920 coordinates): blurs a band of the avatar video, e.g. captions burned into the
+// avatar's training footage. Applied before the name card and our captions, so those stay sharp on top.
+function blurFilter() {
+  const b = (env.BLUR_BOX || '').split(',').map(Number);
+  if (b.length !== 4 || b.some(isNaN)) return '';
+  const [x, y, w, h] = b;
+  return `,split[bg][bb];[bb]crop=${w}:${h}:${x}:${y},gblur=sigma=28[bl];[bg][bl]overlay=${x}:${y}`;
 }
 // silent animation + voice clip → one segment of exact length
 function voiceOver(videoIn, voiceClip, seconds, out, delay) {
