@@ -1,0 +1,47 @@
+SCRIPT #2 | Audience: CONSUMER | Language: EN | Hook style: PROVOCATION
+Topic: High rate vs price
+Chip: HEADS UP
+Kicker: It's not just the rate
+Keyword: HOUSE
+
+Hook — spoken: Yes, rates are high. But waiting can cost you too.
+       screen: High rates / cost you. / So does / *WAITING*
+
+Body:
+Look, buying a home isn't about one single thing. If the rate is high, but you find a property with a better price or room to negotiate, the story changes. What matters is checking the full monthly payment, your down payment, your expenses, and how comfortable the purchase feels for you. Sometimes waiting helps. Sometimes it doesn't. Run the numbers calmly and compare scenarios before you move.
+I'm Josh Marquez, a broker with twenty-one years of experience helping families and agents across the Valley.
+
+CTA: If you want to review your situation, comment HOUSE and I'll send you info.
+
+Caption: A high rate doesn't tell the whole story. Price, monthly payment and negotiation matter too. Run the full numbers before you decide. Comment HOUSE.
+Hashtags: #homebuying #mortgage #arizonarealestate #HomePros
+
+Headline: Rate vs price
+Callouts: better price, negotiate
+Checklist: monthly payment, down payment, expenses
+Snap: Sometimes waiting helps. Sometimes it doesn't.
+
+SCRIPT #10 | Audience: CONSUMER | Hook style: DICHO
+Topic: Reservas después de comprar
+Chip: COLCHÓN
+Kicker: No vacíes la cuenta
+Keyword: CASA
+
+Hook — spoken: No pongas todos los huevos en el enganche de tu casa.
+       screen: No todo al / *ENGANCHE*
+
+Body:
+Mira, dar más enganche no siempre significa comprar mejor. Si vacías tus ahorros, cualquier gasto después de mudarte te puede dejar bien apretado. Antes de decidir, separa dinero para mudanza, mantenimiento e imprevistos. Luego revisa con tu prestamista qué enganche tiene sentido para tu situación. La meta no es conseguir llaves y quedarte contando monedas. También necesitas margen para vivir.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Para planear tu compra sin vaciar tus ahorros, comenta CASA.
+
+Caption: El enganche no debe borrar tu margen para mudanza, mantenimiento e imprevistos. Comenta CASA.
+Hashtags: #CompraDeCasa #PrimerHogar #FinanzasDelHogar #HomePros
+
+Headline: Guarda un colchón
+Callouts: enganche, ahorros
+Checklist: mudanza, mantenimiento, imprevistos
+Snap: También necesitas margen para vivir.
+
+Word count: hook 11 / body 77 / CTA 10
