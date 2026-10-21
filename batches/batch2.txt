@@ -1,0 +1,524 @@
+SCRIPT #10 | Audience: CONSUMER | Hook style: DICHO
+Topic: Reservas después de comprar
+Chip: COLCHÓN
+Kicker: No vacíes la cuenta
+Keyword: CASA
+
+Hook — spoken: No pongas todos los huevos en el enganche de tu casa.
+       screen: No todo al / *ENGANCHE*
+
+Body:
+Mira, dar más enganche no siempre significa comprar mejor. Si vacías tus ahorros, cualquier gasto después de mudarte te puede dejar bien apretado. Antes de decidir, separa dinero para mudanza, mantenimiento e imprevistos. Luego revisa con tu prestamista qué enganche tiene sentido para tu situación. La meta no es conseguir llaves y quedarte contando monedas. También necesitas margen para vivir.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Para planear tu compra sin vaciar tus ahorros, comenta CASA.
+
+Caption: El enganche no debe borrar tu margen para mudanza, mantenimiento e imprevistos. Comenta CASA.
+Hashtags: #CompraDeCasa #PrimerHogar #FinanzasDelHogar #HomePros
+
+Headline: Guarda un colchón
+Callouts: enganche, ahorros
+Checklist: mudanza, mantenimiento, imprevistos
+Snap: También necesitas margen para vivir.
+
+Word count: hook 11 / body 77 / CTA 10
+
+SCRIPT #11 | Audience: CONSUMER | Hook style: CHISTE
+Topic: Casa modelo y mejoras adicionales
+Chip: EXTRAS
+Kicker: Antes de enamorarte
+Keyword: CASA
+
+Hook — spoken: Esa casa modelo trae más extras que pedido de tacos con todo.
+       screen: ¿Todo viene / *INCLUIDO?*
+
+Body:
+La cocina te enamora, pero primero pregunta qué incluye el precio base. Los acabados que ves en la casa modelo pueden costar aparte. Pide por escrito lo incluido, los extras y el total. Después revisa con el constructor cuánto cuesta exactamente la versión que estás considerando. No compres una expectativa. Compra sabiendo qué te van a entregar y cuánto te comprometes a pagar.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Para revisar qué incluye la casa antes de decidir, comenta CASA.
+
+Caption: La casa modelo puede mostrar mejoras con costo adicional. Pide detalles y precio final por escrito. Comenta CASA.
+Hashtags: #CasaNueva #CompraDeCasa #SinSorpresas #HomePros
+
+Headline: Extras aparte
+Callouts: cocina, precio base
+Checklist: lo incluido, los extras, el total
+Snap: No compres una expectativa.
+
+Word count: hook 12 / body 80 / CTA 11
+
+SCRIPT #12 | Audience: CONSUMER | Hook style: DRAMA
+Topic: Deudas nuevas durante la compra
+Chip: FRENA
+Kicker: Todavía falta
+Keyword: CASA
+
+Hook — spoken: Imagínate: ya escogías cortinas, pero estrenar troca te complicó la casa.
+       screen: La troca / puede frenar / tu compra / *OJO*
+
+Body:
+Mira, una deuda nueva puede cambiar cómo el prestamista evalúa tu solicitud. Aunque tengas una preaprobación, todavía falta completar el proceso. Antes de moverle, consulta sobre tarjetas, préstamos y compras grandes. No es regaño. Es cuidar lo que ya estás construyendo. Avísale a tu prestamista antes de comprometerte, no cuando ya tengas otro pago encima. La casa todavía no está cerrada.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si estás comprando y piensas abrir otro crédito, comenta CASA.
+
+Caption: Una deuda nueva puede afectar tu evaluación financiera. Consulta con tu prestamista antes de comprometerte. Comenta CASA.
+Hashtags: #Crédito #CompraDeCasa #AntesDelCierre #HomePros
+
+Headline: Primero las llaves
+Callouts: deuda, solicitud
+Checklist: tarjetas, préstamos, compras grandes
+Snap: La casa todavía no está cerrada.
+
+Word count: hook 11 / body 78 / CTA 10
+
+SCRIPT #13 | Audience: CONSUMER | Hook style: PROVOCACIÓN
+Topic: Remodelar antes de vender
+Chip: VENDE
+Kicker: Antes de meterle
+Keyword: CASA
+
+Hook — spoken: Tu remodelación favorita no obliga al comprador a pagarte cada peso.
+       screen: Gastar no es / *RECUPERAR*
+
+Body:
+Una cocina nueva puede lucir increíble, pero gastar no es recuperar. Antes de meterle dinero para vender, revisa qué necesita la propiedad y qué compite contigo. Pide estimaciones de costo, tiempo y alcance. Un cambio por gusto puede salir caro sin mejorar lo suficiente tu resultado. Primero decide con tu agente qué conviene arreglar. No remodeles para recibir aplausos. Prepárate para tomar una decisión con números.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Antes de remodelar para vender, comenta CASA y revisemos tus prioridades.
+
+Caption: No toda mejora recupera lo invertido. Evalúa la propiedad, la competencia y el costo antes de remodelar. Comenta CASA.
+Hashtags: #VendeTuCasa #Remodelación #VentaConPlan #HomePros
+
+Headline: Arregla con plan
+Callouts: cocina, gastar
+Checklist: costo, tiempo, alcance
+Snap: No remodeles para recibir aplausos.
+
+Word count: hook 11 / body 83 / CTA 11
+
+SCRIPT #14 | Audience: CONSUMER | Hook style: NADIE TE DICE
+Topic: Contrato de paneles solares
+Chip: PANELES
+Kicker: Lee antes de firmar
+Keyword: CASA
+
+Hook — spoken: Nadie te dice esto: los paneles pueden venir con otro compromiso.
+       screen: Paneles con / *COMPROMISOS*
+
+Body:
+Mira, tener paneles no significa que estén pagados. Puede haber un contrato que necesites revisar antes de comprar. Pregunta por propietario, mensualidad y condiciones. Pide los documentos y aclara con la compañía qué tendría que pasar para transferir ese acuerdo. Un compromiso extra puede cambiar tus cuentas. Si algo no entiendes, revísalo con un profesional antes de firmar. El sol no borra los contratos.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si la casa que te gusta tiene paneles, comenta CASA.
+
+Caption: Revisa quién es dueño de los paneles y qué contrato existe. Los compromisos del sistema también importan. Comenta CASA.
+Hashtags: #PanelesSolares #CompraInformada #CasaEnArizona #HomePros
+
+Headline: Sol con cuentas
+Callouts: paneles, contrato
+Checklist: propietario, mensualidad, condiciones
+Snap: El sol no borra los contratos.
+
+Word count: hook 11 / body 81 / CTA 10
+
+SCRIPT #15 | Audience: CONSUMER | Hook style: WARNING
+Topic: Fraude en transferencias de cierre
+Chip: ALERTA
+Kicker: Antes de enviar
+Keyword: CASA
+
+Hook — spoken: Ojo: un correo falso puede llevarse el dinero de tu casa.
+       screen: Un correo / *FALSO* / puede costarte / tu dinero
+
+Body:
+Si te cambian los datos por correo justo antes del cierre, frena. Puede ser fraude, aunque el mensaje parezca de alguien conocido. Verifica destinatario, cuenta e instrucciones directamente con tu compañía de título. Llama al teléfono que ya tenías confirmado, no al que viene en ese mensaje. El dinero enviado puede ser difícil de recuperar. Si ya lo mandaste, contacta inmediatamente a tu banco.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Para conocer qué verificar antes de transferir tu dinero, comenta CASA.
+
+Caption: Confirma las instrucciones por un teléfono previamente verificado. Un correo convincente también puede ser falso. Comenta CASA.
+Hashtags: #CompraProtegida #FraudeInmobiliario #CierreDeCasa #HomePros
+
+Headline: Verifica primero
+Callouts: correo, fraude
+Checklist: destinatario, cuenta, instrucciones
+Snap: El dinero enviado puede ser difícil de recuperar.
+
+Word count: hook 11 / body 81 / CTA 11
+
+SCRIPT #16 | Audience: CONSUMER | Hook style: MYTH
+Topic: Inspección de casa nueva
+Chip: MITO
+Kicker: Nueva no es perfecta
+Keyword: CASA
+
+Hook — spoken: ¿Casa nueva sin inspección? Nueva no significa que venga sin pendientes.
+       screen: Nueva no es / *PERFECTA*
+
+Body:
+Estrenar se siente bien, pero nuevo no quiere decir perfecto. Una revisión profesional puede ayudarte a identificar detalles antes del cierre. Habla con el inspector sobre techo, plomería y electricidad. Revisa también con tu agente los plazos y cómo se reportan los hallazgos al constructor. La inspección tiene costo y no descubre todo. No se trata de buscar pleito. Se trata de conocer mejor lo que estás comprando.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Para hablar de la revisión de tu casa nueva, comenta CASA.
+
+Caption: Estrenar no sustituye revisar. Consulta una inspección profesional y cómo comunicar hallazgos dentro de los plazos aplicables. Comenta CASA.
+Hashtags: #CasaNueva #InspecciónDeCasa #CompraInformada #HomePros
+
+Headline: Revisa al estrenar
+Callouts: nuevo, revisión
+Checklist: techo, plomería, electricidad
+Snap: No se trata de buscar pleito.
+
+Word count: hook 11 / body 85 / CTA 11
+
+SCRIPT #17 | Audience: CONSUMER | Hook style: DICHO
+Topic: Comparar cotizaciones de préstamo
+Chip: COMPARA
+Kicker: No solo la tasa
+Keyword: CASA
+
+Hook — spoken: No todo lo que brilla es oro, tampoco esa tasa tan bonita.
+       screen: Tasa bonita / ¿Buen trato? / *COMPARA*
+
+Body:
+Mira, una tasa bajita puede llamar la atención, pero los cargos también cuentan. Pide cotizaciones comparables para el mismo tipo de préstamo. Revisa mensualidad, costos iniciales y dinero al cierre. Pregunta al prestamista por qué cambian los números y qué incluye cada opción. No te quedes con el anuncio más bonito. Compara la cuenta completa. Una diferencia que ignoras al principio puede acompañarte mucho tiempo.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Para entender qué comparar entre préstamos, comenta CASA antes de decidir.
+
+Caption: Compara cotizaciones equivalentes: tasa, costos iniciales y dinero necesario para cerrar. El anuncio no cuenta toda la historia. Comenta CASA.
+Hashtags: #PréstamoHipotecario #CompraDeCasa #ComparaOpciones #HomePros
+
+Headline: Compara completo
+Callouts: tasa, cargos
+Checklist: mensualidad, costos iniciales, dinero al cierre
+Snap: Compara la cuenta completa.
+
+Word count: hook 12 / body 82 / CTA 11
+
+SCRIPT #18 | Audience: CONSUMER | Hook style: CHISTE
+Topic: Reglas de la asociación de propietarios
+Chip: REGLAS
+Kicker: No solo es comprar
+Keyword: CASA
+
+Hook — spoken: Tu troca cabe en la entrada; falta ver si el reglamento la deja.
+       screen: Cabe tu troca / ¿La permiten? / *OJO*
+
+Body:
+Mira, comprar dentro de una asociación también implica revisar sus reglas y cuotas. No todas las comunidades funcionan igual. Antes de decidir, pregunta por estacionamiento, modificaciones y uso de áreas. Pide los documentos completos y resuelve dudas con tu agente o un abogado. Incumplir ciertas reglas puede traer multas. Mejor leer ahora que discutir después de la mudanza.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Para revisar si las reglas encajan con tu rutina, comenta CASA.
+
+Caption: Las reglas varían entre asociaciones. Revisa restricciones y cuotas antes de comprar; incumplir puede generar multas. Comenta CASA.
+Hashtags: #AsociaciónDePropietarios #CompraDeCasa #ReglasDeComunidad #HomePros
+
+Headline: Lee las reglas
+Callouts: asociación, reglas, cuotas
+Checklist: estacionamiento, modificaciones, uso de áreas
+Snap: Mejor leer ahora que discutir después de la mudanza.
+
+Word count: hook 13 / body 75 / CTA 11
+
+SCRIPT #19 | Audience: CONSUMER | Hook style: DRAMA
+Topic: Recorrido final antes del cierre
+Chip: ÚLTIMA
+Kicker: Antes de las llaves
+Keyword: CASA
+
+Hook — spoken: Llegas por las llaves y faltan arreglos: ahí se acaba la fiesta.
+       screen: Casi cierras / ¿Todo listo? / *CONFIRMA*
+
+Body:
+Antes del cierre, el recorrido final no es para escoger dónde va el sillón. Es para revisar la casa frente a lo acordado. Comprueba arreglos, equipos y daños nuevos. Si encuentras algo distinto, documenta y avisa a tu agente de inmediato. Resolver pendientes puede afectar los tiempos. No te lo guardes por pena. La emoción no reemplaza la revisión.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si estás por cerrar, comenta CASA para hablar de la revisión final.
+
+Caption: En el recorrido final, revisa lo acordado y comunica cualquier diferencia de inmediato. La emoción no sustituye verificar. Comenta CASA.
+Hashtags: #CierreDeCasa #RecorridoFinal #CompraInformada #HomePros
+
+Headline: Antes de mudarte
+Callouts: cierre, recorrido
+Checklist: arreglos, equipos, daños nuevos
+Snap: La emoción no reemplaza la revisión.
+
+Word count: hook 12 / body 76 / CTA 12
+
+SCRIPT #20 | Audience: CONSUMER | Hook style: PROVOCACIÓN
+Topic: Evaluar ofertas más allá del precio
+Chip: OFERTAS
+Kicker: Lee todo el trato
+Keyword: CASA
+
+Hook — spoken: La oferta más alta también puede ser la que menos te conviene.
+       screen: Más dinero / no siempre es / *MEJOR*
+
+Body:
+Mira, un precio grande puede distraerte de las condiciones. No estás comparando solo una cantidad. Revisa financiamiento, fechas y concesiones con tu agente. Una propuesta que parece buenísima puede pedirte más gastos o tiempos que no te funcionan. No se trata de rechazar dinero. Se trata de entender el paquete completo antes de aceptar. Lo más alto no siempre es lo más conveniente.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si vas a vender, comenta CASA para comparar ofertas con contexto.
+
+Caption: Una oferta incluye más que precio. Financiamiento, fechas y concesiones también pueden cambiar lo que te conviene. Comenta CASA.
+Hashtags: #VendeTuCasa #OfertasDeCompra #NegociaConCalma #HomePros
+
+Headline: Lee toda la oferta
+Callouts: precio, condiciones
+Checklist: financiamiento, fechas, concesiones
+Snap: Lo más alto no siempre es lo más conveniente.
+
+Word count: hook 12 / body 80 / CTA 11
+
+SCRIPT #21 | Audience: CONSUMER | Hook style: NADIE TE DICE
+Topic: Terrenos vecinos y futuros usos
+Chip: ALREDEDOR
+Kicker: No compres a ciegas
+Keyword: CASA
+
+Hook — spoken: Nadie te dice esto: el terreno vacío de enfrente puede cambiar.
+       screen: Ese terreno / no promete / *VISTAS*
+
+Body:
+Mira, ese terreno sin construir puede verse tranquilo, pero no promete quedarse igual. Un terreno vacío no es una promesa. Antes de comprar, consulta zonificación, proyectos y accesos con el municipio o el condado. Pregunta qué información está disponible y qué falta confirmar. Una construcción cercana podría cambiar ruido, movimiento o privacidad. No adivines el futuro por lo que ves durante una visita.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Para saber qué revisar alrededor de una propiedad, comenta CASA.
+
+Caption: El terreno vacío de hoy puede tener otros usos permitidos. Consulta información de zonificación y proyectos con la autoridad local. Comenta CASA.
+Hashtags: #CompraInformada #TerrenosVecinos #BienesRaícesArizona #HomePros
+
+Headline: Mira alrededor
+Callouts: terreno, promesa
+Checklist: zonificación, proyectos, accesos
+Snap: Un terreno vacío no es una promesa.
+
+Word count: hook 11 / body 80 / CTA 10
+
+SCRIPT #22 | Audience: CONSUMER | Hook style: WARNING
+Topic: Permisos de ampliaciones
+Chip: PERMISOS
+Kicker: Que no te sorprenda
+Keyword: CASA
+
+Hook — spoken: Ojo con ese cuarto extra: bonito no significa que tenga permisos.
+       screen: Cuarto extra / ¿Con permisos? / *VERIFICA*
+
+Body:
+Una ampliación puede verse bien terminada y aun así dejar preguntas. La apariencia no te dice qué autorizó la ciudad. Antes de comprar, solicita permisos, planos e inspecciones registradas. Verifica directamente con el municipio qué existe para esa obra y qué falta aclarar. No diagnostiques el problema por una foto. Puede haber costos para corregir trabajos. Consulta a tu agente y a un contratista autorizado antes de decidir.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si estás viendo una casa con ampliaciones, comenta CASA antes de decidir.
+
+Caption: Verifica los permisos y registros de las ampliaciones. Que una obra se vea terminada no confirma su autorización. Comenta CASA.
+Hashtags: #Permisos #Ampliaciones #CompraInformada #HomePros
+
+Headline: Papel, no pintura
+Callouts: ampliación, apariencia
+Checklist: permisos, planos, inspecciones
+Snap: La apariencia no te dice qué autorizó la ciudad.
+
+Word count: hook 11 / body 85 / CTA 12
+
+SCRIPT #23 | Audience: CONSUMER | Hook style: MYTH
+Topic: Estimados de valor en internet
+Chip: VALOR
+Kicker: No es una oferta
+Keyword: CASA
+
+Hook — spoken: ¿El número de internet ya decidió cuánto vale tu casa? No.
+       screen: ¿Valor en / internet? / No es / *DEFINITIVO*
+
+Body:
+Un estimado en pantalla puede orientarte, pero no es una oferta ni una tasación. Ese número depende de la información disponible. Para fijar precio, revisa ventas recientes, condición y competencia con tu agente. Tal vez haya detalles de tu propiedad que no estén reflejados. No se trata de pelearte con una página. Se trata de no decidir tu venta con una sola referencia. El número necesita contexto.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Para analizar tu casa más allá de un estimado, comenta CASA.
+
+Caption: Un estimado automático es una referencia, no una oferta ni una tasación. Contrástalo con la propiedad y el mercado. Comenta CASA.
+Hashtags: #ValorDeCasa #VendeTuCasa #PrecioConContexto #HomePros
+
+Headline: Dale contexto
+Callouts: estimado, pantalla
+Checklist: ventas recientes, condición, competencia
+Snap: El número necesita contexto.
+
+Word count: hook 11 / body 84 / CTA 11
+
+SCRIPT #24 | Audience: CONSUMER | Hook style: DICHO
+Topic: Ubicación y recorridos cotidianos
+Chip: TU RUTINA
+Kicker: Haz el recorrido
+Keyword: CASA
+
+Hook — spoken: Del dicho al hecho hay mucho tráfico: prueba tu ruta antes de comprar.
+       screen: Bonita casa / ¿Y el camino? / *TRÁFICO*
+
+Body:
+La ubicación no se vive en una foto. Se vive cuando sales tarde y todavía te falta camino. Antes de decidir, revisa trayectos, horarios y servicios según tu rutina. Haz el recorrido que realmente usarías, no solo el paseo del domingo. Una casa puede encantarte y aun así complicarte el día. Primero prueba el camino. Tu tiempo también entra en la compra.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Para buscar una casa que encaje con tu vida, comenta CASA.
+
+Caption: Prueba tus recorridos reales antes de decidir. Una ubicación debe funcionar para tu rutina, no solo verse bien en fotos. Comenta CASA.
+Hashtags: #CompraDeCasa #TuPróximoHogar #Ubicación #HomePros
+
+Headline: Prueba tu rutina
+Callouts: ubicación, camino
+Checklist: trayectos, horarios, servicios
+Snap: Tu tiempo también entra en la compra.
+
+Word count: hook 13 / body 79 / CTA 11
+
+SCRIPT #25 | Audience: CONSUMER | Hook style: CHISTE
+Topic: Ordenar la casa para mostrarla
+Chip: MENOS
+Kicker: Deja ver tu casa
+Keyword: CASA
+
+Hook — spoken: Tu casa está en venta, no en concurso de guardar tiliches.
+       screen: Menos tiliches / más / *ESPACIO*
+
+Body:
+Mira, el desorden puede esconder el espacio que estás tratando de vender. No necesitas convertir tu casa en museo para presentarla mejor. Empieza por pasillos, superficies y clósets. Quita lo que estorba, limpia y deja que se entienda cómo se usa cada área. Tampoco se trata de esconder humedad o daños. Eso se atiende y se comunica con tu agente. Ordenar no es ocultar.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Para preparar tu casa sin convertirla en museo, comenta CASA.
+
+Caption: Ordenar ayuda a mostrar el espacio. No sustituye atender problemas ni comunicar la condición de la propiedad. Comenta CASA.
+Hashtags: #VendeTuCasa #PreparaTuCasa #OrdenConPropósito #HomePros
+
+Headline: Deja ver la casa
+Callouts: desorden, espacio
+Checklist: pasillos, superficies, clósets
+Snap: Ordenar no es ocultar.
+
+Word count: hook 11 / body 81 / CTA 10
+
+SCRIPT #26 | Audience: CONSUMER | Hook style: DRAMA
+Topic: Estafas de rescate hipotecario
+Chip: CUIDADO
+Kicker: No entregues control
+Keyword: CASA
+
+Hook — spoken: Estás atrasado, suena el teléfono y alguien promete salvarte la casa.
+       screen: ¿Rescate o / *TRAMPA?*
+
+Body:
+Cuando traes presión, una promesa de rescate puede sonar como descanso. Pero hay estafas que piden dinero antes de ayudar. Desconfía de cobros urgentes, pagos a terceros y firmas a ciegas. Contacta directamente a quien administra tu hipoteca y busca asesoría de vivienda confiable. No suspendas pagos por instrucciones de un desconocido. Podrías afectar tu crédito y perder la casa. Pedir ayuda no es entregar el control.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si estás bajo presión con tu hipoteca, comenta CASA para orientarte.
+
+Caption: Las falsas promesas de rescate pueden costarte dinero y vivienda. Contacta directamente a tu administrador hipotecario y busca ayuda confiable. Comenta CASA.
+Hashtags: #Hipoteca #ProtegeTuCasa #EvitaEstafas #HomePros
+
+Headline: Ayuda sin trampa
+Callouts: presión, estafas
+Checklist: cobros urgentes, pagos a terceros, firmas a ciegas
+Snap: Pedir ayuda no es entregar el control.
+
+Word count: hook 11 / body 84 / CTA 11
+
+SCRIPT #27 | Audience: CONSUMER | Hook style: PROVOCACIÓN
+Topic: Precio de venta y dinero neto
+Chip: TU NETO
+Kicker: Haz la resta
+Keyword: CASA
+
+Hook — spoken: Tu precio de venta no es el cheque que te llevas.
+       screen: Vender no es / cobrarlo / *TODO*
+
+Body:
+Vender por mucho no significa quedarte con todo. El precio y tu neto no son lo mismo. Antes de aceptar, pide una estimación con saldo pendiente, gastos de venta y concesiones. Lo que debes y lo que acuerdes pagar cambia el resultado. Si necesitas ese dinero para otra casa, haz la cuenta primero. Para dudas de impuestos, consulta a tu contador.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Para calcular qué podría quedarte al vender tu casa, comenta CASA.
+
+Caption: El precio no es tu neto. Considera la liquidación de deudas, gastos y concesiones antes de planear tu siguiente compra. Comenta CASA.
+Hashtags: #VendeTuCasa #DineroNeto #PlaneaTuVenta #HomePros
+
+Headline: Lo que te queda
+Callouts: precio, neto
+Checklist: saldo pendiente, gastos de venta, concesiones
+Snap: El precio y tu neto no son lo mismo.
+
+Word count: hook 11 / body 78 / CTA 11
+
+SCRIPT #28 | Audience: AGENT | Hook style: CONTRARIAN
+Topic: Inspection Desk y solicitudes de reparación
+Chip: AGENTES
+Kicker: No solo reenviar
+Keyword: AGENTE
+
+Hook — spoken: Tu cliente no necesita que le reenvíes el reporte sin ordenar las solicitudes.
+       screen: Reenviar no es / *ORDENAR*
+
+Body:
+Te cae un reporte de inspección y parece novela de terror. Inspection Desk prepara un borrador de solicitudes tomando las referencias del documento. Del lado comprador, puedes trabajar con reparaciones, créditos y varios reportes. Después tú revisas cada línea antes de enviarla. La herramienta ayuda a redactar; no decide qué debe pedir tu cliente. El borrador no firma por ti. Tu revisión sigue siendo parte del trabajo.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Para conocer Inspection Desk dentro de True Top Producer, comenta AGENTE.
+
+Caption: Inspection Desk prepara un borrador con referencias al reporte. El agente revisa cada línea antes de enviarlo. Comenta AGENTE.
+Hashtags: #AgentesDeArizona #Inspecciones #SolicitudesDeReparación #TrueTopProducer #HomePros
+
+Headline: Ordena el reporte
+Callouts: inspección, borrador
+Checklist: reparaciones, créditos, varios reportes
+Snap: El borrador no firma por ti.
+
+Word count: hook 13 / body 84 / CTA 11
+
+SCRIPT #29 | Audience: AGENT | Hook style: WARNING
+Topic: Pipeline y contactos sin seguimiento
+Chip: AGENTES
+Kicker: No dejes esperando
+Keyword: AGENTE
+
+Hook — spoken: Ojo, agente: podrías tener interesados esperando mientras sigues buscando más leads.
+       screen: Más leads / ¿Y los tuyos? / *ATIÉNDELOS*
+
+Body:
+Tu problema no siempre es falta de leads. A veces es seguimiento. Pipeline se conecta a tu cuenta de Follow Up Boss y te ayuda a encontrar a quién llamar. Incluso interesados sin atender. Puedes consultar contactos, tareas y clientes pasados. Para escribir notas o crear pendientes, necesita tu aprobación. No confundas tener una base de datos con trabajarla. El seguimiento no se adivina.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Para ver cómo Pipeline ayuda a organizar tu seguimiento, comenta AGENTE.
+
+Caption: Pipeline consulta Follow Up Boss y encuentra contactos interesados sin atender. Escribir notas o tareas requiere tu aprobación. Comenta AGENTE.
+Hashtags: #AgentesDeArizona #Seguimiento #ClientesInmobiliarios #TrueTopProducer #HomePros
+
+Headline: Trabaja tu lista
+Callouts: leads, seguimiento
+Checklist: contactos, tareas, clientes pasados
+Snap: El seguimiento no se adivina.
+
+Word count: hook 11 / body 81 / CTA 11
+
+SCRIPT #30 | Audience: AGENT | Hook style: NADIE TE DICE
+Topic: Avance y preguntas durante el curso
+Chip: AGENTES
+Kicker: Pregunta sin pena
+Keyword: AGENTE
+
+Hook — spoken: Nadie te dice esto: terminar tu curso no significa aclarar tus dudas.
+       screen: ¿Terminaste / con dudas? / *PREGUNTA*
+
+Body:
+La educación continua no tiene por qué dejarte atorado con una duda. En Avance, Ada es una instructora de inteligencia artificial que responde mientras avanzas. Puedes preguntar sobre agencia, disclosure y licencia dentro del curso. La conversación puede ser por texto o voz. La aprobación estatal es de los cursos, no de la tecnología. Aprender también es preguntar.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Para conocer cómo se aprende con Ada en Avance, comenta AGENTE.
+
+Caption: En Avance, Ada responde por chat o voz durante el curso. La aprobación estatal corresponde a los cursos, no a la tecnología. Comenta AGENTE.
+Hashtags: #EducaciónContinua #AgentesDeArizona #AprendeConAda #TrueTopProducer #HomePros
+
+Headline: Pregunta y aprende
+Callouts: atorado, Ada
+Checklist: agencia, disclosure, licencia
+Snap: Aprender también es preguntar.
+
+Word count: hook 12 / body 75 / CTA 11

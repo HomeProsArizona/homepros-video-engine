@@ -1,0 +1,22 @@
+SCRIPT #2 | Audience: CONSUMER | Language: EN | Hook style: PROVOCATION
+Topic: High rate vs price
+Chip: HEADS UP
+Kicker: It's not just the rate
+Keyword: HOUSE
+
+Hook — spoken: Yes, rates are high. But waiting can cost you too.
+       screen: High rates / cost you. / So does / *WAITING*
+
+Body:
+Look, buying a home isn't about one single thing. If the rate is high, but you find a property with a better price or room to negotiate, the story changes. What matters is checking the full monthly payment, your down payment, your expenses, and how comfortable the purchase feels for you. Sometimes waiting helps. Sometimes it doesn't. Run the numbers calmly and compare scenarios before you move.
+I'm Josh Marquez, a broker with twenty-one years of experience helping families and agents across the Valley.
+
+CTA: If you want to review your situation, comment HOUSE and I'll send you info.
+
+Caption: A high rate doesn't tell the whole story. Price, monthly payment and negotiation matter too. Run the full numbers before you decide. Comment HOUSE.
+Hashtags: #homebuying #mortgage #arizonarealestate #HomePros
+
+Headline: Rate vs price
+Callouts: better price, negotiate
+Checklist: monthly payment, down payment, expenses
+Snap: Sometimes waiting helps. Sometimes it doesn't.

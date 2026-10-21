@@ -1,0 +1,39 @@
+# Backup render runner: same Docker image and engine as Railway, run on GitHub Actions.
+# Start it from the Actions tab ("Render batch" > Run workflow) or with: gh workflow run render.yml -f batch=batches/<file>.txt
+# Secrets (Settings > Secrets and variables > Actions): HEYGEN_API_KEY, BUCKET, BUCKET_ENDPOINT, BUCKET_REGION,
+# BUCKET_ACCESS_KEY_ID, BUCKET_SECRET_ACCESS_KEY. Everything else comes from production.env in this repo.
+name: Render batch
+on:
+  workflow_dispatch:
+    inputs:
+      batch:
+        description: 'Batch file in the repo, e.g. batches/batch2.txt'
+        required: true
+      recompose:
+        description: 'Rebuild finished jobs from existing HeyGen clips (no HeyGen cost)'
+        type: boolean
+        default: false
+concurrency: { group: render, cancel-in-progress: false }
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build engine image
+        run: docker build -t engine .
+      - name: Render
+        env:
+          HEYGEN_API_KEY: ${{ secrets.HEYGEN_API_KEY }}
+          BUCKET: ${{ secrets.BUCKET }}
+          BUCKET_ENDPOINT: ${{ secrets.BUCKET_ENDPOINT }}
+          BUCKET_REGION: ${{ secrets.BUCKET_REGION }}
+          BUCKET_ACCESS_KEY_ID: ${{ secrets.BUCKET_ACCESS_KEY_ID }}
+          BUCKET_SECRET_ACCESS_KEY: ${{ secrets.BUCKET_SECRET_ACCESS_KEY }}
+        run: |
+          test -f "${{ inputs.batch }}" || { echo "batch file not found: ${{ inputs.batch }}"; exit 1; }
+          docker run --rm --env-file production.env \
+            -e HEYGEN_API_KEY -e BUCKET -e BUCKET_ENDPOINT -e BUCKET_REGION -e BUCKET_ACCESS_KEY_ID -e BUCKET_SECRET_ACCESS_KEY \
+            -e STAY_ALIVE=0 -e RECOMPOSE=${{ inputs.recompose && '1' || '' }} -e JOB_FILE=/job.txt \
+            -v "$PWD/${{ inputs.batch }}:/job.txt:ro" engine | tee render.log
+          grep -E 'RESULT|COST|REJECTED|FAILED' render.log >> "$GITHUB_STEP_SUMMARY" || true
