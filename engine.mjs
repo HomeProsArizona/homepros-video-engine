@@ -57,6 +57,11 @@ export function parseScript(text) {
   job.cta = get(/CTA:\s*([^\n]+)/i);
   job.caption = get(/Caption:\s*([^\n]+)/i);
   job.hashtags = get(/Hashtags:\s*([^\n]+)/i);
+  // Optional effect fields (body section only): Headline, Callouts (comma list), Checklist (comma list), Snap (a line of the body)
+  job.headline = get(/Headline:\s*([^\n]+)/i);
+  job.callouts = get(/Callouts:\s*([^\n]+)/i)?.split(',').map(x => x.trim()).filter(Boolean);
+  job.checklist = get(/Checklist:\s*([^\n]+)/i)?.split(',').map(x => x.trim()).filter(Boolean);
+  job.snap = get(/Snap:\s*([^\n]+)/i);
   return job;
 }
 function validate(job) {
@@ -141,6 +146,7 @@ async function wallet() {
 
 // ---------- media helpers ----------
 function run(cmd, args) { execFileSync(cmd, args, { stdio: ['ignore', 'inherit', 'inherit'] }); }
+const size = f => execFileSync('ffprobe', ['-v', 'error', '-select_streams', 'v:0', '-show_entries', 'stream=width,height', '-of', 'csv=s=x:p=0', f]).toString().trim();
 const dur = f => parseFloat(execFileSync('ffprobe', ['-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', f]).toString());
 function fontsCSS() {
   const f = (fam, w, file) => `@font-face{font-family:"${fam}";font-weight:${w};font-display:block;src:url(data:font/woff2;base64,${fs.readFileSync(path.join(ROOT, 'fonts', file)).toString('base64')}) format("woff2")}`;
@@ -255,6 +261,8 @@ async function runOne(raw) {
   log(`Job ${pre}: ${job.variants.length} hook(s), ~${estSec.toFixed(0)}s of avatar video, est. $${(estSec * rate).toFixed(2)}`);
   if (estSec > Number(env.MAX_SECONDS || 150)) { log(`JOB REJECTED: ~${estSec.toFixed(0)}s exceeds MAX_SECONDS`); return; }
 
+  // CLIPS='{"body":"<heygen video id>",...}' uses clips that already exist in HeyGen instead of rendering new ones
+  if (env.CLIPS) Object.assign(state.clips, JSON.parse(env.CLIPS));
   // 1. submit every clip once (IDs saved immediately)
   for (const [k, t] of Object.entries(texts)) if (!state.clips[k]) {
     state.clips[k] = await submitClip(t, job); job.newClips = true; await putJSON(`${pre}/state.json`, state); log('submitted', k, state.clips[k]);
@@ -262,7 +270,7 @@ async function runOne(raw) {
   // 2. wait + download
   const work = fs.mkdtempSync('/tmp/job-');
   const clip = {};
-  for (const [k, vid] of Object.entries(state.clips)) { const url = await waitClip(vid); clip[k] = path.join(work, 'clip-' + k + '.mp4'); await download(url, clip[k]); log('clip ready', k, dur(clip[k]).toFixed(1) + 's'); }
+  for (const [k, vid] of Object.entries(state.clips)) { const url = await waitClip(vid); clip[k] = path.join(work, 'clip-' + k + '.mp4'); await download(url, clip[k]); log('clip ready', k, dur(clip[k]).toFixed(1) + 's', size(clip[k])); }
 
   // 3. shared pieces: body segment with name card + captions, end card with CTA voice
   await renderPNG(fill('card.html', { CARD_MODE: env.CARD_MODE === 'cover' ? 'cover' : '' }), path.join(work, 'card.png'), work);
@@ -270,8 +278,21 @@ async function runOne(raw) {
   fs.writeFileSync(path.join(work, 'cap.ass'), captionsASS(job.body, bodyLen));
   const fontsdir = path.join(ROOT, 'fonts');
   const blurIn = makeBlurMask(work, bodyLen);
-  run('ffmpeg', ['-y', '-loglevel', 'error', '-i', clip.body, '-i', path.join(work, 'card.png'), ...blurIn, '-filter_complex',
-    `[0:v]scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H},fps=${FPS},setsar=1${blurFilter()}${motionFilter(job.body, bodyLen)}[v];[v][1:v]overlay=0:0,ass=${path.join(work, 'cap.ass')}:fontsdir=${fontsdir}[o];[0:a]aresample=48000,aformat=channel_layouts=stereo[a]`,
+  const fx = env.FX === '1' ? await buildFx(job, bodyLen, work) : null;
+  const extra = [], idx = 2 + (blurIn.length ? 1 : 0);
+  let base = `[0:v]scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H},fps=${FPS},setsar=1`;
+  if (fx) {
+    // GREEN mode: key the avatar off its green background, then stack studio photo -> back effects -> avatar
+    const bg = path.join(ROOT, 'assets', 'backgrounds', path.basename(env.BACKGROUND || 'studio.jpg'));
+    extra.push('-loop', '1', '-t', (bodyLen + 1).toFixed(2), '-i', bg, '-i', fx.back, '-i', fx.front || fx.back);
+    const [ib, iback, ifront] = [idx, idx + 1, idx + 2];
+    base = `[${ib}:v]scale=${W}:${H},fps=${FPS},setsar=1[bgi];[${iback}:v]setpts=PTS-STARTPTS[bk];[bgi][bk]overlay=0:0:eof_action=pass[bgx];` +
+      `[0:v]scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H},fps=${FPS},setsar=1,chromakey=0x00FF00:0.16:0.06,despill=type=green[fg];` +
+      `[bgx][fg]overlay=0:0:shortest=1`;
+  }
+  const front = fx?.front ? `[o0];[${idx + 2}:v]setpts=PTS-STARTPTS+${fx.frontStart.toFixed(3)}/TB[fr];[o0][fr]overlay=0:0:eof_action=pass` : '';
+  run('ffmpeg', ['-y', '-loglevel', 'error', '-i', clip.body, '-i', path.join(work, 'card.png'), ...blurIn, ...extra, '-filter_complex',
+    `${base}${blurFilter()}${fx ? snapFilter(fx.snap) : motionFilter(job.body, bodyLen)}[v];[v][1:v]overlay=0:0,ass=${path.join(work, 'cap.ass')}:fontsdir=${fontsdir}${front}[o];[0:a]aresample=48000,aformat=channel_layouts=stereo[a]`,
     '-map', '[o]', '-map', '[a]', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '19', '-preset', 'veryfast', '-c:a', 'aac', '-b:a', '160k', path.join(work, 'seg-body.mp4')]);
   const ctaLen = dur(clip.cta), endLen = Math.max(3.6, ctaLen + 1.0);
   const kw = (job.keyword || (/agent/i.test(job.audience || '') ? 'AGENTE' : 'CASA')).toUpperCase().replace(/[^A-ZÁÉÍÓÚÑ]/g, '');
@@ -341,6 +362,57 @@ function motionFilter(body, seconds) {
   const cx = Math.round((zw - W) / 2), cy = Math.max(0, Math.min(zh - H, Math.round(ay * z - ay)));
   const tight = motionShots(body, seconds).filter((_, i) => i % 2 === 1).map(([a, b]) => `between(t,${a.toFixed(2)},${b.toFixed(2)})`).join('+') || '0';
   return `,split[mw][mt];[mt]scale=${zw}:${zh},crop=${W}:${H}:${cx}:${cy}[mz];[mw][mz]overlay=0:0:enable='${tight}',fade=t=in:st=0:d=0.18:color=white`;
+}
+// ---------- body effects (FX=1) ----------
+// When a phrase is spoken, estimated from its position in the body text (same timing model as the captions).
+function phraseTime(body, phrase, seconds) {
+  const norm = x => plain(x).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  const b = norm(body), i = b.indexOf(norm(phrase).trim());
+  if (i < 0) return null;
+  const start = 0.15, end = Math.max(1, seconds - 0.25);
+  return start + (end - start) * i / b.length;
+}
+// One sharp punch-in (+12%) for the length of the Snap line. Used once per video.
+function snapFilter(snap) {
+  if (!snap) return '';
+  const z = 1.12, zw = Math.round(W * z / 2) * 2, zh = Math.round(H * z / 2) * 2, ay = 1100;
+  const cx = Math.round((zw - W) / 2), cy = Math.round(ay * z - ay);
+  return `,split[sw][st];[st]scale=${zw}:${zh},crop=${W}:${H}:${cx}:${cy}[sz];[sw][sz]overlay=0:0:enable='between(t,${snap[0].toFixed(2)},${snap[1].toFixed(2)})'`;
+}
+// transparent animation (alpha) for overlays
+async function renderAlpha(html, seconds, out, work) {
+  const p = await page(html, work, path.basename(out) + '.html');
+  const ff = spawn('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', String(FPS), '-i', '-', '-c:v', 'qtrle', '-pix_fmt', 'argb', out]);
+  const n = Math.max(1, Math.round(seconds * FPS));
+  for (let i = 0; i < n; i++) {
+    await p.evaluate(ms => window.seek(ms), (i / FPS) * 1000);
+    const png = await p.screenshot({ type: 'png', omitBackground: true });
+    if (!ff.stdin.write(png)) await new Promise(r => ff.stdin.once('drain', r));
+  }
+  ff.stdin.end(); await new Promise((res, rej) => ff.on('close', c => c ? rej(new Error('ffmpeg ' + c)) : res())); await p.close();
+}
+async function buildFx(job, bodyLen, work) {
+  const T = ph => phraseTime(job.body, ph, bodyLen);
+  // back layer: magazine headline behind the head, first ~2.8s
+  const back = path.join(work, 'fx-back.mov');
+  await renderAlpha(fill('fx-back.html', { HEADLINE: esc((job.headline || job.topic || '').toUpperCase()) }), job.headline ? 3.0 : 0.1, back, work);
+  // front layer: callouts (left) + checklist (right), timed to when each word is spoken
+  const items = [];
+  for (const c of job.callouts || []) { const t = T(c); if (t != null) items.push({ kind: 'call', text: c, t }); }
+  for (const c of job.checklist || []) { const t = T(c); if (t != null) items.push({ kind: 'check', text: c, t }); }
+  const snapT = job.snap ? T(job.snap) : null;
+  const snap = snapT != null ? [snapT, Math.min(bodyLen - 0.3, snapT + Math.max(1.4, plain(job.snap).length / 15))] : null;
+  if (!items.length) return { back, front: null, frontStart: 0, snap };
+  const s0 = Math.max(0, Math.min(...items.map(x => x.t)) - 0.3);
+  const groupEnd = kind => { const ts = items.filter(x => x.kind === kind).map(x => x.t); return ts.length ? Math.max(...ts) + 2.6 : 0; };
+  const endCall = groupEnd('call'), endCheck = groupEnd('check');
+  const seconds = Math.min(bodyLen, Math.max(endCall, endCheck) + 0.6) - s0;
+  const html = (kind, end) => items.filter(x => x.kind === kind).map((x, i) =>
+    `<div class="${kind}" style="--in:${((x.t - s0) * 1000).toFixed(0)}ms;--out:${((end - s0) * 1000).toFixed(0)}ms;--i:${i}"><span>${esc(x.text)}</span></div>`).join('');
+  const front = path.join(work, 'fx-front.mov');
+  await renderAlpha(fill('fx-front.html', { CALLS: html('call', endCall), CHECKS: html('check', endCheck) }), seconds, front, work);
+  log('fx', `${items.length} item(s) from ${s0.toFixed(1)}s`, snap ? `snap ${snap.map(x => x.toFixed(1)).join('-')}` : '');
+  return { back, front, frontStart: s0, snap };
 }
 // silent animation + voice clip → one segment of exact length
 function voiceOver(videoIn, voiceClip, seconds, out, delay) {

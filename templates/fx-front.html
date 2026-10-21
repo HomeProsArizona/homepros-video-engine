@@ -1,0 +1,24 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><style>/*FONTS*//*BASE*/
+html,body{background:transparent}
+/* Callouts: stacked key words on the left, each pops in when it is spoken */
+.calls{position:absolute;left:44px;top:430px;display:flex;flex-direction:column;align-items:flex-start;gap:18px}
+.call{animation:callIn .5s cubic-bezier(.34,1.56,.64,1) var(--in) both, outL .35s ease-in var(--out) forwards}
+.call span{display:inline-block;background:#fff;color:var(--ink);font-weight:900;font-size:54px;letter-spacing:-.02em;
+  padding:14px 28px 14px 22px;border-radius:18px;border-left:12px solid var(--gold);box-shadow:0 14px 36px rgba(0,0,0,.35)}
+@keyframes callIn{from{opacity:0;transform:translateX(-110%) rotate(-4deg)}to{opacity:1;transform:none}}
+@keyframes outL{to{opacity:0;transform:translateX(-60px)}}
+/* Checklist: items on the right, each pops in with a check when it is spoken */
+.checks{position:absolute;right:40px;top:560px;display:flex;flex-direction:column;align-items:flex-end;gap:16px}
+.check{animation:checkIn .45s cubic-bezier(.34,1.56,.64,1) var(--in) both, outR .35s ease-in calc(var(--out) + var(--i) * 70ms) forwards}
+.check span{display:inline-flex;align-items:center;gap:18px;background:rgba(11,11,12,.82);color:#fff;font-weight:800;font-size:42px;
+  padding:16px 30px 16px 18px;border-radius:99px;border:3px solid rgba(255,255,255,.16);box-shadow:0 12px 30px rgba(0,0,0,.35)}
+.check span:before{content:"✓";display:inline-grid;place-items:center;width:52px;height:52px;border-radius:50%;background:var(--gold);color:var(--ink);font-weight:900;font-size:32px}
+@keyframes checkIn{from{opacity:0;transform:translateX(40px) scale(.6)}to{opacity:1;transform:none}}
+@keyframes outR{to{opacity:0;transform:translateX(60px)}}
+</style></head><body>
+<div class="calls">{{CALLS}}</div>
+<div class="checks">{{CHECKS}}</div>
+<script>
+window.seek=function(ms){document.getAnimations().forEach(a=>{a.pause();a.currentTime=ms});};
+document.fonts.ready.then(function(){window.__ready=true});
+</script></body></html>

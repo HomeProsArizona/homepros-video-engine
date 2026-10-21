@@ -1,0 +1,19 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><style>/*FONTS*//*BASE*/
+html,body{background:transparent}
+/* Magazine-cover headline: sits BEHIND the avatar (this layer is composited under the keyed person) */
+.mag{position:absolute;left:40px;right:40px;top:230px;text-align:center;font-weight:900;font-size:var(--ms,210px);line-height:.9;
+  letter-spacing:-.045em;color:#fff;text-shadow:0 10px 40px rgba(0,0,0,.45);
+  animation:magIn .55s cubic-bezier(.2,.8,.2,1) both, magOut .5s ease-in 2.3s forwards}
+.mag b{color:var(--gold);font-weight:900}
+@keyframes magIn{from{opacity:0;transform:scale(1.18);filter:blur(10px)}to{opacity:1;transform:scale(1);filter:blur(0)}}
+@keyframes magOut{to{opacity:0;transform:translateY(-40px) scale(.96)}}
+</style></head><body>
+<div class="mag" id="m">{{HEADLINE}}</div>
+<script>
+window.seek=function(ms){document.getAnimations().forEach(a=>{a.pause();a.currentTime=ms});};
+document.fonts.ready.then(function(){var m=document.getElementById('m'),s=210;
+  // last word in gold, fit to two lines max
+  var w=m.textContent.trim().split(/\s+/);if(w.length>1){var l=w.pop();m.innerHTML=w.join(' ')+' <b>'+l+'</b>';}
+  while(m.getBoundingClientRect().height>2*s*0.95&&s>110){s-=10;document.documentElement.style.setProperty('--ms',s+'px');}
+  window.__ready=true;});
+</script></body></html>
