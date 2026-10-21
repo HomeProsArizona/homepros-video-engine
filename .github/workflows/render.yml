@@ -14,6 +14,7 @@ on:
         type: boolean
         default: false
 concurrency: { group: render, cancel-in-progress: false }
+permissions: { contents: write }
 jobs:
   render:
     runs-on: ubuntu-latest
@@ -35,5 +36,13 @@ jobs:
           docker run --rm --env-file production.env \
             -e HEYGEN_API_KEY -e BUCKET -e BUCKET_ENDPOINT -e BUCKET_REGION -e BUCKET_ACCESS_KEY_ID -e BUCKET_SECRET_ACCESS_KEY \
             -e STAY_ALIVE=0 -e RECOMPOSE=${{ inputs.recompose && '1' || '' }} -e JOB_FILE=/job.txt \
-            -v "$PWD/${{ inputs.batch }}:/job.txt:ro" engine | tee render.log
+            -v "$PWD/${{ inputs.batch }}:/job.txt:ro" -v "$PWD/out:/app/local-store" engine | tee render.log
           grep -E 'RESULT|COST|REJECTED|FAILED' render.log >> "$GITHUB_STEP_SUMMARY" || true
+      # Without bucket secrets (e.g. Railway down), finished videos are published as a release so they have public links.
+      - name: Publish videos (no bucket)
+        if: ${{ always() && hashFiles('out/**/*.mp4') != '' }}
+        env: { GH_TOKEN: '${{ github.token }}' }
+        run: |
+          tag="render-${{ github.run_id }}"
+          gh release create "$tag" --title "Render ${{ github.run_id }}" --notes "Batch ${{ inputs.batch }}" --prerelease $(find out -name '*.mp4' | sed 's#^#./#')
+          for f in $(find out -name '*.mp4'); do echo "VIDEO https://github.com/${{ github.repository }}/releases/download/$tag/$(basename "$f")" | tee -a "$GITHUB_STEP_SUMMARY"; done
