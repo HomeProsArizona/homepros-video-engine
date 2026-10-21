@@ -271,7 +271,7 @@ async function runOne(raw) {
   const fontsdir = path.join(ROOT, 'fonts');
   const blurIn = makeBlurMask(work, bodyLen);
   run('ffmpeg', ['-y', '-loglevel', 'error', '-i', clip.body, '-i', path.join(work, 'card.png'), ...blurIn, '-filter_complex',
-    `[0:v]scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H},fps=${FPS},setsar=1${blurFilter()}[v];[v][1:v]overlay=0:0,ass=${path.join(work, 'cap.ass')}:fontsdir=${fontsdir}[o];[0:a]aresample=48000,aformat=channel_layouts=stereo[a]`,
+    `[0:v]scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H},fps=${FPS},setsar=1${blurFilter()}${motionFilter(job.body, bodyLen)}[v];[v][1:v]overlay=0:0,ass=${path.join(work, 'cap.ass')}:fontsdir=${fontsdir}[o];[0:a]aresample=48000,aformat=channel_layouts=stereo[a]`,
     '-map', '[o]', '-map', '[a]', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '19', '-preset', 'veryfast', '-c:a', 'aac', '-b:a', '160k', path.join(work, 'seg-body.mp4')]);
   const ctaLen = dur(clip.cta), endLen = Math.max(3.6, ctaLen + 1.0);
   const kw = (job.keyword || (/agent/i.test(job.audience || '') ? 'AGENTE' : 'CASA')).toUpperCase().replace(/[^A-ZÁÉÍÓÚÑ]/g, '');
@@ -318,6 +318,29 @@ function blurFilter() {
   const b = blurBox(); if (!b) return '';
   const [x, y, w, h] = b;
   return `,split[bg][bb];[2:v]format=gray[mk];[bb]crop=${w}:${h}:${x}:${y},gblur=sigma=30,format=yuva420p[b0];[b0][mk]alphamerge=shortest=1[bl];[bg][bl]overlay=${x}:${y}:shortest=1`;
+}
+// MOTION=1: punch-in "camera cuts". Shots follow the script's sentences (same timing model as the captions),
+// alternating wide and tight (+15%, anchored low so the covered captions stay behind the bar), plus a quick
+// white flash where the hook hands off to the body. Name bar and captions are drawn later, so they never move.
+function motionShots(body, seconds) {
+  const sents = plain(body).split(/(?<=[.?!])\s+/).map(x => x.trim()).filter(Boolean);
+  const total = sents.reduce((a, x) => a + x.length + 2, 0), start = 0.15, end = Math.max(1, seconds - 0.25);
+  let t = start; const shots = [];
+  for (const x of sents) { const d = (end - start) * (x.length + 2) / total; shots.push([t, t + d]); t += d; }
+  const merged = []; // no shot shorter than 1.6s; split anything longer than 5.5s
+  for (const sh of shots) { const last = merged[merged.length - 1]; if (last && last[1] - last[0] < 1.6) last[1] = sh[1]; else merged.push([...sh]); }
+  const out = [];
+  for (const [a, b] of merged) { if (b - a > 5.5) { const m = (a + b) / 2; out.push([a, m], [m, b]); } else out.push([a, b]); }
+  if (out.length) { out[0][0] = 0; out[out.length - 1][1] = seconds + 1; }
+  return out;
+}
+function motionFilter(body, seconds) {
+  if (env.MOTION !== '1') return '';
+  const z = Number(env.MOTION_ZOOM || 1.15), zw = Math.round(W * z / 2) * 2, zh = Math.round(H * z / 2) * 2;
+  const ay = Number(env.MOTION_ANCHOR_Y || 1100); // point that stays put when punching in
+  const cx = Math.round((zw - W) / 2), cy = Math.max(0, Math.min(zh - H, Math.round(ay * z - ay)));
+  const tight = motionShots(body, seconds).filter((_, i) => i % 2 === 1).map(([a, b]) => `between(t,${a.toFixed(2)},${b.toFixed(2)})`).join('+') || '0';
+  return `,split[mw][mt];[mt]scale=${zw}:${zh},crop=${W}:${H}:${cx}:${cy}[mz];[mw][mz]overlay=0:0:enable='${tight}',fade=t=in:st=0:d=0.18:color=white`;
 }
 // silent animation + voice clip → one segment of exact length
 function voiceOver(videoIn, voiceClip, seconds, out, delay) {
