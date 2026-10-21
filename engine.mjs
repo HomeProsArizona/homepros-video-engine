@@ -45,6 +45,7 @@ export function parseScript(text) {
     kicker: get(/Kicker:\s*([^\n]+)/i),
     keyword: get(/Keyword:\s*([^\n]+)/i),
     audience: get(/Audience:\s*([A-Z]+)/i),
+    lang: (get(/Language:\s*([A-Z]{2})/i) || 'ES').toUpperCase(),
     variants: [],
   };
   // Single-hook format ("Hook — spoken: / screen:"). Older A/B/C scripts still parse; only the first hook is used.
@@ -104,9 +105,10 @@ async function submitClip(text, job) {
     ? { type: 'avatar', avatar_id: job.avatarId, avatar_style: 'normal' }
     : { type: 'talking_photo', talking_photo_id: job.avatarId, use_avatar_iv_model: job.engine !== 'iii' };
   // Background swap: HeyGen cuts the avatar out of its own background (matting) and puts our image behind it.
-  if (job.bgUrl) character.matting = true;
+  if (job.bgUrl || job.green) character.matting = true;
   const scene = { character, voice: { type: 'text', input_text: speakable(text), voice_id: job.voiceId } };
-  if (job.bgUrl) scene.background = { type: 'image', url: job.bgUrl, fit: 'cover' };
+  if (job.green) scene.background = { type: 'color', value: '#00FF00' }; // FX mode: engine keys the green and builds the scene itself
+  else if (job.bgUrl) scene.background = { type: 'image', url: job.bgUrl, fit: 'cover' };
   const j = await hg('POST', '/v2/video/generate', {
     video_inputs: [scene],
     dimension: { width: W, height: H },
@@ -233,17 +235,19 @@ async function runOne(raw) {
   // AGENT scripts use their own look when AGENT_AVATAR_ID is set (suit); CONSUMER scripts use AVATAR_ID (striped shirt).
   const job = { avatarId: (isAgent && env.AGENT_AVATAR_ID) || env.AVATAR_ID, avatarType: (isAgent && env.AGENT_AVATAR_ID ? env.AGENT_AVATAR_TYPE : env.AVATAR_TYPE) || 'talking_photo',
     voiceId: env.VOICE_ID, engine: env.ENGINE || 'iv', count: '', ...parsed };
+  const en = job.lang === 'EN'; job.en = en;
   // Optional background image from assets/backgrounds/ (already 1080x1920, so it fills the portrait frame).
   // AGENT_BACKGROUND / BACKGROUND = file name, e.g. "studio.jpg". Unset = avatar keeps its own background.
   job.background = (isAgent && env.AGENT_BACKGROUND) || env.BACKGROUND || '';
+  job.green = env.FX === '1';
   if (job.only) job.variants = job.variants.filter(v => job.only.includes(v.key));
   const errs = validate(job);
   if (errs.length) { log('JOB REJECTED:', errs.join(' | ')); return; }
   job.count ||= job.number ? `${String(job.number).padStart(2, '0')} / 30` : '';
   job.chip ||= job.number ? `Mito #${String(job.number).padStart(2, '0')}` : 'HomePros';
   job.kicker ||= 'Nadie te lo dice';
-  const id = crypto.createHash('sha1').update(JSON.stringify([job.variants, job.body, job.cta, job.avatarId, job.voiceId, job.engine, job.avatarType, ...(job.background ? [job.background] : [])])).digest('hex').slice(0, 12);
-  if (job.background) {
+  const id = crypto.createHash('sha1').update(JSON.stringify([job.variants, job.body, job.cta, job.avatarId, job.voiceId, job.engine, job.avatarType, ...(job.background ? [job.background] : []), ...(job.green ? ['green'] : [])])).digest('hex').slice(0, 12);
+  if (job.background && !job.green) {
     const f = path.join(ROOT, 'assets', 'backgrounds', path.basename(job.background));
     if (!fs.existsSync(f)) { log('JOB REJECTED: background not found', job.background); return; }
     job.bgUrl = await putFile(`assets/backgrounds/${path.basename(f)}`, fs.readFileSync(f), 'image/jpeg');
@@ -273,7 +277,7 @@ async function runOne(raw) {
   for (const [k, vid] of Object.entries(state.clips)) { const url = await waitClip(vid); clip[k] = path.join(work, 'clip-' + k + '.mp4'); await download(url, clip[k]); log('clip ready', k, dur(clip[k]).toFixed(1) + 's', size(clip[k])); }
 
   // 3. shared pieces: body segment with name card + captions, end card with CTA voice
-  await renderPNG(fill('card.html', { CARD_MODE: env.CARD_MODE === 'cover' ? 'cover' : '' }), path.join(work, 'card.png'), work);
+  await renderPNG(fill('card.html', { CARD_MODE: env.CARD_MODE === 'cover' ? 'cover' : '', LIVE: en ? 'HomePros · Real Estate' : 'HomePros · Bienes raíces' }), path.join(work, 'card.png'), work);
   const bodyLen = dur(clip.body);
   fs.writeFileSync(path.join(work, 'cap.ass'), captionsASS(job.body, bodyLen));
   const fontsdir = path.join(ROOT, 'fonts');
@@ -295,10 +299,15 @@ async function runOne(raw) {
     `${base}${blurFilter()}${fx ? snapFilter(fx.snap) : motionFilter(job.body, bodyLen)}[v];[v][1:v]overlay=0:0,ass=${path.join(work, 'cap.ass')}:fontsdir=${fontsdir}${front}[o];[0:a]aresample=48000,aformat=channel_layouts=stereo[a]`,
     '-map', '[o]', '-map', '[a]', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '19', '-preset', 'veryfast', '-c:a', 'aac', '-b:a', '160k', path.join(work, 'seg-body.mp4')]);
   const ctaLen = dur(clip.cta), endLen = Math.max(3.6, ctaLen + 1.0);
-  const kw = (job.keyword || (/agent/i.test(job.audience || '') ? 'AGENTE' : 'CASA')).toUpperCase().replace(/[^A-ZÁÉÍÓÚÑ]/g, '');
+  const kw = (job.keyword || (/agent/i.test(job.audience || '') ? (en ? 'AGENT' : 'AGENTE') : (en ? 'HOUSE' : 'CASA'))).toUpperCase().replace(/[^A-ZÁÉÍÓÚÑ]/g, '');
   const agent = /agent/i.test(job.audience || '');
-  const endVars = { Q: agent ? '¿Eres agente?' : '¿Tienes esta duda?', KW: esc(kw), N: String(kw.length), W: (kw.length * 1.1).toFixed(1),
-    SUB: agent ? 'Te mando la información por mensaje.' : 'Te mando la respuesta por mensaje.<br>Sin pena, sin compromiso.' };
+  const endVars = en
+    ? { Q: agent ? 'Are you an agent?' : 'Got this question?', KW: esc(kw), N: String(kw.length), W: (kw.length * 1.1).toFixed(1), COMMENT: 'Comment',
+        SUB: agent ? "I'll send you the info by message." : "I'll send you the answer by message.<br>No pressure, no commitment.",
+        DISCLAIMER: 'Educational information. Not legal or financial advice.' }
+    : { Q: agent ? '¿Eres agente?' : '¿Tienes esta duda?', KW: esc(kw), N: String(kw.length), W: (kw.length * 1.1).toFixed(1), COMMENT: 'Comenta',
+        SUB: agent ? 'Te mando la información por mensaje.' : 'Te mando la respuesta por mensaje.<br>Sin pena, sin compromiso.',
+        DISCLAIMER: 'Información educativa. No es asesoría legal ni financiera.' };
   await renderAnim(fill('end.html', endVars), endLen, path.join(work, 'end.mp4'), work);
   voiceOver(path.join(work, 'end.mp4'), clip.cta, endLen, path.join(work, 'seg-end.mp4'), 0.35);
 
