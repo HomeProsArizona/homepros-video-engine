@@ -222,8 +222,14 @@ async function main() {
   log(`Batch: ${scripts.length} script(s)`);
   const before = await wallet();
   let rendered = 0;
+  const name = s => (s.match(/SCRIPT\s*#\s*\d+/i) || ['?'])[0];
+  // Pass 1: send every script's clips to HeyGen up front so they render side by side (same cost, much less waiting).
   for (const s of scripts) {
-    try { if (await runOne(s)) rendered++; } catch (e) { log('SCRIPT FAILED:', (s.match(/SCRIPT\s*#\s*\d+/i) || ['?'])[0], e.message); }
+    try { if (await runOne(s, true)) rendered++; } catch (e) { log('SUBMIT FAILED:', name(s), e.message); }
+  }
+  // Pass 2: wait for each script's clips and build the finished video.
+  for (const s of scripts) {
+    try { await runOne(s); } catch (e) { log('SCRIPT FAILED:', name(s), e.message); }
   }
   const after = await wallet();
   if (before != null && after != null) {
@@ -233,7 +239,7 @@ async function main() {
   }
   log('BATCH DONE');
 }
-async function runOne(raw) {
+async function runOne(raw, submitOnly = false) {
   const parsed = parseScript(raw);
   const isAgent = /agent/i.test(parsed.audience || '');
   // AGENT scripts use their own look when AGENT_AVATAR_ID is set (suit); CONSUMER scripts use AVATAR_ID (striped shirt).
@@ -260,7 +266,7 @@ async function runOne(raw) {
   const state = (await getJSON(`${pre}/state.json`)) || { clips: {} };
   // RECOMPOSE=1 rebuilds a finished job from the clips HeyGen already rendered (no new HeyGen cost).
   if (state.done && env.RECOMPOSE === '1') { log('Recomposing from existing clips'); delete state.done; }
-  if (state.done) { log('Already finished:'); for (const u of Object.values(state.outputs)) log('RESULT', `SCRIPT ${job.number ?? id}`, 'done', u); return; }
+  if (state.done) { if (submitOnly) return false; log('Already finished:'); for (const u of Object.values(state.outputs)) log('RESULT', `SCRIPT ${job.number ?? id}`, 'done', u); return; }
 
   // cost guard: estimate seconds before spending anything
   const texts = { body: job.body, cta: job.cta, ...Object.fromEntries(job.variants.map(v => ['hook' + v.key, v.spoken])) };
@@ -275,6 +281,7 @@ async function runOne(raw) {
   for (const [k, t] of Object.entries(texts)) if (!state.clips[k]) {
     state.clips[k] = await submitClip(t, job); job.newClips = true; await putJSON(`${pre}/state.json`, state); log('submitted', k, state.clips[k]);
   }
+  if (submitOnly) return !!job.newClips;
   // 2. wait + download
   const work = fs.mkdtempSync('/tmp/job-');
   const clip = {};
@@ -288,9 +295,9 @@ async function runOne(raw) {
   const blurIn = makeBlurMask(work, bodyLen);
   const fx = env.FX === '1' ? await buildFx(job, bodyLen, work) : null;
   const idx = 2 + (blurIn.length ? 1 : 0);
-  // Zooms: ab -> two versions of the body (A = Snap punch-in only, B = Snap + 2 extra punch-ins); multi -> B only
+  // One version per video: ZOOMS=multi (production default) = Snap + 2 extra punch-ins; otherwise the Snap punch-in only
   const zmode = (job.zooms || env.ZOOMS || '').toLowerCase();
-  const versions = !fx ? [['', null]] : /ab/.test(zmode) ? [['', fx.zoomsA], ['-B', fx.zoomsB]] : [['', /multi/.test(zmode) ? fx.zoomsB : fx.zoomsA]];
+  const versions = [['', fx ? (/multi|ab/.test(zmode) ? fx.zoomsB : fx.zoomsA) : null]];
   const bg = fx ? pickBackground(job) : null;
   if (bg) log('background', path.basename(bg));
   for (const [tag, zooms] of versions) {
