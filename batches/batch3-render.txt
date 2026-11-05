@@ -1,0 +1,350 @@
+SCRIPT #31 | Audience: CONSUMER | Hook style: PROVOCACIÓN
+Topic: Elección y tasas
+Chip: ELECCIÓN
+Kicker: Política vs números
+Keyword: CASA
+
+Hook — spoken: ¿Cambió el Congreso y ya bajó tu hipoteca? Qué eficiente, ¿no?
+       screen: ¿Cambió el / Congreso / *TASA?*
+
+Body:
+Después de la elección, los bonos se movieron. Pero tu tasa hipotecaria no trae camiseta de partido. Se mueve con inflación, economía y expectativas del mercado. La historia muestra algo menos sexy: la incertidumbre política puede frenar actividad, pero no existe una regla de que gane un partido y tu casa suba o baje. Antes de comprar, revisa tu pago, tu crédito y tus opciones. Decide con números, no con memes políticos.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si quieres revisar tu escenario sin politiquería, comenta CASA y hablamos con números.
+
+Caption: Cambió el Congreso. Eso puede mover mercados, pero no existe un botón partidista que baje tu hipoteca. La tasa depende de mucho más: inflación, economía y bonos. Comenta CASA.
+Hashtags: #bienesraices #tasashipotecarias #Arizona #HomePros
+
+Headline: Política y tasa
+Callouts: bonos, inflación, economía
+Checklist: tu pago, tu crédito, tus opciones
+Snap: Decide con números, no con memes políticos.
+
+Word count: hook 11 / body 89 / CTA 13
+Background: office.jpg
+Zooms: ab
+
+SCRIPT #32 | Audience: CONSUMER | Hook style: CHISTE
+Topic: Más inventario
+Chip: MERCADO
+Kicker: Ya cambió el juego
+Keyword: CASA
+
+Hook — spoken: Sigues esperando el crash mientras los vendedores ya compiten por ti.
+       screen: ¿Esperas el / *CRASH* / todavía?
+
+Body:
+En Maricopa hay más casas en venta que hace un año, mientras menos propiedades están bajo contrato. Traducción: el comprador tiene más aire para negociar. Eso no significa regalar casas ni ofrecer cualquier tontería. Significa mirar precio, días en mercado y competencia antes de escribir una oferta. Si los números te funcionan, puedes negociar con calma. Si no, no te cases con la casa. El mercado cambió; tu estrategia también debería cambiar.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si quieres saber cómo comprar con más estrategia, comenta CASA y te explico.
+
+Caption: Mientras muchos esperan un crash, Maricopa tiene más inventario y menos propiedades bajo contrato que hace un año. Eso puede dar más espacio para negociar. Comenta CASA.
+Hashtags: #comprarcasa #mercadoinmobiliario #Maricopa #HomePros
+
+Headline: Más poder
+Callouts: Maricopa, más casas, negociar
+Checklist: precio, días en mercado, competencia
+Snap: El mercado cambió; tu estrategia también debería cambiar.
+
+Word count: hook 11 / body 89 / CTA 13
+Background: street.jpg
+Zooms: ab
+
+SCRIPT #34 | Audience: CONSUMER | Hook style: NADIE TE DICE
+Topic: Miedo del comprador
+Chip: REALIDAD
+Kicker: El miedo no manda
+Keyword: CASA
+
+Hook — spoken: Nadie te dice esto: cuando todos tienen miedo, tú haces números.
+       screen: Todos tienen / miedo / *NÚMEROS*
+
+Body:
+En octubre, ochenta y cinco por ciento de consumidores encuestados dijeron que era mal momento para comprar casa, y las tasas fueron la razón principal. Al mismo tiempo, hay menos compradores activos y más negociación. No confundas miedo colectivo con tu presupuesto personal. Revisa ingreso, pago mensual y reservas. Si esos números no cuadran, esperas. Si cuadran, decides sin pedirle permiso al pánico. Tu situación vale más que el sentimiento del internet.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si quieres revisar tus números sin presión, comenta CASA y te explico opciones.
+
+Caption: El sentimiento está por los suelos: 85% dijo en octubre que era mal momento para comprar. Pero tu decisión debe salir de tus números, no del pánico. Comenta CASA.
+Hashtags: #comprarcasa #primeracasa #tasas #Arizona #HomePros
+
+Headline: Miedo vs números
+Callouts: tasas, compradores, negociación
+Checklist: ingreso, pago mensual, reservas
+Snap: No confundas miedo colectivo con tu presupuesto personal.
+
+Word count: hook 11 / body 89 / CTA 13
+Background: kitchen.jpg
+Zooms: ab
+
+SCRIPT #35 | Audience: CONSUMER | Hook style: MYTH
+Topic: Esperar la tasa
+Chip: MITO
+Kicker: La tasa perfecta
+Keyword: CASA
+
+Hook — spoken: El mito: esperar la tasa perfecta siempre te ahorra dinero. Sí, claro.
+       screen: ¿Esperas la / tasa perfecta? / *MITO*
+
+Body:
+Las tasas subieron fuerte entre finales de agosto y octubre; luego empezaron a bajar un poco. Traducción: nadie te puede prometer la tasa perfecta ni el día exacto. Mientras esperas, también cambian precios, inventario y poder de negociación. La pregunta correcta no es cuándo baja, sino qué pago puedo sostener. Compara tu mensualidad, tu enganche y tus gastos. Si no funciona, espera. Si funciona, decide con estrategia, no con una bola de cristal.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si quieres comparar esperar contra comprar hoy, comenta CASA y hacemos números.
+
+Caption: Las tasas se movieron fuerte entre agosto y octubre. Esperar puede ayudar o no; nadie conoce el día perfecto. Haz la comparación con tu pago real. Comenta CASA.
+Hashtags: #tasashipotecarias #comprarcasa #finanzas #HomePros
+
+Headline: Tasa perfecta
+Callouts: tasas, inventario, negociación
+Checklist: tu mensualidad, tu enganche, tus gastos
+Snap: decide con estrategia, no con una bola de cristal.
+
+Word count: hook 12 / body 90 / CTA 12
+Background: office-b.jpg
+Zooms: ab
+
+SCRIPT #36 | Audience: CONSUMER | Hook style: DRAMA
+Topic: Concesiones
+Chip: NEGOCIA
+Kicker: No mires solo precio
+Keyword: CASA
+
+Hook — spoken: Drama del comprador: vio el precio, lloró… y ni pidió concesiones.
+       screen: Vio el precio / y lloró / *PREGUNTA*
+
+Body:
+En Phoenix, más de dos de cada tres ventas recientes incluyeron concesiones del vendedor. Sí, así está el mercado. Preguntar no es ser codo; es negociar. Una concesión puede ayudar con costos de cierre, gastos o una compra de tasa, dependiendo del préstamo y del trato. Antes de ofrecer, revisa precio, concesiones y condición. Luego compara mensualidad, efectivo y riesgos. No te obsesiones con el precio si el paquete completo te conviene más.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si vas a comprar, comenta CASA y revisamos qué puedes negociar.
+
+Caption: En Phoenix, más de dos de cada tres ventas recientes incluyeron concesiones del vendedor. No mires solo el precio: negocia el paquete completo. Comenta CASA.
+Hashtags: #compradores #negociacion #Phoenix #HomePros
+
+Headline: Negocia el trato
+Callouts: Phoenix, mercado, negociar
+Checklist: mensualidad, efectivo, riesgos
+Snap: Preguntar no es ser codo; es negociar.
+
+Word count: hook 11 / body 90 / CTA 11
+Background: living-b.jpg
+Zooms: ab
+
+SCRIPT #37 | Audience: CONSUMER | Hook style: DICHO
+Topic: Incentivos builder
+Chip: CASA NUEVA
+Kicker: Lee la letra chica
+Keyword: CASA
+
+Hook — spoken: Mi apá decía: lo barato sale caro cuando ignoras la letra chiquita.
+       screen: Tasa bonita / letra / *CHIQUITA*
+
+Body:
+Ahorita algunos builders del Valle anuncian tasas especiales en casas seleccionadas. Suena precioso, ¿verdad? Pero la letra chiquita manda. La oferta puede depender del lender del builder, una fecha de cierre, una casa específica o comprar al precio de lista. No compares solo la tasa. Revisa precio total, costos de cierre y condiciones. Una promoción puede convenir; una tasa bonita con malas condiciones puede salir cara. Pide el desglose completo antes de decidir.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si estás viendo casa nueva, comenta CASA y revisamos la letra chiquita.
+
+Caption: Algunos builders del Valle están anunciando tasas especiales, pero no todas las promociones funcionan igual. Lee condiciones, costos y fechas. Comenta CASA.
+Hashtags: #casasnuevas #comprarcasa #Arizona #HomePros
+
+Headline: Lee lo pequeño
+Callouts: builders, tasas, La oferta
+Checklist: precio total, costos de cierre, condiciones
+Snap: Pero la letra chiquita manda.
+
+Word count: hook 12 / body 90 / CTA 12
+Background: newbuild.jpg
+Zooms: ab
+
+SCRIPT #38 | Audience: CONSUMER | Hook style: CHISTE
+Topic: Rentar vs comprar
+Chip: RENTA
+Kicker: Haz las cuentas
+Keyword: CASA
+
+Hook — spoken: Rentar cuesta menos ahorita, entonces comprar es una tontería. Ajá, claro.
+       screen: ¿Rentar gana? / No siempre / *CUENTAS*
+
+Body:
+En Phoenix, la demanda por rentas subió cuarenta y tres por ciento, pero el crecimiento de renta fue cerca de uno por ciento. Eso significa que rentar puede tener sentido hoy. Comprar también, dependiendo de cuánto tiempo piensas quedarte. No conviertas esto en religión. Revisa tu plazo, tu ahorro y tu pago total. Si comprar te aprieta demasiado, espera. Si los números funcionan, evalúalo. No hay medalla por comprar antes de tiempo.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si quieres comparar renta contra compra sin presión, comenta CASA y hacemos cuentas.
+
+Caption: En Phoenix, la demanda de renta subió fuerte mientras el crecimiento de renta siguió moderado. Rentar o comprar depende de tu tiempo, ahorro y pago real. Comenta CASA.
+Hashtags: #renta #comprarcasa #Phoenix #HomePros
+
+Headline: Renta vs compra
+Callouts: rentas, Comprar, quedarte
+Checklist: tu plazo, tu ahorro, tu pago total
+Snap: No hay medalla por comprar antes de tiempo.
+
+Word count: hook 11 / body 89 / CTA 13
+Background: studio.jpg
+Zooms: ab
+
+SCRIPT #39 | Audience: CONSUMER | Hook style: NADIE TE DICE
+Topic: Precio de lista
+Chip: PRECIO
+Kicker: La lista no manda
+Keyword: CASA
+
+Hook — spoken: Nadie te dice esto: el precio de lista no viene tallado en piedra.
+       screen: Precio lista / no es / *LEY*
+
+Body:
+En Phoenix, casas están tardando alrededor de sesenta días en venderse, y el precio final suele quedar debajo de la lista. Eso no te da permiso de aventar una oferta ridícula. El precio de lista es una invitación, no una orden divina. Antes de ofrecer, mira ventas recientes, condición y competencia. Una casa bien puesta puede atraer interés. Otra puede necesitar conversación. Negociar con datos funciona mejor que negociar con puro coraje.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si quieres saber qué oferta tiene sentido, comenta CASA y revisamos el escenario.
+
+Caption: En Phoenix, muchas casas están tardando más y cerrando por debajo del precio de lista. Eso no significa regalar ofertas: significa negociar con datos. Comenta CASA.
+Hashtags: #compradores #negociacion #Phoenix #HomePros
+
+Headline: La lista no manda
+Callouts: sesenta días, precio final, ridícula
+Checklist: ventas recientes, condición, competencia
+Snap: El precio de lista es una invitación
+
+Word count: hook 13 / body 89 / CTA 13
+Background: living.jpg
+Zooms: ab
+
+SCRIPT #40 | Audience: CONSUMER | Hook style: WARNING
+Topic: Papeles del préstamo
+Chip: PAPELES
+Kicker: Antes de comprar
+Keyword: CASA
+
+Hook — spoken: Ojo: tu reel promete aprobación fácil; el banco quiere papeles de verdad.
+       screen: ¿Aprobación / fácil? / *PAPELES*
+
+Body:
+Los prestamistas endurecieron un poco la documentación en préstamos convencionales durante septiembre. Traducción: no llegues al proceso pensando que una captura de pantalla resuelve todo. Ten tus papeles listos antes de enamorarte de una casa. Revisa ingresos, tus cuentas y deudas. Cada préstamo es distinto y el banco puede pedir más. La casa bonita puede esperar; un expediente desordenado te puede complicar el camino. Prepárate antes de salir de shopping.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si quieres prepararte antes de buscar casa, comenta CASA y te explico el proceso.
+
+Caption: Los requisitos de documentación se endurecieron un poco en septiembre. Antes de buscar casa, organiza ingresos, tus cuentas y deudas. Comenta CASA.
+Hashtags: #creditohipotecario #comprarcasa #finanzas #HomePros
+
+Headline: Papeles primero
+Callouts: prestamistas, préstamos, papeles
+Checklist: ingresos, tus cuentas, deudas
+Snap: La casa bonita puede esperar
+
+Word count: hook 12 / body 87 / CTA 14
+Background: office.jpg
+Zooms: ab
+
+SCRIPT #41 | Audience: CONSUMER | Hook style: MYTH
+Topic: Pago mensual completo
+Chip: MITO
+Kicker: No es solo la tasa
+Keyword: CASA
+
+Hook — spoken: El mito es mirar solo la tasa. Tu pago mensual se ríe.
+       screen: ¿Solo miras / la tasa? / *ERROR*
+
+Body:
+La presión del pago subió este año, y Arizona está entre los estados donde más pesa para compradores. La tasa no vive sola. Antes de enamorarte del precio, compara pago mensual, impuestos y seguro. Si aplica, suma las cuotas de la asociación y otros costos del préstamo. Una casa puede verse barata en el anuncio y pesada en la cuenta bancaria. Compra con el pago completo enfrente, no con una tasa aislada.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si quieres calcular el pago completo antes de comprar, comenta CASA y hacemos números.
+
+Caption: La tasa importa, pero no vive sola. El pago real también incluye impuestos, seguro y otros costos que pueden cambiar tu presupuesto. Comenta CASA.
+Hashtags: #pagomensual #hipoteca #comprarcasa #HomePros
+
+Headline: Pago completo
+Callouts: Arizona, tasa, precio
+Checklist: pago mensual, impuestos, seguro
+Snap: La tasa no vive sola.
+
+Word count: hook 12 / body 89 / CTA 14
+Background: kitchen-b.jpg
+Zooms: ab
+
+SCRIPT #42 | Audience: CONSUMER | Hook style: DRAMA
+Topic: Foreclosures y 2008
+Chip: ¿CRASH?
+Kicker: No inventes el final
+Keyword: CASA
+
+Hook — spoken: Drama inmobiliario: viste más foreclosures y ya estás esperando otro dos mil ocho.
+       screen: ¿Otro crash? / Respira / *2008?*
+
+Body:
+Las ejecuciones hipotecarias subieron este año a nivel nacional, y Phoenix también ha visto más propiedades terminar en manos del banco. Hay que mirar el dato. Pero no inventes la película completa: los niveles siguen muy por debajo de la crisis pasada. Más no significa dos mil ocho. Si buscas una propiedad así, revisa condición, reparaciones y costos. Si estás atrasado con tu casa, habla temprano con tu banco y un profesional.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si este tema te preocupa o te interesa comprar, comenta CASA y hablamos.
+
+Caption: Las foreclosures han subido, incluso en Phoenix, pero los niveles siguen muy por debajo de la crisis pasada. Más actividad no significa otro 2008. Comenta CASA.
+Hashtags: #foreclosure #Phoenix #mercadoinmobiliario #HomePros
+
+Headline: No es 2008
+Callouts: Phoenix, banco, crisis
+Checklist: condición, reparaciones, costos
+Snap: Más no significa dos mil ocho.
+
+Word count: hook 13 / body 89 / CTA 13
+Background: street-b.jpg
+Zooms: ab
+
+SCRIPT #43 | Audience: CONSUMER | Hook style: PROVOCACIÓN
+Topic: Quitar la casa del mercado
+Chip: VENDEDOR
+Kicker: La magia no existe
+Keyword: CASA
+
+Hook — spoken: Tu casa no se vendió, la quitas y mágicamente vale más. Brillante.
+       screen: ¿No se vendió? / La quitas / *MAGIA*
+
+Body:
+Este año, muchos vendedores han retirado casas del mercado cuando no reciben el precio que esperaban. A veces retirar tiene sentido. A veces solo pospone la conversación incómoda. Quitarla no cambia lo que paga el mercado. Antes de regresar, revisa precio, fotos y estrategia. Si fue presentación, corrígelo. Si fue precio, enfréntalo. Y si no necesitas vender, espera. Pero relistar igualito esperando un resultado distinto no es estrategia; es esperanza con letrero.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si tu casa no se vendió, comenta CASA y revisamos qué pudo pasar.
+
+Caption: Más vendedores están retirando casas cuando el mercado no paga lo que esperaban. Relistar igualito no corrige el problema. Primero revisa precio y estrategia. Comenta CASA.
+Hashtags: #vendedores #vendertucasa #estrategia #HomePros
+
+Headline: Quitar no arregla
+Callouts: vendedores, mercado, esperaban
+Checklist: precio, fotos, estrategia
+Snap: Quitarla no cambia lo que paga el mercado.
+
+Word count: hook 12 / body 89 / CTA 13
+Background: newbuild-b.jpg
+Zooms: ab
+
+SCRIPT #44 | Audience: CONSUMER | Hook style: DICHO
+Topic: Vender en noviembre
+Chip: NOVIEMBRE
+Kicker: El mercado no duerme
+Keyword: CASA
+
+Hook — spoken: Mi apá decía: no confundas silencio con muerte. Noviembre también vende casas.
+       screen: Noviembre / no está / *MUERTO*
+
+Body:
+En octubre entraron menos listados nuevos en Maricopa que el mes anterior. Por eso noviembre puede sentirse más lento. Pero lento no significa muerto. La gente que necesita mudarse no desaparece por las fiestas. Para vender, cuida precio, fotos y acceso. Para comprar, mira inventario, tiempo en mercado y motivación del vendedor. Hay menos ruido, pero también menos gente jugando. No asumas que tienes que esperar hasta primavera solo porque llegó el pavo.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si estás pensando moverte antes de enero, comenta CASA y revisamos tu estrategia.
+
+Caption: Noviembre puede sentirse más lento, pero el mercado no se apaga por las fiestas. Menos ruido puede abrir oportunidades si tu estrategia está bien armada. Comenta CASA.
+Hashtags: #vendedores #compradores #Maricopa #HomePros
+
+Headline: Noviembre vende
+Callouts: Maricopa, noviembre, lento
+Checklist: precio, fotos, acceso
+Snap: Pero lento no significa muerto.
+
+Word count: hook 12 / body 90 / CTA 13
+Background: kitchen.jpg
+Zooms: ab
