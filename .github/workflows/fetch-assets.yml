@@ -1,0 +1,31 @@
+# Downloads files from signed URLs (e.g. Canva exports) into the repo, since the build sandbox can't reach them.
+# Input "files": lines of "<repo path> <url>". Background plates also get a mirrored "-b" copy.
+name: Fetch assets
+on:
+  workflow_dispatch:
+    inputs:
+      files: { description: 'Lines: <path> <url>', required: true }
+permissions: { contents: write }
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download
+        env: { FILES: '${{ inputs.files }}' }
+        run: |
+          sudo apt-get install -y -qq ffmpeg >/dev/null
+          printf '%s\n' "$FILES" | while read -r p u; do
+            [ -z "$p" ] && continue
+            mkdir -p "$(dirname "$p")"; curl -fsSL "$u" -o "$p"
+            # normalise to exactly 1080x1920 and add a mirrored variant for backgrounds
+            if [[ "$p" == assets/backgrounds/* ]]; then
+              ffmpeg -y -loglevel error -i "$p" -vf "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920" -q:v 2 "$p.tmp.jpg" && mv "$p.tmp.jpg" "$p"
+              ffmpeg -y -loglevel error -i "$p" -vf hflip -q:v 2 "${p%.jpg}-b.jpg"
+            fi
+            ls -la "$p"
+          done
+      - name: Commit
+        run: |
+          git config user.name "HomePros engine"; git config user.email "actions@users.noreply.github.com"
+          git add -A assets && git commit -m "Add fetched assets" && git push || echo "nothing to commit"

@@ -4,7 +4,7 @@
 import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
-import { execFileSync, spawn } from 'child_process';
+import { execFileSync, spawn, spawnSync } from 'child_process';
 import { chromium } from 'playwright-core';
 import { S3Client, GetObjectCommand, PutObjectCommand } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
@@ -63,6 +63,10 @@ export function parseScript(text) {
   job.callouts = get(/Callouts:\s*([^\n]+)/i)?.split(',').map(x => x.trim()).filter(Boolean);
   job.checklist = get(/Checklist:\s*([^\n]+)/i)?.split(',').map(x => x.trim()).filter(Boolean);
   job.snap = get(/Snap:\s*([^\n]+)/i);
+  // Optional: background plate for the body (file in assets/backgrounds/). Unset = rotate through the set by script number.
+  job.bg = get(/Background:\s*([^\n]+)/i);
+  // Optional: ZOOMS=multi adds 2 punch-ins on short sentences besides the Snap line
+  job.zooms = get(/Zooms:\s*([^\n]+)/i);
   return job;
 }
 function validate(job) {
@@ -287,16 +291,18 @@ async function runOne(raw) {
   let base = `[0:v]scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H},fps=${FPS},setsar=1`;
   if (fx) {
     // GREEN mode: key the avatar off its green background, then stack studio photo -> back effects -> avatar
-    const bg = path.join(ROOT, 'assets', 'backgrounds', path.basename(env.BACKGROUND || 'studio.jpg'));
+    const bg = pickBackground(job);
+    log('background', path.basename(bg));
     extra.push('-loop', '1', '-t', (bodyLen + 1).toFixed(2), '-i', bg, '-i', fx.back, '-i', fx.front || fx.back);
+    if (fx.sfx) extra.push('-i', fx.sfx);
     const [ib, iback, ifront] = [idx, idx + 1, idx + 2];
     base = `[${ib}:v]scale=${W}:${H},fps=${FPS},setsar=1[bgi];[${iback}:v]setpts=PTS-STARTPTS[bk];[bgi][bk]overlay=0:0:eof_action=pass[bgx];` +
-      `[0:v]scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H},fps=${FPS},setsar=1,chromakey=0x00FF00:0.16:0.06,despill=type=green[fg];` +
+      `[0:v]scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H},fps=${FPS},setsar=1,chromakey=0x00FF00:0.16:0.06,despill=type=green${matchFilter(bg)}[fg];` +
       `[bgx][fg]overlay=0:0:shortest=1`;
   }
   const front = fx?.front ? `[o0];[${idx + 2}:v]setpts=PTS-STARTPTS+${fx.frontStart.toFixed(3)}/TB[fr];[o0][fr]overlay=0:0:eof_action=pass` : '';
   run('ffmpeg', ['-y', '-loglevel', 'error', '-i', clip.body, '-i', path.join(work, 'card.png'), ...blurIn, ...extra, '-filter_complex',
-    `${base}${blurFilter()}${fx ? snapFilter(fx.snap) : motionFilter(job.body, bodyLen)}[v];[v][1:v]overlay=0:0,ass=${path.join(work, 'cap.ass')}:fontsdir=${fontsdir}${front}[o];[0:a]aresample=48000,aformat=channel_layouts=stereo[a]`,
+    `${base}${blurFilter()}${fx ? snapFilter(fx.zooms) : motionFilter(job.body, bodyLen)}[v];[v][1:v]overlay=0:0,ass=${path.join(work, 'cap.ass')}:fontsdir=${fontsdir}${front}[o];[0:a]aresample=48000,aformat=channel_layouts=stereo${fx?.sfx ? `[va];[${idx + 3}:a]aresample=48000,aformat=channel_layouts=stereo[sa];[va][sa]amix=inputs=2:duration=first:normalize=0` : ''}[a]`,
     '-map', '[o]', '-map', '[a]', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '19', '-preset', 'veryfast', '-c:a', 'aac', '-b:a', '160k', path.join(work, 'seg-body.mp4')]);
   const ctaLen = dur(clip.cta), endLen = Math.max(3.6, ctaLen + 1.0);
   const kw = (job.keyword || (/agent/i.test(job.audience || '') ? (en ? 'AGENT' : 'AGENTE') : (en ? 'HOUSE' : 'CASA'))).toUpperCase().replace(/[^A-ZÁÉÍÓÚÑ]/g, '');
@@ -381,12 +387,55 @@ function phraseTime(body, phrase, seconds) {
   const start = 0.15, end = Math.max(1, seconds - 0.25);
   return start + (end - start) * i / b.length;
 }
-// One sharp punch-in (+12%) for the length of the Snap line. Used once per video.
-function snapFilter(snap) {
-  if (!snap) return '';
-  const z = 1.12, zw = Math.round(W * z / 2) * 2, zh = Math.round(H * z / 2) * 2, ay = 1100;
-  const cx = Math.round((zw - W) / 2), cy = Math.round(ay * z - ay);
-  return `,split[sw][st];[st]scale=${zw}:${zh},crop=${W}:${H}:${cx}:${cy}[sz];[sw][sz]overlay=0:0:enable='between(t,${snap[0].toFixed(2)},${snap[1].toFixed(2)})'`;
+// Punch-ins: [[start,end,zoom],...]. The Snap line gets +12%; optional extra ones (+8%) on short sentences.
+function snapFilter(zooms) {
+  if (!zooms?.length) return '';
+  let f = '', n = 0;
+  for (const [a, b, z] of zooms) {
+    const zw = Math.round(W * z / 2) * 2, zh = Math.round(H * z / 2) * 2, ay = 1100;
+    const cx = Math.round((zw - W) / 2), cy = Math.round(ay * z - ay);
+    f += `,split[sw${n}][st${n}];[st${n}]scale=${zw}:${zh},crop=${W}:${H}:${cx}:${cy}[sz${n}];[sw${n}][sz${n}]overlay=0:0:enable='between(t,${a.toFixed(2)},${b.toFixed(2)})'`;
+    n++;
+  }
+  return f;
+}
+// ---------- backgrounds ----------
+const BG_DIR = path.join(ROOT, 'assets', 'backgrounds');
+function pickBackground(job) {
+  if (job.bg && fs.existsSync(path.join(BG_DIR, path.basename(job.bg)))) return path.join(BG_DIR, path.basename(job.bg));
+  if (job.bg) log('background not found, rotating instead:', job.bg);
+  const all = fs.readdirSync(BG_DIR).filter(f => /\.(jpe?g|png)$/i.test(f) && (env.BG_ROTATE_STUDIO === '1' || f !== 'studio.jpg')).sort();
+  if (!all.length) return path.join(BG_DIR, path.basename(env.BACKGROUND || 'studio.jpg'));
+  return path.join(BG_DIR, all[Number(job.number || 0) % all.length]);
+}
+// Nudge the keyed avatar toward the background's brightness so it doesn't look pasted on (small, bounded change).
+function matchFilter(bg) {
+  if (env.BG_MATCH === '0') return '';
+  try {
+    const out = spawnSync('ffmpeg', ['-v', 'error', '-i', bg, '-vf', 'scale=64:-1,signalstats,metadata=print:file=-', '-f', 'null', '-'], { encoding: 'utf8' }).stdout;
+    const y = Number((out.match(/YAVG=([\d.]+)/) || [])[1]);
+    if (!y) return '';
+    const b = Math.max(-0.04, Math.min(0.05, (y - 95) / 1400)); // studio plate ≈ 95 average luma
+    return Math.abs(b) < 0.005 ? '' : `,eq=brightness=${b.toFixed(3)}`;
+  } catch { return ''; }
+}
+// ---------- sound effects (HyperFrames rules: few and exact, peak one frame after the picture, rotate takes) ----------
+const SFX = { pop: 0.119, 'click-soft': 0.072, whoosh: 0.162, 'whoosh-short': 0.162, 'impact-bass-1': 0.073, riser: 10.03 };
+function buildSfx(events, seconds, work) {
+  const ev = events.filter(e => e.t >= 0 && e.t < seconds);
+  if (!ev.length || env.SFX === '0') return null;
+  const ins = [], parts = [];
+  ev.forEach((e, i) => {
+    const f = path.join(ROOT, 'assets', 'sfx', e.name + '.mp3');
+    if (e.name === 'riser') { ins.push('-ss', (SFX.riser - e.len).toFixed(2), '-i', f); } else ins.push('-i', f);
+    const start = e.name === 'riser' ? e.t - e.len : e.t + 1 / FPS - (SFX[e.name] || 0);
+    parts.push(`[${i}:a]aresample=48000,aformat=channel_layouts=stereo,volume=${e.vol},adelay=${Math.max(0, Math.round(start * 1000))}:all=1[e${i}]`);
+  });
+  const out = path.join(work, 'sfx.wav');
+  run('ffmpeg', ['-y', '-loglevel', 'error', ...ins, '-filter_complex',
+    `${parts.join(';')};${ev.map((_, i) => `[e${i}]`).join('')}amix=inputs=${ev.length}:normalize=0:duration=longest,apad,atrim=0:${seconds.toFixed(3)}[a]`,
+    '-map', '[a]', '-ar', '48000', out]);
+  return out;
 }
 // transparent animation (alpha) for overlays
 async function renderAlpha(html, seconds, out, work) {
@@ -411,7 +460,18 @@ async function buildFx(job, bodyLen, work) {
   for (const c of job.checklist || []) { const t = T(c); if (t != null) items.push({ kind: 'check', text: c, t }); }
   const snapT = job.snap ? T(job.snap) : null;
   const snap = snapT != null ? [snapT, Math.min(bodyLen - 0.3, snapT + Math.max(1.4, plain(job.snap).length / 15))] : null;
-  if (!items.length) return { back, front: null, frontStart: 0, snap };
+  const zooms = snap ? [[snap[0], snap[1], 1.12]] : [];
+  if (/multi/i.test(job.zooms || env.ZOOMS || '')) zooms.push(...extraZooms(job.body, bodyLen, zooms, items));
+  // sound: whoosh on the headline, pop per callout, alternating soft click/pop per checklist item,
+  // short riser into a bass hit on the Snap line, whoosh on each extra punch-in
+  const ev = [];
+  if (job.headline) ev.push({ name: 'whoosh-short', t: 0.35, vol: 0.35 });
+  let k = 0;
+  for (const x of items) ev.push(x.kind === 'call' ? { name: 'pop', t: x.t + 0.25, vol: 0.4 } : { name: k++ % 2 ? 'pop' : 'click-soft', t: x.t + 0.22, vol: 0.45 });
+  if (snap) ev.push({ name: 'riser', t: snap[0], len: 1.2, vol: 0.22 }, { name: 'impact-bass-1', t: snap[0], vol: 0.45 });
+  for (const z of zooms.slice(1)) ev.push({ name: 'whoosh', t: z[0], vol: 0.3 });
+  const sfx = buildSfx(ev, bodyLen, work);
+  if (!items.length) return { back, front: null, frontStart: 0, snap, zooms, sfx };
   const s0 = Math.max(0, Math.min(...items.map(x => x.t)) - 0.3);
   const groupEnd = kind => { const ts = items.filter(x => x.kind === kind).map(x => x.t); return ts.length ? Math.max(...ts) + 2.6 : 0; };
   const endCall = groupEnd('call'), endCheck = groupEnd('check');
@@ -421,7 +481,23 @@ async function buildFx(job, bodyLen, work) {
   const front = path.join(work, 'fx-front.mov');
   await renderAlpha(fill('fx-front.html', { CALLS: html('call', endCall), CHECKS: html('check', endCheck) }), seconds, front, work);
   log('fx', `${items.length} item(s) from ${s0.toFixed(1)}s`, snap ? `snap ${snap.map(x => x.toFixed(1)).join('-')}` : '');
-  return { back, front, frontStart: s0, snap };
+  return { back, front, frontStart: s0, snap, zooms, sfx };
+}
+// 2 extra punch-ins (+8%) on the shortest sentences, at least 4s away from the Snap line and from each other,
+// and not in the same second as a callout/checklist pop.
+function extraZooms(body, seconds, taken, items) {
+  const sents = plain(body).split(/(?<=[.?!;])\s+/).map(x => x.trim()).filter(x => x && !/^Soy Josh/i.test(x));
+  const cands = sents.map(x => ({ x, t: phraseTime(body, x, seconds), n: words(x) })).filter(c => c.t != null && c.n <= 9).sort((a, b) => a.n - b.n);
+  const out = [];
+  for (const c of cands) {
+    const all = [...taken, ...out];
+    if (all.some(z => Math.abs(z[0] - c.t) < 4)) continue;
+    if (items.some(i => Math.abs(i.t - c.t) < 0.8)) continue;
+    if (c.t < 1.5 || c.t > seconds - 2) continue;
+    out.push([c.t, Math.min(seconds - 0.3, c.t + Math.max(1.2, c.x.length / 15)), 1.08]);
+    if (out.length === 2) break;
+  }
+  return out;
 }
 // silent animation + voice clip → one segment of exact length
 function voiceOver(videoIn, voiceClip, seconds, out, delay) {
