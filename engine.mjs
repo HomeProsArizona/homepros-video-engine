@@ -247,7 +247,7 @@ async function runOne(raw) {
   if (job.only) job.variants = job.variants.filter(v => job.only.includes(v.key));
   const errs = validate(job);
   if (errs.length) { log('JOB REJECTED:', errs.join(' | ')); return; }
-  job.count ||= job.number ? `${String(job.number).padStart(2, '0')} / 30` : '';
+  job.count ||= job.number ? (env.SERIES_TOTAL ? `${String(job.number).padStart(2, '0')} / ${env.SERIES_TOTAL}` : `#${String(job.number).padStart(2, '0')}`) : '';
   job.chip ||= job.number ? `Mito #${String(job.number).padStart(2, '0')}` : 'HomePros';
   job.kicker ||= 'Nadie te lo dice';
   const id = crypto.createHash('sha1').update(JSON.stringify([job.variants, job.body, job.cta, job.avatarId, job.voiceId, job.engine, job.avatarType, ...(job.background ? [job.background] : []), ...(job.green ? ['green'] : [])])).digest('hex').slice(0, 12);
