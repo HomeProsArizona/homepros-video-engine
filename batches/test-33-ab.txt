@@ -1,0 +1,26 @@
+SCRIPT #33 | Audience: CONSUMER | Hook style: WARNING
+Topic: Recortes de precio
+Chip: OJO
+Kicker: Vender no es pedir
+Keyword: CASA
+
+Hook — spoken: Ojo: tu casa no vale más porque tu vecino anda alucinando.
+       screen: Tu vecino / anda soñando / *OJO*
+
+Body:
+En octubre, casi una de cada tres casas en venta en Maricopa tuvo un recorte. Eso no significa que el mercado se cayó; significa que muchos vendedores están peleando con la realidad. Salir muy alto puede regalarle tus primeros días al mercado. Antes de publicar, revisa precio, presentación y competencia. Tu vecino puede pedir lo que quiera; vender es otra cosa. La estrategia empieza antes del letrero, no después del tercer recorte.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si estás pensando vender y quieres aterrizar el precio, comenta CASA y hablamos.
+
+Caption: Casi una de cada tres casas en venta en Maricopa tuvo reducción de precio en octubre. Pedir alto por probar puede costarte atención. Comenta CASA.
+Hashtags: #vendedores #preciodecasa #Maricopa #HomePros
+
+Headline: Precio real
+Callouts: recorte, vendedores, realidad
+Checklist: precio, presentación, competencia
+Snap: Tu vecino puede pedir lo que quiera
+
+Word count: hook 11 / body 89 / CTA 13
+Background: living.jpg
+Zooms: ab
