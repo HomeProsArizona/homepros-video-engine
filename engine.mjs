@@ -287,23 +287,30 @@ async function runOne(raw) {
   const fontsdir = path.join(ROOT, 'fonts');
   const blurIn = makeBlurMask(work, bodyLen);
   const fx = env.FX === '1' ? await buildFx(job, bodyLen, work) : null;
-  const extra = [], idx = 2 + (blurIn.length ? 1 : 0);
-  let base = `[0:v]scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H},fps=${FPS},setsar=1`;
-  if (fx) {
-    // GREEN mode: key the avatar off its green background, then stack studio photo -> back effects -> avatar
-    const bg = pickBackground(job);
-    log('background', path.basename(bg));
-    extra.push('-loop', '1', '-t', (bodyLen + 1).toFixed(2), '-i', bg, '-i', fx.back, '-i', fx.front || fx.back);
-    if (fx.sfx) extra.push('-i', fx.sfx);
-    const [ib, iback, ifront] = [idx, idx + 1, idx + 2];
-    base = `[${ib}:v]scale=${W}:${H},fps=${FPS},setsar=1[bgi];[${iback}:v]setpts=PTS-STARTPTS[bk];[bgi][bk]overlay=0:0:eof_action=pass[bgx];` +
-      `[0:v]scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H},fps=${FPS},setsar=1,chromakey=0x00FF00:0.16:0.06,despill=type=green${matchFilter(bg)}[fg];` +
-      `[bgx][fg]overlay=0:0:shortest=1`;
+  const idx = 2 + (blurIn.length ? 1 : 0);
+  // Zooms: ab -> two versions of the body (A = Snap punch-in only, B = Snap + 2 extra punch-ins); multi -> B only
+  const zmode = (job.zooms || env.ZOOMS || '').toLowerCase();
+  const versions = !fx ? [['', null]] : /ab/.test(zmode) ? [['', fx.zoomsA], ['-B', fx.zoomsB]] : [['', /multi/.test(zmode) ? fx.zoomsB : fx.zoomsA]];
+  const bg = fx ? pickBackground(job) : null;
+  if (bg) log('background', path.basename(bg));
+  for (const [tag, zooms] of versions) {
+    const extra = [];
+    let base = `[0:v]scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H},fps=${FPS},setsar=1`;
+    const sfx = fx ? fx.sfxFor(zooms, tag) : null;
+    if (fx) {
+      // GREEN mode: key the avatar off its green background, then stack background photo -> back effects -> avatar
+      extra.push('-loop', '1', '-t', (bodyLen + 1).toFixed(2), '-i', bg, '-i', fx.back, '-i', fx.front || fx.back);
+      if (sfx) extra.push('-i', sfx);
+      const [ib, iback] = [idx, idx + 1];
+      base = `[${ib}:v]scale=${W}:${H},fps=${FPS},setsar=1[bgi];[${iback}:v]setpts=PTS-STARTPTS[bk];[bgi][bk]overlay=0:0:eof_action=pass[bgx];` +
+        `[0:v]scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H},fps=${FPS},setsar=1,chromakey=0x00FF00:0.16:0.06,despill=type=green${matchFilter(bg)}[fg];` +
+        `[bgx][fg]overlay=0:0:shortest=1`;
+    }
+    const front = fx?.front ? `[o0];[${idx + 2}:v]setpts=PTS-STARTPTS+${fx.frontStart.toFixed(3)}/TB[fr];[o0][fr]overlay=0:0:eof_action=pass` : '';
+    run('ffmpeg', ['-y', '-loglevel', 'error', '-i', clip.body, '-i', path.join(work, 'card.png'), ...blurIn, ...extra, '-filter_complex',
+      `${base}${blurFilter()}${fx ? snapFilter(zooms) : motionFilter(job.body, bodyLen)}[v];[v][1:v]overlay=0:0,ass=${path.join(work, 'cap.ass')}:fontsdir=${fontsdir}${front}[o];[0:a]aresample=48000,aformat=channel_layouts=stereo${sfx ? `[va];[${idx + 3}:a]aresample=48000,aformat=channel_layouts=stereo[sa];[va][sa]amix=inputs=2:duration=first:normalize=0` : ''}[a]`,
+      '-map', '[o]', '-map', '[a]', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '19', '-preset', 'veryfast', '-c:a', 'aac', '-b:a', '160k', path.join(work, `seg-body${tag}.mp4`)]);
   }
-  const front = fx?.front ? `[o0];[${idx + 2}:v]setpts=PTS-STARTPTS+${fx.frontStart.toFixed(3)}/TB[fr];[o0][fr]overlay=0:0:eof_action=pass` : '';
-  run('ffmpeg', ['-y', '-loglevel', 'error', '-i', clip.body, '-i', path.join(work, 'card.png'), ...blurIn, ...extra, '-filter_complex',
-    `${base}${blurFilter()}${fx ? snapFilter(fx.zooms) : motionFilter(job.body, bodyLen)}[v];[v][1:v]overlay=0:0,ass=${path.join(work, 'cap.ass')}:fontsdir=${fontsdir}${front}[o];[0:a]aresample=48000,aformat=channel_layouts=stereo${fx?.sfx ? `[va];[${idx + 3}:a]aresample=48000,aformat=channel_layouts=stereo[sa];[va][sa]amix=inputs=2:duration=first:normalize=0` : ''}[a]`,
-    '-map', '[o]', '-map', '[a]', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '19', '-preset', 'veryfast', '-c:a', 'aac', '-b:a', '160k', path.join(work, 'seg-body.mp4')]);
   const ctaLen = dur(clip.cta), endLen = Math.max(3.6, ctaLen + 1.0);
   const kw = (job.keyword || (/agent/i.test(job.audience || '') ? (en ? 'AGENT' : 'AGENTE') : (en ? 'HOUSE' : 'CASA'))).toUpperCase().replace(/[^A-ZÁÉÍÓÚÑ]/g, '');
   const agent = /agent/i.test(job.audience || '');
@@ -322,18 +329,18 @@ async function runOne(raw) {
 
   // 4. one finished video per hook variant
   const outputs = {};
-  for (const v of job.variants) {
+  for (const v of job.variants) for (const [tag] of versions) {
     const hk = clip['hook' + v.key], hookLen = Math.max(2.8, dur(hk) + 0.35);
     await renderAnim(fill('hook.html', { CHIP: esc(job.chip), KICKER: esc(job.kicker), COUNT: esc(job.count), LINES: hookLines(v.screen) }), hookLen, path.join(work, `hook${v.key}.mp4`), work);
     voiceOver(path.join(work, `hook${v.key}.mp4`), hk, hookLen, path.join(work, `seg-hook${v.key}.mp4`), 0.0);
-    const out = path.join(work, `final-${v.key}.mp4`);
-    const total = hookLen + dur(path.join(work, 'seg-body.mp4')) + endLen;
-    run('ffmpeg', ['-y', '-loglevel', 'error', '-i', path.join(work, `seg-hook${v.key}.mp4`), '-i', path.join(work, 'seg-body.mp4'), '-i', path.join(work, 'seg-end.mp4'), '-loop', '1', '-i', path.join(work, 'bar.png'), '-filter_complex',
+    const out = path.join(work, `final-${v.key}${tag}.mp4`);
+    const total = hookLen + dur(path.join(work, `seg-body${tag}.mp4`)) + endLen;
+    run('ffmpeg', ['-y', '-loglevel', 'error', '-i', path.join(work, `seg-hook${v.key}.mp4`), '-i', path.join(work, `seg-body${tag}.mp4`), '-i', path.join(work, 'seg-end.mp4'), '-loop', '1', '-i', path.join(work, 'bar.png'), '-filter_complex',
       `[0:v][0:a][1:v][1:a][2:v][2:a]concat=n=3:v=1:a=1[cv][ca];[cv][3:v]overlay=x='-${W}+${W}*t/${total.toFixed(3)}':y=0:shortest=1[v];[ca]loudnorm=I=-14:TP=-1.5:LRA=11[a]`,
       '-map', '[v]', '-map', '[a]', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '19', '-preset', 'medium', '-c:a', 'aac', '-b:a', '160k', '-ar', '48000', '-movflags', '+faststart', out]);
-    const name = `HomePros-${job.number ? 'Script' + String(job.number).padStart(2, '0') : id}${job.variants.length > 1 ? '-Hook' + v.key : ''}.mp4`;
-    outputs[v.key] = await putFile(`${pre}/${name}`, fs.readFileSync(out), 'video/mp4');
-    log('RESULT', `SCRIPT ${job.number ?? id}`, `${dur(out).toFixed(1)}s`, outputs[v.key]);
+    const name = `HomePros-${job.number ? 'Script' + String(job.number).padStart(2, '0') : id}${job.variants.length > 1 ? '-Hook' + v.key : ''}${tag}.mp4`;
+    outputs[v.key + tag] = await putFile(`${pre}/${name}`, fs.readFileSync(out), 'video/mp4');
+    log('RESULT', `SCRIPT ${job.number ?? id}${tag}`, `${dur(out).toFixed(1)}s`, outputs[v.key + tag]);
   }
   await putJSON(`${pre}/state.json`, { ...state, done: true, outputs, caption: job.caption, hashtags: job.hashtags });
   log('JOB DONE', pre);
@@ -421,7 +428,7 @@ function matchFilter(bg) {
 }
 // ---------- sound effects (HyperFrames rules: few and exact, peak one frame after the picture, rotate takes) ----------
 const SFX = { pop: 0.119, 'click-soft': 0.072, whoosh: 0.162, 'whoosh-short': 0.162, 'impact-bass-1': 0.073, riser: 10.03 };
-function buildSfx(events, seconds, work) {
+function buildSfx(events, seconds, work, tag = '') {
   const ev = events.filter(e => e.t >= 0 && e.t < seconds);
   if (!ev.length || env.SFX === '0') return null;
   const ins = [], parts = [];
@@ -431,7 +438,7 @@ function buildSfx(events, seconds, work) {
     const start = e.name === 'riser' ? e.t - e.len : e.t + 1 / FPS - (SFX[e.name] || 0);
     parts.push(`[${i}:a]aresample=48000,aformat=channel_layouts=stereo,volume=${e.vol},adelay=${Math.max(0, Math.round(start * 1000))}:all=1[e${i}]`);
   });
-  const out = path.join(work, 'sfx.wav');
+  const out = path.join(work, `sfx${tag}.wav`);
   run('ffmpeg', ['-y', '-loglevel', 'error', ...ins, '-filter_complex',
     `${parts.join(';')};${ev.map((_, i) => `[e${i}]`).join('')}amix=inputs=${ev.length}:normalize=0:duration=longest,apad,atrim=0:${seconds.toFixed(3)}[a]`,
     '-map', '[a]', '-ar', '48000', out]);
@@ -460,18 +467,21 @@ async function buildFx(job, bodyLen, work) {
   for (const c of job.checklist || []) { const t = T(c); if (t != null) items.push({ kind: 'check', text: c, t }); }
   const snapT = job.snap ? T(job.snap) : null;
   const snap = snapT != null ? [snapT, Math.min(bodyLen - 0.3, snapT + Math.max(1.4, plain(job.snap).length / 15))] : null;
-  const zooms = snap ? [[snap[0], snap[1], 1.12]] : [];
-  if (/multi/i.test(job.zooms || env.ZOOMS || '')) zooms.push(...extraZooms(job.body, bodyLen, zooms, items));
+  // zoomsA = the Snap line only; zoomsB = Snap + 2 extra punch-ins on short sentences
+  const zoomsA = snap ? [[snap[0], snap[1], 1.12]] : [];
+  const zoomsB = [...zoomsA, ...extraZooms(job.body, bodyLen, zoomsA, items)];
   // sound: whoosh on the headline, pop per callout, alternating soft click/pop per checklist item,
   // short riser into a bass hit on the Snap line, whoosh on each extra punch-in
-  const ev = [];
-  if (job.headline) ev.push({ name: 'whoosh-short', t: 0.35, vol: 0.35 });
-  let k = 0;
-  for (const x of items) ev.push(x.kind === 'call' ? { name: 'pop', t: x.t + 0.25, vol: 0.4 } : { name: k++ % 2 ? 'pop' : 'click-soft', t: x.t + 0.22, vol: 0.45 });
-  if (snap) ev.push({ name: 'riser', t: snap[0], len: 1.2, vol: 0.22 }, { name: 'impact-bass-1', t: snap[0], vol: 0.45 });
-  for (const z of zooms.slice(1)) ev.push({ name: 'whoosh', t: z[0], vol: 0.3 });
-  const sfx = buildSfx(ev, bodyLen, work);
-  if (!items.length) return { back, front: null, frontStart: 0, snap, zooms, sfx };
+  const sfxFor = (zooms, tag) => {
+    const ev = [];
+    if (job.headline) ev.push({ name: 'whoosh-short', t: 0.35, vol: 0.35 });
+    let k = 0;
+    for (const x of items) ev.push(x.kind === 'call' ? { name: 'pop', t: x.t + 0.25, vol: 0.4 } : { name: k++ % 2 ? 'pop' : 'click-soft', t: x.t + 0.22, vol: 0.45 });
+    if (snap) ev.push({ name: 'riser', t: snap[0], len: 1.2, vol: 0.22 }, { name: 'impact-bass-1', t: snap[0], vol: 0.45 });
+    for (const z of zooms.slice(1)) ev.push({ name: 'whoosh', t: z[0], vol: 0.3 });
+    return buildSfx(ev, bodyLen, work, tag);
+  };
+  if (!items.length) return { back, front: null, frontStart: 0, snap, zoomsA, zoomsB, sfxFor };
   const s0 = Math.max(0, Math.min(...items.map(x => x.t)) - 0.3);
   const groupEnd = kind => { const ts = items.filter(x => x.kind === kind).map(x => x.t); return ts.length ? Math.max(...ts) + 2.6 : 0; };
   const endCall = groupEnd('call'), endCheck = groupEnd('check');
@@ -481,7 +491,7 @@ async function buildFx(job, bodyLen, work) {
   const front = path.join(work, 'fx-front.mov');
   await renderAlpha(fill('fx-front.html', { CALLS: html('call', endCall), CHECKS: html('check', endCheck) }), seconds, front, work);
   log('fx', `${items.length} item(s) from ${s0.toFixed(1)}s`, snap ? `snap ${snap.map(x => x.toFixed(1)).join('-')}` : '');
-  return { back, front, frontStart: s0, snap, zooms, sfx };
+  return { back, front, frontStart: s0, snap, zoomsA, zoomsB, sfxFor };
 }
 // 2 extra punch-ins (+8%) on the shortest sentences, at least 4s away from the Snap line and from each other,
 // and not in the same second as a callout/checklist pop.
