@@ -1,0 +1,545 @@
+SCRIPT #45 | Audience: CONSUMER | Hook style: PROVOCACIÓN
+Topic: Esperar la tasa perfecta
+Chip: MUÉVETE
+Kicker: La tasa perfecta
+Keyword: CASA
+
+Hook — spoken: Esperar la tasa perfecta puede costarte algo peor: quedarte paralizado años.
+       screen: ¿Esperas la / tasa perfecta? / *MUÉVETE*
+
+Body:
+Mira, nadie sabe cuándo llegará la tasa que tienes en la cabeza. Comprar hoy tampoco es obligación. Primero revisa tu presupuesto, tu estabilidad y el pago completo. Luego compara opciones reales con un prestamista. Si los números no funcionan, esperas con un plan. Si funcionan, dejar pasar una casa solo por perseguir una tasa imaginaria también tiene costo. El mercado no te debe el momento perfecto.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si quieres saber por dónde empezar, comenta CASA y te mando información.
+
+Caption: Esperar una tasa imaginaria también puede dejarte inmóvil. Primero revisa tu presupuesto, tu estabilidad y el pago completo. Si los números no funcionan, espera con plan. Comenta CASA.
+Hashtags: #primeracasa #comprarcasa #bienesraices #HomePros
+
+Headline: No esperes tasa
+Callouts: tasa, Comprar hoy
+Checklist: presupuesto, estabilidad, pago completo
+Snap: El mercado no te debe el momento perfecto.
+
+Word count: hook 11 / body 83 / CTA 12
+Background: office.jpg
+
+SCRIPT #46 | Audience: CONSUMER | Hook style: MYTH
+Topic: El mito del veinte por ciento
+Chip: MITO
+Kicker: El mito del 20%
+Keyword: CASA
+
+Hook — spoken: Si sigues ahorrando veinte por ciento por obligación, escucha esto.
+       screen: ¿Esperas el / veinte por / ciento? / *MITO*
+
+Body:
+No siempre necesitas poner veinte por ciento para comprar casa. Hay préstamos que permiten un enganche menor para compradores que califican. Pero ojo: menos enganche puede significar un pago mensual más alto y seguro hipotecario. Por eso no copies la estrategia de tu primo. Revisa enganche, pago mensual y reservas con un prestamista. La meta no es entrar como sea. La meta es entrar con números que puedas sostener.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si sigues esperando juntar veinte por ciento, comenta CASA y revisamos opciones.
+
+Caption: No todos los compradores necesitan veinte por ciento de enganche. Un enganche menor puede traer otros costos, así que revisa el pago completo antes de decidir. Comenta CASA.
+Hashtags: #enganche #primercomprador #casapropia #HomePros
+
+Headline: Menos enganche
+Callouts: préstamos, califican
+Checklist: enganche, pago mensual, reservas
+Snap: La meta no es entrar como sea.
+
+Word count: hook 10 / body 86 / CTA 12
+Background: kitchen.jpg
+
+SCRIPT #47 | Audience: CONSUMER | Hook style: NADIE TE DICE
+Topic: Crédito imperfecto
+Chip: PREGUNTA
+Kicker: No te auto rechaces
+Keyword: CASA
+
+Hook — spoken: Nadie te dice esto: tu crédito imperfecto no cancela la conversación.
+       screen: ¿Crédito no / perfecto? / *PREGUNTA*
+
+Body:
+Muchos se auto rechazan antes de hablar con alguien. Ven una tarjeta atrasada, una cuenta vieja o un puntaje que no les encanta y dicen: “yo no puedo”. Espérate. El crédito importa, claro, pero no es lo único que revisa un prestamista. Mira tu reporte, corrige errores y entiende tus deudas. Luego revisa ingreso, ahorro y pago posible. Tal vez no estás listo hoy. Pero esconderte no mejora nada.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si quieres dejar de adivinar, comenta CASA y te mando información.
+
+Caption: Un crédito imperfecto no significa que debas auto rechazarte. Revisa tu reporte, corrige errores y entiende tus deudas antes de asumir que no puedes. Comenta CASA.
+Hashtags: #credito #primeracasa #compradores #HomePros
+
+Headline: Crédito real
+Callouts: cuenta vieja, crédito
+Checklist: tu reporte, corrige errores, tus deudas
+Snap: Pero esconderte no mejora nada.
+
+Word count: hook 11 / body 86 / CTA 11
+Background: living-b.jpg
+
+SCRIPT #48 | Audience: CONSUMER | Hook style: CHISTE
+Topic: La primera casa no es la casa final
+Chip: PRIMERA
+Kicker: No es Instagram
+Keyword: CASA
+
+Hook — spoken: Tu primera casa no tiene que parecer casa de Instagram.
+       screen: Tu primera / casa no es / *FINAL*
+
+Body:
+No manches, algunos quieren que la primera compra tenga cocina de revista, alberca, oficina y cochera para tres carros. Así te puedes quedar rentando mientras persigues perfección. Empieza por lo que sí necesitas: ubicación, pago cómodo y condición. Después compara lo que puedes comprar sin ahorcarte. Una primera casa puede ser un paso, no tu destino final. Comprar por presión tampoco sirve. Comprar con estrategia sí cambia la conversación.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si quieres buscar con estrategia, comenta CASA y te mando información.
+
+Caption: Tu primera casa no tiene que ser la casa de tus sueños. Puede ser el primer paso que sí cabe en tu presupuesto y en tu vida de hoy. Comenta CASA.
+Hashtags: #primeracasa #casapropia #comprarcasa #HomePros
+
+Headline: Primera, no final
+Callouts: cocina, perfección
+Checklist: ubicación, pago cómodo, condición
+Snap: no tu destino final
+
+Word count: hook 10 / body 86 / CTA 11
+Background: street.jpg
+
+SCRIPT #49 | Audience: CONSUMER | Hook style: PROVOCACIÓN
+Topic: Carro nuevo versus casa
+Chip: DECIDE
+Kicker: Prioridades
+Keyword: CASA
+
+Hook — spoken: Ese carro nuevo puede estar compitiendo con la casa que quieres.
+       screen: ¿Casa o / carro nuevo? / *DECIDE*
+
+Body:
+Te voy a picar poquito. Si comprar casa está en tu plan, no abras deudas grandes sin revisar primero cómo afectan tus números. Un carro, tarjetas nuevas o cuentas mensuales adicionales pueden cambiar lo que un prestamista considera manejable. Antes de firmar otra deuda, revisa ingreso, pagos y ahorro. No se trata de vivir castigado. Se trata de decidir qué meta va primero. La troca se ve bonita; la mensualidad también aparece.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si casa es prioridad, comenta CASA y te mando los primeros pasos.
+
+Caption: Si comprar casa está en tu plan, una deuda nueva puede cambiar tus números. Antes de firmar otro pago mensual, revisa qué meta va primero. Comenta CASA.
+Hashtags: #finanzaspersonales #primeracasa #metas #HomePros
+
+Headline: Casa vs carro
+Callouts: deudas, carro
+Checklist: ingreso, pagos, ahorro
+Snap: Se trata de decidir qué meta va primero.
+
+Word count: hook 11 / body 89 / CTA 12
+Background: newbuild.jpg
+
+SCRIPT #50 | Audience: CONSUMER | Hook style: WARNING
+Topic: Preaprobación no es presupuesto
+Chip: OJO
+Kicker: No gastes el máximo
+Keyword: CASA
+
+Hook — spoken: Que el banco te preapruebe no significa que debas gastar todo.
+       screen: Te aprobaron / más dinero / *¿Y QUÉ?*
+
+Body:
+Ojo, una preaprobación te dice cuánto podría prestarte un banco, no cuánto te conviene gastar cada mes. Tú conoces tu vida mejor que el sistema. Antes de emocionarte con el máximo, suma pago, impuestos y seguro. Luego deja espacio para comida, gasolina, ahorro y emergencias. Si el número te aprieta, baja el precio aunque te aprueben más. Comprar casa para vivir estresado no es ganar. Tu presupuesto manda, no el límite.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si quieres calcularlo con calma, comenta CASA y te mando información.
+
+Caption: La preaprobación dice cuánto podría prestarte un banco. No decide cuánto te conviene gastar. Tu presupuesto y tu tranquilidad mandan. Comenta CASA.
+Hashtags: #preaprobacion #presupuesto #comprarcasa #HomePros
+
+Headline: Tu límite no manda
+Callouts: banco, máximo
+Checklist: pago, impuestos, seguro
+Snap: Tu presupuesto manda, no el límite.
+
+Word count: hook 11 / body 88 / CTA 11
+Background: office-b.jpg
+
+SCRIPT #51 | Audience: CONSUMER | Hook style: NADIE TE DICE
+Topic: Fondos regalados de familia
+Chip: FAMILIA
+Kicker: Sí puede ayudar
+Keyword: CASA
+
+Hook — spoken: Nadie te dice esto: a veces tu familia puede ayudar con fondos.
+       screen: ¿Tu familia / puede ayudar? / *SÍ PUEDE*
+
+Body:
+Hay préstamos donde ciertos fondos regalados de familiares u otras personas permitidas pueden usarse para parte del enganche o costos, si cumplen las reglas del préstamo. Eso no significa que cualquier depósito sirve. Normalmente hay que documentar de dónde vino el dinero y dejar claro si es regalo. Antes de mover fondos, revisa regalo, documentos y tiempos con el prestamista. Hacerlo bien desde el principio evita dolores de cabeza.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si tu familia quiere ayudarte, comenta CASA y te mando información.
+
+Caption: En ciertos préstamos, fondos regalados permitidos pueden ayudar con enganche o costos. Pero hay que documentarlos correctamente. No muevas dinero primero y preguntes después. Comenta CASA.
+Hashtags: #familia #enganche #primeracasa #HomePros
+
+Headline: Ayuda familiar
+Callouts: fondos, enganche
+Checklist: regalo, documentos, tiempos
+Snap: Hacerlo bien desde el principio evita dolores de cabeza.
+
+Word count: hook 12 / body 86 / CTA 11
+Background: living.jpg
+
+SCRIPT #52 | Audience: CONSUMER | Hook style: MYTH
+Topic: Asistencia para el enganche
+Chip: AYUDA
+Kicker: No asumas
+Keyword: CASA
+
+Hook — spoken: No asumas que el enganche tiene que salir completo de tu bolsa.
+       screen: ¿Te falta / enganche? / *REVISA*
+
+Body:
+En Arizona existen opciones de asistencia para algunos compradores que califican. No son dinero mágico y no aplican igual para todos. Pueden tener requisitos distintos e incluso obligaciones de pago futuro. Por eso primero revisa elegibilidad, condiciones y costo total con un prestamista que conozca esas opciones. No descartes comprar solo porque tu ahorro todavía no parece enorme. Pero tampoco firmes ayuda que no entiendes. Preguntar cuesta menos que asumir.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si quieres explorar asistencia, comenta CASA y te mando información.
+
+Caption: En Arizona existen opciones de asistencia para algunos compradores elegibles. No son magia: tienen requisitos y condiciones. Investiga antes de descartarte. Comenta CASA.
+Hashtags: #enganche #ayudaparacomprar #arizona #HomePros
+
+Headline: Ayuda al enganche
+Callouts: Arizona, asistencia
+Checklist: elegibilidad, condiciones, costo total
+Snap: Preguntar cuesta menos que asumir.
+
+Word count: hook 12 / body 87 / CTA 10
+Background: kitchen-b.jpg
+
+SCRIPT #53 | Audience: CONSUMER | Hook style: WARNING
+Topic: Costos además del enganche
+Chip: CIERRE
+Kicker: No es solo enganche
+Keyword: CASA
+
+Hook — spoken: El enganche no es el único dinero que necesitas para comprar.
+       screen: No es solo / el enganche / *OJO*
+
+Body:
+Muchos ahorran para el enganche y se olvidan del resto. Al comprar también pueden aparecer costos de cierre, mudanza, reparaciones y dinero para arrancar la casa. Por eso haz tu plan completo antes de enamorarte de una propiedad. Separa enganche, cierre y reserva. Luego pregunta qué costos pueden negociarse o cubrirse según tu préstamo y la oferta. Llegar con todo tu ahorro raspando la cuenta no siempre es la jugada más inteligente.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si quieres saber qué preparar, comenta CASA y te mando una guía.
+
+Caption: Comprar no es solo juntar el enganche. También debes planear cierre, mudanza, reparaciones y una reserva. Llegar en cero no siempre es buena estrategia. Comenta CASA.
+Hashtags: #costosdecierre #enganche #primeracasa #HomePros
+
+Headline: Costo completo
+Callouts: costos, mudanza
+Checklist: enganche, cierre, reserva
+Snap: no siempre es la jugada más inteligente
+
+Word count: hook 11 / body 89 / CTA 12
+Background: street-b.jpg
+
+SCRIPT #54 | Audience: CONSUMER | Hook style: PROVOCACIÓN
+Topic: Comparar prestamistas
+Chip: COMPARA
+Kicker: No te cases
+Keyword: CASA
+
+Hook — spoken: Quedarte con el primer préstamo que te ofrecen es flojera cara.
+       screen: ¿Primer banco / y ya? / *COMPARA*
+
+Body:
+Mira, no todas las ofertas hipotecarias son iguales. Puedes comparar prestamistas, cargos y estructura del préstamo antes de decidir. No te cases con el primero porque te contestó rápido o porque conoce a tu primo. Pide opciones comparables y revisa tasa, costos y pago total. También pregunta qué cambia si eliges otra estructura. Una diferencia pequeña en papel puede importar durante años. Comprar casa ya es decisión grande; escoger préstamo merece trabajo.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si no sabes qué comparar, comenta CASA y te mando información.
+
+Caption: No te cases con el primer préstamo que te ofrecen. Compara estructura, costos y pago total con varias opciones antes de decidir. Comenta CASA.
+Hashtags: #prestamo #hipoteca #comprarcasa #HomePros
+
+Headline: Compara préstamos
+Callouts: prestamistas, opciones
+Checklist: tasa, costos, pago total
+Snap: escoger préstamo merece trabajo.
+
+Word count: hook 11 / body 89 / CTA 11
+Background: newbuild-b.jpg
+
+SCRIPT #55 | Audience: CONSUMER | Hook style: MYTH
+Topic: Préstamos estudiantiles
+Chip: DEUDA
+Kicker: No te descartes
+Keyword: CASA
+
+Hook — spoken: Tener préstamos estudiantiles no significa automáticamente que no puedas comprar.
+       screen: ¿Préstamos / estudiantiles? / *NO TE BORRA*
+
+Body:
+La deuda estudiantil sí cuenta en el análisis del préstamo, pero no significa automáticamente que quedaste fuera. El prestamista revisa cómo entra ese pago junto con tus otras deudas, ingresos y crédito. Así que no te descartes por redes. Revisa saldo, pago mensual y documentación. Después ve qué opciones encajan contigo. Tal vez necesitas ajustar primero. Tal vez ya estás más cerca de lo que creías. La respuesta sale de los números.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si tus préstamos te frenan, comenta CASA y te mando información.
+
+Caption: La deuda estudiantil cuenta, pero no te elimina automáticamente. Un prestamista revisa el pago junto con tus ingresos, crédito y otras deudas. Comenta CASA.
+Hashtags: #deudaestudiantil #primeracasa #credito #HomePros
+
+Headline: Deuda estudiantil
+Callouts: deuda, prestamista
+Checklist: saldo, pago mensual, documentación
+Snap: La respuesta sale de los números.
+
+Word count: hook 10 / body 89 / CTA 11
+Background: office.jpg
+
+SCRIPT #56 | Audience: CONSUMER | Hook style: NADIE TE DICE
+Topic: Concesiones del vendedor
+Chip: NEGOCIA
+Kicker: No pidas solo precio
+Keyword: CASA
+
+Hook — spoken: Nadie te dice esto: hoy un vendedor puede estar dispuesto a negociar.
+       screen: ¿Vendedor / negociando? / *PREGUNTA*
+
+Body:
+En el mercado de Phoenix hay operaciones donde vendedores ofrecen concesiones para ayudar a cerrar el trato. Eso puede significar apoyo con ciertos costos o estrategias permitidas por el préstamo, pero depende de la negociación y de las reglas. No llegues preguntando solo “¿cuánto baja?”. Revisa el precio, apoyo negociado y la condición. A veces una mejor estructura vale más que presumir un descuento grande. Negociar bien es mirar el paquete completo.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si quieres aprender qué se puede negociar, comenta CASA y te explico.
+
+Caption: En Phoenix hay operaciones donde vendedores ofrecen concesiones. No mires solo el precio: revisa la estructura completa y las reglas de tu préstamo. Comenta CASA.
+Hashtags: #phoenix #negociacion #comprarcasa #HomePros
+
+Headline: Negocia completo
+Callouts: Phoenix, vendedores
+Checklist: el precio, apoyo negociado, la condición
+Snap: Negociar bien es mirar el paquete completo.
+
+Word count: hook 12 / body 89 / CTA 12
+Background: kitchen.jpg
+
+SCRIPT #57 | Audience: CONSUMER | Hook style: WARNING
+Topic: Revisar crédito temprano
+Chip: ANTES
+Kicker: Antes de ofertar
+Keyword: CASA
+
+Hook — spoken: Revisar tu crédito después de enamorarte de una casa es tarde.
+       screen: Revisa tu / crédito / *ANTES*
+
+Body:
+Tu reporte de crédito puede tener errores, cuentas viejas o cosas que ni recuerdas. Esperar hasta que ya quieras hacer oferta te pone contra el reloj. Revísalo con tiempo. Busca errores, pagos atrasados y deudas abiertas. Si algo está mal, sigue el proceso correcto para disputarlo. No pagues a cualquiera que prometa milagros. Tu crédito importa, pero se trabaja mejor con tiempo y con información real, no con pánico.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si comprar está en tu radar, comenta CASA y empieza con orden.
+
+Caption: Revisar tu crédito después de encontrar la casa es tarde. Mira tu reporte con tiempo, corrige errores por la vía correcta y evita promesas milagrosas. Comenta CASA.
+Hashtags: #credito #primeracasa #compradores #HomePros
+
+Headline: Crédito a tiempo
+Callouts: reporte, crédito
+Checklist: errores, pagos atrasados, deudas abiertas
+Snap: No pagues a cualquiera que prometa milagros.
+
+Word count: hook 11 / body 86 / CTA 12
+Background: living-b.jpg
+
+SCRIPT #58 | Audience: CONSUMER | Hook style: PROVOCACIÓN
+Topic: Cambios de trabajo durante la compra
+Chip: AVISA
+Kicker: Antes del cierre
+Keyword: CASA
+
+Hook — spoken: Cambiar de trabajo en plena compra sin avisar puede complicarte todo.
+       screen: ¿Nuevo trabajo / comprando? / *AVISA*
+
+Body:
+Si estás comprando, no hagas cambios de trabajo pensando que al banco ni le importa. El prestamista verifica ingresos y puede volver a revisar información antes del cierre. Antes de renunciar, cambiar sueldo o pasar a otra forma de pago, habla con tu prestamista. Revisa empleo, ingresos y fechas. Un cambio no significa automáticamente que se cayó la compra, pero ocultarlo sí puede crear problemas. Mejor pregunta antes de mover una pieza importante.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si planeas comprar y cambiar trabajo, comenta CASA y te orientamos.
+
+Caption: Un cambio de trabajo durante la compra puede afectar el análisis del préstamo. Antes de renunciar o cambiar tu forma de pago, habla con tu prestamista. Comenta CASA.
+Hashtags: #empleo #hipoteca #comprarcasa #HomePros
+
+Headline: No muevas empleo
+Callouts: prestamista, cierre
+Checklist: renunciar, cambiar sueldo, otra forma
+Snap: Mejor pregunta antes de mover una pieza importante.
+
+Word count: hook 11 / body 90 / CTA 11
+Background: street.jpg
+
+SCRIPT #59 | Audience: CONSUMER | Hook style: DICHO
+Topic: No vaciar los ahorros
+Chip: RESERVA
+Kicker: Guarda colchón
+Keyword: CASA
+
+Hook — spoken: Mi apá decía: no te gastes hasta el último peso.
+       screen: ¿Sin un peso / después? / *MALA IDEA*
+
+Body:
+Tener para cerrar no significa que debas quedarte en cero. Una casa trae responsabilidades después de recibir las llaves. Puede salir una reparación, una mudanza más cara o un gasto que no viste venir. Antes de decidir cuánto poner, separa cierre, emergencia y reparaciones. Luego revisa con tu prestamista qué enganche tiene sentido. Comprar y quedarte sin colchón puede convertir cualquier detalle en crisis. La casa debe caber en tu vida, no tragársela.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si quieres comprar sin quedarte seco, comenta CASA y te mando información.
+
+Caption: Tener dinero para cerrar no significa que debas quedarte en cero. Reserva para emergencias, reparaciones y la vida después de recibir las llaves. Comenta CASA.
+Hashtags: #ahorro #primeracasa #presupuesto #HomePros
+
+Headline: No quedes en cero
+Callouts: cero, llaves
+Checklist: cierre, emergencia, reparaciones
+Snap: La casa debe caber en tu vida, no tragársela.
+
+Word count: hook 10 / body 90 / CTA 12
+Background: newbuild.jpg
+
+SCRIPT #60 | Audience: CONSUMER | Hook style: NADIE TE DICE
+Topic: Coprestatario que no vive en la casa
+Chip: APOYO
+Kicker: No siempre es solo
+Keyword: CASA
+
+Hook — spoken: Nadie te dice esto: comprar solo no siempre significa calificar solo.
+       screen: ¿Comprar solo / y calificar? / *CON AYUDA*
+
+Body:
+Hay ciertos préstamos que permiten un coprestatario que no viva en la casa, siempre que cumpla las reglas del programa y del prestamista. Eso puede abrir otra conversación, pero también crea una obligación real para esa persona. No metas a mamá, papá o nadie nomás por emoción. Revisa ingresos, deudas y obligaciones con los profesionales adecuados. Ayuda familiar puede ser herramienta; también puede complicar relaciones si nadie entiende lo que firma.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si quieres explorar opciones con apoyo familiar, comenta CASA y pregunta.
+
+Caption: Algunos préstamos permiten un coprestatario que no viva en la casa. Puede ayudar, pero también crea obligaciones reales para quien firma. Entiéndanlo antes de decidir. Comenta CASA.
+Hashtags: #familia #hipoteca #primeracasa #HomePros
+
+Headline: Compra con apoyo
+Callouts: préstamos, programa
+Checklist: ingresos, deudas, obligaciones
+Snap: también crea una obligación real
+
+Word count: hook 11 / body 88 / CTA 11
+Background: office-b.jpg
+
+SCRIPT #61 | Audience: CONSUMER | Hook style: MYTH
+Topic: Comprar sin número de Seguro Social
+Chip: OPCIONES
+Kicker: Pregunta primero
+Keyword: CASA
+
+Hook — spoken: No tener Seguro Social no significa que debas dejar de preguntar.
+       screen: ¿Sin Seguro / Social? / *HAY OPCIONES*
+
+Body:
+Ojo, existen algunos préstamos que pueden considerar compradores sin número de Seguro Social, por ejemplo ciertos préstamos con número individual de contribuyente. Eso no significa aprobación automática y las condiciones pueden ser diferentes. No voy a darte consejo migratorio porque no corresponde. Habla con un prestamista que conozca esas opciones y revisa ingreso, crédito y documentos. No confundas duda con certeza. Preguntar es mejor que asumir.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si necesitas explorar opciones, comenta CASA y te mando información.
+
+Caption: No tener número de Seguro Social no significa que debas dejar de preguntar. Existen opciones para algunos compradores, con requisitos distintos. No es aprobación automática. Comenta CASA.
+Hashtags: #primeracasa #opciones #comprarcasa #HomePros
+
+Headline: Compra sin Social
+Callouts: préstamos, aprobación
+Checklist: ingreso, crédito, documentos
+Snap: No confundas duda con certeza.
+
+Word count: hook 11 / body 83 / CTA 10
+Background: living.jpg
+
+SCRIPT #62 | Audience: CONSUMER | Hook style: PROVOCACIÓN
+Topic: Comprar teniendo deudas
+Chip: DEUDA
+Kicker: No pagues a ciegas
+Keyword: CASA
+
+Hook — spoken: No necesitas quedar en cero de deudas para empezar a comprar.
+       screen: ¿Con deudas? / No estás / *FUERA*
+
+Body:
+Tener deuda no te elimina automáticamente. El prestamista mira cuánto debes, cuánto pagas cada mes, tus ingresos y otras obligaciones. El problema es asumir que primero tienes que liquidar absolutamente todo. Revisa tarjetas, carro y préstamos. Después pregunta qué deuda conviene atacar primero y cuál puede esperar. No muevas dinero a ciegas solo para “verte mejor”. Una estrategia de deuda debe considerar también tu ahorro y tu capacidad mensual.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si tus deudas te confunden, comenta CASA y te mando información.
+
+Caption: No necesitas eliminar toda deuda antes de preguntar por una casa. Lo importante es entender pagos, ingresos, ahorro y qué deuda conviene atacar primero. Comenta CASA.
+Hashtags: #deudas #primeracasa #presupuesto #HomePros
+
+Headline: Deuda no te borra
+Callouts: deuda, prestamista
+Checklist: tarjetas, carro, préstamos
+Snap: No muevas dinero a ciegas
+
+Word count: hook 11 / body 86 / CTA 11
+Background: kitchen-b.jpg
+
+SCRIPT #63 | Audience: CONSUMER | Hook style: WARNING
+Topic: El pago mensual completo
+Chip: PAGO
+Kicker: Precio no basta
+Keyword: CASA
+
+Hook — spoken: El precio de la casa no te dice cuánto vivir ahí cuesta.
+       screen: No mires solo / el precio / *MIRA TODO*
+
+Body:
+Dos casas con precio parecido pueden tener pagos distintos. El costo mensual puede incluir capital, interés, impuestos, seguro, seguro hipotecario y cuotas de la asociación cuando existan. Por eso deja de comprar con los ojos nada más. Compara pago total, servicios y mantenimiento. Después decide qué cabe en tu presupuesto. Una casa más barata en papel no siempre es la más cómoda cada mes. El número importante es el que puedes sostener.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si quieres comparar pagos completos, comenta CASA y te mando información.
+
+Caption: Dos casas con precio parecido pueden costarte distinto cada mes. Mira el pago completo, servicios y mantenimiento, no solo el precio de venta. Comenta CASA.
+Hashtags: #pagomensual #presupuesto #comprarcasa #HomePros
+
+Headline: Mira pago total
+Callouts: precio, impuestos, seguro
+Checklist: pago total, servicios, mantenimiento
+Snap: El número importante es el que puedes sostener.
+
+Word count: hook 12 / body 89 / CTA 11
+Background: street-b.jpg
+
+SCRIPT #64 | Audience: CONSUMER | Hook style: CHISTE
+Topic: Incentivos de casas nuevas
+Chip: NUEVA
+Kicker: Casa nueva, ojo
+Keyword: CASA
+
+Hook — spoken: Casa nueva, olor bonito... y el incentivo también necesita lupa.
+       screen: Casa nueva / con incentivo / *REVÍSALO*
+
+Body:
+Las constructoras a veces ofrecen incentivos, créditos o condiciones especiales, pero eso no significa que todo sea gratis ni que sea la mejor opción para ti. Compara precio, préstamo y mejoras antes de decidir. Pregunta qué pasa si usas otro prestamista y cuánto cuestan las opciones que estás agregando. No compres solo porque viste una tasa llamativa en un anuncio. La casa puede ser nueva; tus preguntas no deben ser ingenuas.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si estás viendo casas nuevas, comenta CASA y te mando una lista.
+
+Caption: La casa nueva puede traer incentivos, créditos o condiciones especiales. Compáralos con el precio total, el préstamo y las mejoras antes de decidir. Comenta CASA.
+Hashtags: #casanueva #constructora #comprarcasa #HomePros
+
+Headline: Incentivo con lupa
+Callouts: incentivos, créditos
+Checklist: precio, préstamo, mejoras
+Snap: tus preguntas no deben ser ingenuas.
+
+Word count: hook 10 / body 88 / CTA 12
+Background: newbuild-b.jpg
+
+SCRIPT #65 | Audience: CONSUMER | Hook style: PROVOCACIÓN
+Topic: Miedo a las reparaciones
+Chip: PLANEA
+Kicker: Ser dueño cuesta
+Keyword: CASA
+
+Hook — spoken: Si te asusta una reparación, necesitas estrategia, no seguir rentando por miedo.
+       screen: ¿Te asustan / reparaciones? / *PLANEA*
+
+Body:
+Ser dueño sí trae reparaciones. Eso es parte del trato y nadie debe vendértelo como si la casa se mantuviera sola. Antes de comprar, revisa inspección, condición y presupuesto para mantenimiento. Pregunta qué problemas son urgentes y cuáles pueden esperar. También conserva una reserva para sorpresas. Rentar puede ser correcto para algunas personas. Pero si tu única razón para no comprar es miedo a una gotera, mejor aprende a medir el riesgo.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si quieres comprar con los ojos abiertos, comenta CASA y te explico.
+
+Caption: Ser dueño trae reparaciones. La respuesta no es ignorarlas: inspecciona, entiende la condición y guarda reserva para mantenimiento. El riesgo se mide. Comenta CASA.
+Hashtags: #inspeccion #primeracasa #mantenimiento #HomePros
+
+Headline: Miedo a reparar
+Callouts: dueño, reparaciones
+Checklist: inspección, condición, presupuesto
+Snap: Eso es parte del trato
+
+Word count: hook 12 / body 89 / CTA 12
+Background: office.jpg
