@@ -1,13 +1,13 @@
 {
   "_note": "Standard OpusClip posting targets for every HomePros Content Studio video (confirmed by Josh 2026-10-15)",
   "instagram_josh": {
-    "postAccountId": "68e73f9c87424263ce02d2d2",
+    "postAccountId": "6af377655d4d183092fc46cf",
     "subAccountId": "17841400647044239",
     "mediaType": "reel",
     "name": "@josh.marquez.broker"
   },
   "instagram_crossover": {
-    "postAccountId": "698bd00939291985bafdccb3",
+    "postAccountId": "6af377c02adbb2ab4e5b4bd7",
     "subAccountId": "17841448557371152",
     "mediaType": "reel",
     "name": "@crossover.podcast.az"
@@ -18,7 +18,7 @@
     "name": "@joshazbroker"
   },
   "tiktok_homepros": {
-    "postAccountId": "6952e7af3e17f73ab9ce95f8",
+    "postAccountId": "6aed169c08164c8587227fc7",
     "privacy": "public",
     "name": "@homeprosarizona"
   },
@@ -56,6 +56,7 @@
   "_consumer_list": [
     "instagram_josh",
     "instagram_crossover",
+    "instagram_homepros",
     "tiktok_josh",
     "tiktok_homepros",
     "youtube_homepros",
@@ -68,5 +69,11 @@
     "subAccountId": "156744840845650",
     "mediaType": "reel",
     "name": "Avance School of Real Estate"
+  },
+  "instagram_homepros": {
+    "postAccountId": "6af377e7037432be9abe5e04",
+    "subAccountId": "17841440803841359",
+    "mediaType": "reel",
+    "name": "@homeprosarizona"
   }
 }
