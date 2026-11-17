@@ -1,0 +1,608 @@
+SCRIPT #66 | Audience: CONSUMER | Hook style: WARNING
+Topic: Riesgo de inundación en Arizona
+Chip: MONZÓN
+Kicker: Antes de comprar
+Keyword: CASA
+
+Hook — spoken: Ojo, vivir en el desierto no significa que tu casa no pueda inundarse.
+screen: ¿Desierto / sin agua? / *CUIDADO*
+
+Body:
+
+En Arizona, las tormentas pueden provocar inundaciones aunque no vivas cerca de un río. Y aquí viene la sorpresa: muchas pólizas normales no cubren daños por inundación. Antes de comprar, revisa mapas de riesgo, historial de agua y cobertura disponible. Pregunta cuánto costaría proteger esa propiedad. Estar fuera de una zona de alto riesgo tampoco significa estar libre de peligro. El desierto también se inunda.
+
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si estás buscando casa en Arizona, comenta CASA y te mando información.
+
+Caption: En Arizona también hay riesgo de inundaciones. Revisa mapas, antecedentes y opciones de seguro antes de comprar. Tu póliza normal podría no cubrir inundaciones. Comenta CASA.
+
+Hashtags: #InundacionesArizona #ComprarCasa #MonzonArizona #HomePros
+
+Headline: Desierto con agua
+Callouts: tormentas, inundaciones, pólizas
+Checklist: mapas de riesgo, historial de agua, cobertura disponible
+Snap: El desierto también se inunda.
+
+Word count: hook 14 / body 86 / CTA 12
+Background: kitchen.jpg
+
+SCRIPT #67 | Audience: CONSUMER | Hook style: CHISTE
+Topic: Comprar una propiedad con sistema séptico
+Chip: SÉPTICO
+Kicker: Casa fuera ciudad
+Keyword: CASA
+
+Hook — spoken: ¿Casa con terreno grandote? Perfecto, pero primero averigua dónde va el drenaje.
+screen: Casa con / terreno / *¿DRENAJE?*
+
+Body:
+
+Mira, algunas casas fuera de la ciudad tienen sistema séptico en lugar de drenaje municipal. Y ese sistema necesita mantenimiento. En Arizona, cuando se vende una propiedad con sistema séptico usado, normalmente se requiere una inspección de transferencia. Antes de comprar, revisa el reporte, los permisos y el mantenimiento anterior. También pregunta por posibles reparaciones. El terreno puede estar precioso, pero debajo también hay responsabilidades.
+
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: ¿Te interesan casas con terreno? Comenta CASA y te mando información.
+
+Caption: Algunas propiedades rurales utilizan sistemas sépticos. Arizona tiene requisitos de inspección y transferencia. Revisa documentación, mantenimiento y posibles reparaciones. Comenta CASA.
+
+Hashtags: #CasasConTerreno #ArizonaRural #SistemaSeptico #HomePros
+
+Headline: Revisa el séptico
+Callouts: sistema séptico, inspección, reparaciones
+Checklist: el reporte, los permisos, mantenimiento anterior
+Snap: debajo también hay responsabilidades.
+
+Word count: hook 13 / body 88 / CTA 12
+Background: living-b.jpg
+
+SCRIPT #68 | Audience: CONSUMER | Hook style: NADIE TE DICE
+Topic: Pozos privados de agua
+Chip: AGUA
+Kicker: Propiedad rural
+Keyword: CASA
+
+Hook — spoken: Nadie te dice esto: tener un pozo no garantiza que tengas buena agua.
+screen: ¿Casa con / pozo propio? / *REVISA*
+
+Body:
+
+En algunas propiedades rurales de Arizona, el agua viene de un pozo privado. Pero abrir la llave y ver que sale agua no te dice toda la historia. Antes de comprar, revisa registro del pozo, calidad del agua y capacidad del sistema. Un laboratorio puede analizar la calidad. También necesitas entender quién mantiene el equipo y cuánto cuesta repararlo. Tener agua hoy no elimina los riesgos de mañana. Pregunta antes de firmar.
+
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: ¿Quieres comprar propiedad rural? Comenta CASA y te mando información.
+
+Caption: Si compras una casa con pozo privado en Arizona, verifica registros, calidad del agua y funcionamiento. Un pozo también requiere mantenimiento. Comenta CASA.
+
+Hashtags: #PozosDeAgua #ArizonaRural #ComprarTerreno #HomePros
+
+Headline: Agua con cuidado
+Callouts: pozo privado, laboratorio, riesgos
+Checklist: registro del pozo, calidad del agua, capacidad del sistema
+Snap: Tener agua hoy no elimina los riesgos de mañana.
+
+Word count: hook 14 / body 89 / CTA 11
+Background: street.jpg
+
+SCRIPT #69 | Audience: CONSUMER | Hook style: DRAMA
+Topic: Seguro de vivienda en zonas de incendios
+Chip: SEGURO
+Kicker: Primero cotiza
+Keyword: CASA
+
+Hook — spoken: Encontraste la casa perfecta entre montañas, pero nadie cotizó el seguro.
+screen: Casa hermosa / seguro caro / *SORPRESA*
+
+Body:
+
+Imagínate encontrar una propiedad preciosa cerca del bosque. Todo perfecto hasta que preguntas por el seguro. En algunas zonas de Arizona, el riesgo de incendios puede complicar encontrar cobertura o aumentar su costo. Antes de comprometerte, compara aseguradoras, cobertura y deducibles. Pregunta también por exclusiones importantes. Una casa puede caber en tu presupuesto de compra, pero no en tus gastos de protección. Cotiza primero, emociónate después.
+
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: ¿Buscas casa cerca de las montañas? Comenta CASA y te mando información.
+
+Caption: El riesgo de incendios puede afectar las opciones y costos del seguro de vivienda. Cotiza antes de comprar, especialmente en zonas cercanas a bosques. Comenta CASA.
+
+Hashtags: #SeguroDeCasa #IncendiosArizona #ComprarCasa #HomePros
+
+Headline: Seguro primero
+Callouts: bosque, incendios, seguro
+Checklist: aseguradoras, cobertura, deducibles
+Snap: Cotiza primero, emociónate después.
+
+Word count: hook 12 / body 90 / CTA 13
+Background: newbuild.jpg
+
+SCRIPT #70 | Audience: CONSUMER | Hook style: MYTH
+Topic: Depósito de garantía al comprar
+Chip: DEPÓSITO
+Kicker: Tu dinero importa
+Keyword: CASA
+
+Hook — spoken: ¿Crees que tu depósito siempre regresa si decides cancelar la compra? Cuidado.
+screen: ¿Tu depósito / regresa? / *DEPENDE*
+
+Body:
+
+Cuando haces una oferta, puedes entregar un depósito de garantía para demostrar compromiso. Pero ese dinero no es automáticamente reembolsable por cualquier razón. Todo depende del contrato, las condiciones y los plazos. Antes de firmar, revisa contingencias, fechas límite y consecuencias de cancelar. Si algo no entiendes, consulta a tu agente o un abogado. Perder un plazo puede poner tu dinero en riesgo. Firmar sin leer sale caro.
+
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: ¿Vas a presentar una oferta? Comenta CASA y te mando información.
+
+Caption: El depósito de garantía no siempre se devuelve si cancelas. Las condiciones del contrato y los plazos importan. Entiéndelos antes de firmar. Comenta CASA.
+
+Hashtags: #DepositoDeGarantia #ComprarCasaArizona #ContratoDeCompra #HomePros
+
+Headline: Depósito en riesgo
+Callouts: depósito, contrato, dinero
+Checklist: contingencias, fechas límite, consecuencias de cancelar
+Snap: Firmar sin leer sale caro.
+
+Word count: hook 13 / body 90 / CTA 12
+Background: office-b.jpg
+
+SCRIPT #71 | Audience: CONSUMER | Hook style: PROVOCACIÓN
+Topic: Diferencia entre tasación y precio de compra
+Chip: TASACIÓN
+Kicker: No confundas valor
+Keyword: CASA
+
+Hook — spoken: Que acepten tu oferta no significa que el banco valore igual la casa.
+screen: Oferta alta / tasación baja / *PROBLEMA*
+
+Body:
+
+Mira, puedes ofrecer cierta cantidad y después recibir una tasación menor. Eso puede complicar el financiamiento porque el prestamista considera el valor tasado. Antes de ofrecer, revisa ventas comparables, tu efectivo disponible y las condiciones del contrato. Si existe una diferencia, las opciones dependen del préstamo y de lo firmado. No asumas que el banco financiará cualquier precio que tú aceptes. Una oferta necesita números, no solamente emoción.
+
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: ¿Quieres entender cómo preparar una oferta? Comenta CASA y te mando información.
+
+Caption: El precio aceptado y la tasación pueden ser diferentes. Eso puede afectar el financiamiento. Revisa comparables y condiciones antes de presentar tu oferta. Comenta CASA.
+
+Hashtags: #Tasacion #OfertaDeCompra #ComprarCasaArizona #HomePros
+
+Headline: Tasación vs precio
+Callouts: tasación, financiamiento, diferencia
+Checklist: ventas comparables, efectivo disponible, condiciones del contrato
+Snap: Una oferta necesita números, no solamente emoción.
+
+Word count: hook 14 / body 89 / CTA 13
+Background: living.jpg
+
+SCRIPT #72 | Audience: CONSUMER | Hook style: DICHO
+Topic: Declaraciones del vendedor sobre la propiedad
+Chip: REVELA
+Kicker: Pregunta primero
+Keyword: CASA
+
+Hook — spoken: Como dicen por ahí: lo que no preguntas hoy, mañana puede costarte caro.
+screen: ¿Qué sabe / el vendedor? / *PREGUNTA*
+
+Body:
+
+En Arizona, muchos vendedores entregan un documento donde responden preguntas sobre la condición de su casa. Pero eso no sustituye investigar por tu cuenta. Antes de comprar, revisa problemas conocidos, reparaciones anteriores y daños reportados. Si encuentras algo preocupante, pide explicaciones y consulta a un inspector. El documento depende de lo que sabe y declara el vendedor. No confundas una declaración con una garantía. Preguntar antes evita sorpresas después.
+
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: ¿Quieres saber qué revisar antes de comprar? Comenta CASA y te mando información.
+
+Caption: En Arizona, las declaraciones del vendedor ayudan a conocer antecedentes de la propiedad, pero no sustituyen inspecciones ni verificaciones propias. Comenta CASA.
+
+Hashtags: #DeclaracionesDelVendedor #ComprarCasa #ArizonaRealEstate #HomePros
+
+Headline: Pregunta antes
+Callouts: documento, inspector, garantía
+Checklist: problemas conocidos, reparaciones anteriores, daños reportados
+Snap: No confundas una declaración con una garantía.
+
+Word count: hook 13 / body 91 / CTA 13
+Background: kitchen-b.jpg
+
+SCRIPT #73 | Audience: CONSUMER | Hook style: WARNING
+Topic: Termitas en casas de Arizona
+Chip: TERMITAS
+Kicker: No las ignores
+Keyword: CASA
+
+Hook — spoken: Ojo, que una casa se vea impecable no significa que esté libre de termitas.
+screen: Casa bonita / ¿Sin bichos? / *TERMITAS*
+
+Body:
+
+En Arizona, revisar una propiedad también significa preguntar por insectos que dañan la madera. Las termitas pueden estar presentes aunque no veas señales durante tu visita. Antes de comprar, pide una inspección especializada y pregunta por tratamientos anteriores y daños conocidos. Un reporte profesional puede identificar evidencia visible, pero no garantiza encontrar todo. Si aparece un problema, pregunta por tratamiento y posibles costos. La pintura bonita no demuestra que todo esté sano.
+
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: ¿Estás por comprar casa? Comenta CASA y te mando información.
+
+Caption: Las termitas pueden causar daños que no notas durante una visita. Revisa reportes, tratamientos previos y posibles reparaciones antes de comprar. Comenta CASA.
+
+Hashtags: #TermitasArizona #InspeccionDeCasa #ComprarCasa #HomePros
+
+Headline: Ojo con termitas
+Callouts: termitas, reporte profesional, problema
+Checklist: inspección especializada, tratamientos anteriores, daños conocidos
+Snap: La pintura bonita no demuestra que todo esté sano.
+
+Word count: hook 15 / body 90 / CTA 11
+Background: street-b.jpg
+
+SCRIPT #74 | Audience: CONSUMER | Hook style: CHISTE
+Topic: Facturas de electricidad en verano
+Chip: VERANO
+Kicker: El calor cuesta
+Keyword: CASA
+
+Hook — spoken: Esa casa enorme está preciosa, hasta que llega el recibo de luz en julio.
+screen: Casa grande / recibo de luz / *AY NANITA*
+
+Body:
+
+Aquí en Phoenix, el aire acondicionado trabaja duro durante el verano. Y dos casas parecidas pueden tener gastos eléctricos diferentes. Antes de comprar, pregunta por facturas anteriores, aislamiento y antigüedad del equipo. También pregunta qué compañía de luz le da servicio a la propiedad. El consumo del dueño anterior no garantiza tu gasto futuro, especialmente si cambian tus hábitos. No basta con poder pagar la hipoteca. También tienes que poder enfriar la casa.
+
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: ¿Buscas casa en Phoenix? Comenta CASA y te mando información.
+
+Caption: En Phoenix, los costos de electricidad pueden afectar tu presupuesto. Revisa facturas anteriores, aislamiento y aire acondicionado antes de comprar. Comenta CASA.
+
+Hashtags: #PhoenixArizona #AireAcondicionado #ComprarCasa #HomePros
+
+Headline: Enfriar cuesta
+Callouts: aire acondicionado, gastos eléctricos, compañía de luz
+Checklist: facturas anteriores, aislamiento, antigüedad del equipo
+Snap: También tienes que poder enfriar la casa.
+
+Word count: hook 15 / body 89 / CTA 11
+Background: newbuild-b.jpg
+
+SCRIPT #75 | Audience: CONSUMER | Hook style: PROVOCACIÓN
+Topic: Cuotas extraordinarias en condominios
+Chip: CONDOS
+Kicker: Revisa las cuentas
+Keyword: CASA
+
+Hook — spoken: Ese condominio barato puede venir con una cuenta que nadie te mencionó.
+screen: Condominio / económico / *¿EXTRAS?*
+
+Body:
+
+Cuando compras un condominio, las cuotas normales no cuentan toda la historia. Algunas asociaciones pueden cobrar cuotas extraordinarias para reparaciones grandes o proyectos especiales. Antes de comprar, revisa presupuesto, reservas y proyectos pendientes de la asociación. Pregunta también si hay cobros adicionales aprobados. Una cuota mensual manejable no significa que nunca tendrás gastos inesperados. Si los documentos no están claros, consulta a un profesional. Lo barato necesita contexto.
+
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: ¿Estás considerando un condominio? Comenta CASA y te mando información.
+
+Caption: Antes de comprar un condominio, revisa las reservas de la asociación, proyectos pendientes y posibles cuotas extraordinarias. El precio inicial no cuenta toda la historia. Comenta CASA.
+
+Hashtags: #CondominiosArizona #CuotasExtraordinarias #ComprarCasa #HomePros
+
+Headline: Cuotas inesperadas
+Callouts: cuotas extraordinarias, reparaciones, cobros adicionales
+Checklist: presupuesto, reservas, proyectos pendientes
+Snap: Lo barato necesita contexto.
+
+Word count: hook 13 / body 91 / CTA 11
+Background: office.jpg
+
+SCRIPT #76 | Audience: CONSUMER | Hook style: DRAMA
+Topic: Visitas sin ofertas
+Chip: SIN OFERTA
+Kicker: Vender en Phoenix
+Keyword: CASA
+
+Hook — spoken: Llegaron compradores, recorrieron tu casa, sonrieron… y nunca presentaron una oferta.
+screen: Muchas visitas / cero ofertas / *¿POR QUÉ?*
+
+Body:
+
+Imagínate limpiar toda la mañana para recibir compradores. Termina la visita y nadie llama. ¿Qué pasó? Tal vez encontraron mejor valor en otra propiedad. En Phoenix hay competencia y los compradores comparan más. Pide comentarios de las visitas y busca patrones. Si varios mencionan el mismo problema, escúchalos. No necesitas adivinar qué está fallando. Necesitas información para ajustar tu estrategia. El silencio también puede decirte algo.
+
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: ¿Tu casa recibe visitas pero ninguna oferta? Comenta CASA y revisamos opciones.
+
+Caption: ¿Muchos compradores visitan tu casa pero nadie presenta oferta? Los comentarios pueden revelar problemas que estás ignorando. Escuchar al mercado también es estrategia. Comenta CASA.
+
+Hashtags: #VenderCasa #MercadoPhoenix #VendedoresArizona #HomePros
+
+Headline: Visitas sin oferta
+Callouts: competencia, comentarios, patrones
+Checklist: none
+Snap: El silencio también puede decirte algo.
+
+Word count: hook 12 / body 90 / CTA 13
+Background: kitchen.jpg
+
+SCRIPT #77 | Audience: CONSUMER | Hook style: WARNING
+Topic: Vencimiento del bloqueo de tasa hipotecaria
+Chip: HIPOTECA
+Kicker: Vigila tu fecha
+Keyword: CASA
+
+Hook — spoken: Cuidado, tu tasa hipotecaria bloqueada puede vencer antes de recibir las llaves.
+screen: Tasa bloqueada / ¿Hasta cuándo? / *VENCE*
+
+Body:
+
+Tu prestamista puede bloquear una tasa durante cierto periodo. Pero si el cierre se retrasa, ese acuerdo podría vencer. ¿Y luego? Tal vez necesites una extensión que tenga costo, o aceptar condiciones diferentes. Por eso pregunta por fecha límite, costo adicional y opciones disponibles. No esperes hasta el último día para investigar. También recuerda que cambios en tu solicitud pueden afectar las condiciones. Una tasa bloqueada no significa protección eterna.
+
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: ¿Estás en proceso de compra? Comenta CASA y te mando información.
+
+Caption: Una tasa hipotecaria bloqueada tiene fecha de vencimiento. Si tu cierre se retrasa, podrías enfrentar costos o condiciones diferentes. Pregunta antes. Comenta CASA.
+
+Hashtags: #Hipoteca #TasasHipotecarias #ComprarCasaArizona #HomePros
+
+Headline: Tasa con fecha
+Callouts: prestamista, cierre, extensión
+Checklist: fecha límite, costo adicional, opciones disponibles
+Snap: Una tasa bloqueada no significa protección eterna.
+
+Word count: hook 13 / body 88 / CTA 12
+Background: living-b.jpg
+
+SCRIPT #78 | Audience: CONSUMER | Hook style: CHISTE
+Topic: Inspección de tuberías subterráneas
+Chip: TUBERÍAS
+Kicker: Debajo del piso
+Keyword: CASA
+
+Hook — spoken: La casa tiene cocina hermosa, pero ¿ya preguntaste qué pasa debajo del piso?
+screen: Cocina bonita / tubería vieja / *SORPRESA*
+
+Body:
+
+No manches, todos revisamos los gabinetes, pero pocos pensamos en el drenaje enterrado. En casas antiguas de Phoenix, una inspección con cámara puede ayudar a detectar obstrucciones o daños en las tuberías. Eso normalmente requiere contratar un servicio especializado. No significa que toda casa vieja tenga problemas. Significa que ciertos defectos no aparecen durante una visita normal. Una reparación subterránea puede salir costosa. Lo invisible también merece atención.
+
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: ¿Estás viendo casas antiguas? Comenta CASA y te mando información.
+
+Caption: En casas antiguas, el drenaje subterráneo merece atención. Una inspección especializada puede detectar ciertos problemas que no se ven durante una visita. Comenta CASA.
+
+Hashtags: #CasasAntiguas #InspeccionDeCasa #PhoenixArizona #HomePros
+
+Headline: Debajo del piso
+Callouts: gabinetes, drenaje, obstrucciones
+Checklist: none
+Snap: Lo invisible también merece atención.
+
+Word count: hook 14 / body 88 / CTA 11
+Background: street.jpg
+
+SCRIPT #79 | Audience: CONSUMER | Hook style: PROVOCACIÓN
+Topic: Competencia entre vendedores del mismo vecindario
+Chip: COMPETENCIA
+Kicker: No vendes solo
+Keyword: CASA
+
+Hook — spoken: Tu casa no compite contra tus recuerdos; compite contra las otras casas disponibles.
+screen: Tu casa / tiene rivales / *COMPITE*
+
+Body:
+
+Déjame decirte algo. El comprador que visita tu propiedad probablemente también está viendo otras opciones. Si en tu vecindario hay casas parecidas por menos dinero, tienes competencia real. No sirve repetir cuánto gastaste hace años. Compara condición, ubicación y presentación con las propiedades disponibles. Después evalúa si tu precio tiene sentido. En este mercado, los compradores pueden tomarse tiempo para comparar. Tus recuerdos tienen valor sentimental, pero no fijan el precio.
+
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: ¿Quieres saber contra quién compite tu propiedad? Comenta CASA y hablamos.
+
+Caption: Al vender en Phoenix, tu competencia son las propiedades que el comprador puede elegir hoy. Los recuerdos no sustituyen un análisis del mercado. Comenta CASA.
+
+Hashtags: #VenderCasaArizona #PrecioDeCasa #MercadoInmobiliario #HomePros
+
+Headline: Competencia real
+Callouts: comprador, competencia, precio
+Checklist: condición, ubicación, presentación
+Snap: Tus recuerdos tienen valor sentimental, pero no fijan el precio.
+
+Word count: hook 14 / body 90 / CTA 12
+Background: newbuild.jpg
+
+SCRIPT #80 | Audience: CONSUMER | Hook style: WARNING
+Topic: Ruido de aviones cerca de propiedades
+Chip: UBICACIÓN
+Kicker: Escucha primero
+Keyword: CASA
+
+Hook — spoken: Visitaste la casa y no pasó ni un avión. Eso no significa que no pasen.
+screen: Casa tranquila / ¿Hay aviones? / *ESCUCHA*
+
+Body:
+
+En partes del Valle de Phoenix, algunas propiedades están cerca de rutas aéreas. Puedes visitar una casa cuando no pasa ningún avión y pensar que siempre estará tranquila. Pero el ruido cambia según las operaciones y los horarios. Visita la zona en diferentes momentos. Pregunta por actividad aérea y consulta información oficial del aeropuerto correspondiente. No te fíes solamente de una visita rápida. El ruido también forma parte de tu experiencia viviendo ahí.
+
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: ¿Estás comparando ubicaciones en Phoenix? Comenta CASA y te mando información.
+
+Caption: Antes de elegir una propiedad cerca de un aeropuerto, investiga las rutas aéreas y visita la zona en distintos horarios. Una visita rápida no cuenta toda la historia. Comenta CASA.
+
+Hashtags: #PhoenixArizona #UbicacionDeCasa #ComprarCasa #HomePros
+
+Headline: Escucha la zona
+Callouts: rutas aéreas, ruido, aeropuerto
+Checklist: none
+Snap: El ruido también forma parte de tu experiencia viviendo ahí.
+
+Word count: hook 13 / body 89 / CTA 12
+Background: office-b.jpg
+
+SCRIPT #81 | Audience: CONSUMER | Hook style: MYTH
+Topic: Comprar casa trabajando por cuenta propia
+Chip: NEGOCIO
+Kicker: Si eres tu jefe
+Keyword: CASA
+
+Hook — spoken: ¿Trabajas por tu cuenta y crees que necesitas un sueldo fijo para comprar?
+screen: ¿Eres tu / propio jefe? / *REVÍSALO*
+
+Body:
+
+Tener negocio propio no te elimina automáticamente de una hipoteca. Pero demostrar ingresos puede requerir documentación diferente a la de un empleado. El prestamista necesita evaluar qué ingresos puede utilizar según sus reglas. Prepara declaraciones, estados de cuenta y registros del negocio. Y cuidado: lo que vendes no siempre es igual a lo que ganas. No inventes ingresos para verte mejor. Trabajar por tu cuenta requiere demostrar los números correctamente.
+
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: ¿Tienes negocio propio y quieres comprar? Comenta CASA y te mando información.
+
+Caption: Los trabajadores independientes también pueden explorar préstamos hipotecarios. La documentación de ingresos puede ser diferente. Habla con un prestamista antes de descartarte. Comenta CASA.
+
+Hashtags: #NegocioPropio #ComprarCasaArizona #TrabajadorIndependiente #HomePros
+
+Headline: Ingresos propios
+Callouts: negocio propio, prestamista, ingresos
+Checklist: declaraciones, estados de cuenta, registros del negocio
+Snap: lo que vendes no siempre es igual a lo que ganas.
+
+Word count: hook 14 / body 89 / CTA 13
+Background: living.jpg
+
+SCRIPT #82 | Audience: CONSUMER | Hook style: DICHO
+Topic: Costo de mantener una casa vacía en venta
+Chip: VENDEDORES
+Kicker: Vacía no es gratis
+Keyword: CASA
+
+Hook — spoken: Como dicen por ahí, lo que no se vende también cuesta dinero.
+screen: Casa vacía / sigue costando / *DINERO*
+
+Body:
+
+Tienes una casa vacía en venta y decides esperar por un precio más alto. Mientras tanto, siguen llegando cuentas. Aunque nadie viva ahí, todavía pueden existir gastos de seguro, servicios y mantenimiento. Y si tienes hipoteca, ese pago tampoco desaparece. Haz la cuenta de lo que cuesta seguir esperando. Después compara ese gasto con una estrategia de venta diferente. No necesitas regalar tu propiedad. Pero esperar también tiene precio.
+
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: ¿Tienes una propiedad vacía sin vender? Comenta CASA y revisamos tu situación.
+
+Caption: Una casa vacía sigue generando gastos mientras está en venta. Seguro, servicios, mantenimiento y otros pagos pueden afectar tu resultado final. Comenta CASA.
+
+Hashtags: #VendedoresArizona #CasaEnVenta #MercadoPhoenix #HomePros
+
+Headline: Casa vacía cuesta
+Callouts: casa vacía, hipoteca, esperando
+Checklist: seguro, servicios, mantenimiento
+Snap: Pero esperar también tiene precio.
+
+Word count: hook 12 / body 88 / CTA 14
+Background: kitchen-b.jpg
+
+SCRIPT #83 | Audience: CONSUMER | Hook style: DRAMA
+Topic: Problemas de título antes del cierre
+Chip: TÍTULO
+Kicker: Revisa el historial
+Keyword: CASA
+
+Hook — spoken: Todo listo para comprar, hasta que aparece una deuda ligada a la propiedad.
+screen: Casa elegida / deuda oculta / *PROBLEMA*
+
+Body:
+
+Ya estás planeando la mudanza y aparece un problema de título. Puede existir un gravamen, una deuda registrada o una diferencia en los documentos. Eso podría retrasar el cierre mientras se aclara. La compañía de título investiga los registros y ayuda a identificar estos problemas. Pregunta por gravámenes, titularidad y documentos pendientes. Si aparece algo complicado, consulta a un profesional. Encontrar un problema temprano puede evitar uno mayor después.
+
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: ¿Quieres entender el proceso de título? Comenta CASA y te mando información.
+
+Caption: Antes del cierre pueden aparecer gravámenes o problemas en los registros de una propiedad. La revisión de título ayuda a identificar situaciones que necesitan resolverse. Comenta CASA.
+
+Hashtags: #TituloDePropiedad #ComprarCasa #CierreInmobiliario #HomePros
+
+Headline: Revisa el título
+Callouts: gravamen, compañía de título, registros
+Checklist: gravámenes, titularidad, documentos pendientes
+Snap: Encontrar un problema temprano puede evitar uno mayor después.
+
+Word count: hook 14 / body 89 / CTA 13
+Background: street-b.jpg
+
+SCRIPT #84 | Audience: CONSUMER | Hook style: CHISTE
+Topic: Inspección de alberca al comprar
+Chip: ALBERCA
+Kicker: No solo nadar
+Keyword: CASA
+
+Hook — spoken: Esa alberca parece de resort, pero ¿ya revisaste lo que cuesta mantenerla?
+screen: Alberca bonita / mantenimiento / *CUIDADO*
+
+Body:
+
+En Arizona, una alberca puede ser maravillosa durante el verano. Pero también tiene equipo que necesita funcionar correctamente. Una inspección especializada puede revisar bomba, filtro y posibles fugas. Además, pregunta por mantenimiento y dispositivos de seguridad. Un agua cristalina no demuestra que todo esté funcionando bien. Reparar equipos puede costar dinero, y una alberca también implica responsabilidades de seguridad. Disfrutarla empieza por conocer su condición.
+
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: ¿Estás buscando casa con alberca? Comenta CASA y te mando información.
+
+Caption: Una alberca bonita también puede traer gastos de mantenimiento y reparación. Considera una inspección especializada y revisa la seguridad antes de comprar. Comenta CASA.
+
+Hashtags: #AlbercasArizona #ComprarCasaPhoenix #InspeccionDeCasa #HomePros
+
+Headline: Ojo con la alberca
+Callouts: alberca, inspección, seguridad
+Checklist: bomba, filtro, posibles fugas
+Snap: Un agua cristalina no demuestra que todo esté funcionando bien.
+
+Word count: hook 14 / body 88 / CTA 12
+Background: newbuild-b.jpg
+
+SCRIPT #85 | Audience: CONSUMER | Hook style: CONTRARIAN
+Topic: Negociar la fecha de entrega al vender
+Chip: VENDE
+Kicker: No solo el dinero
+Keyword: CASA
+
+Hook — spoken: La mejor oferta para tu casa puede ser la que te da tiempo.
+screen: Buena oferta / ¿Pero cuándo? / *ENTREGA*
+
+Body:
+
+Cuando vendes tu casa, el precio importa, pero también necesitas saber cuándo vas a salir. Imagínate aceptar una buena oferta y después descubrir que tu siguiente vivienda todavía no está lista. Ahora tienes presión. Por eso negocia entrega, mudanza y plazos con cuidado. Algunas operaciones permiten acuerdos de ocupación después del cierre, pero requieren condiciones claras y revisión profesional. No prometas fechas que no puedes cumplir. Vender bien también significa coordinar tu siguiente movimiento.
+
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: ¿Piensas vender y mudarte después? Comenta CASA y revisamos tus opciones.
+
+Caption: Al vender, no todo se trata del precio. La fecha de entrega y tus planes de mudanza también importan. Coordina los tiempos antes de aceptar una oferta. Comenta CASA.
+
+Hashtags: #VenderCasaArizona #Mudanza #NegociacionInmobiliaria #HomePros
+
+Headline: Entrega con plan
+Callouts: precio, presión, ocupación
+Checklist: entrega, mudanza, plazos
+Snap: Vender bien también significa coordinar tu siguiente movimiento.
+
+Word count: hook 14 / body 89 / CTA 13
+Background: office.jpg
+
+SCRIPT #86 | Audience: CONSUMER | Hook style: PROVOCACIÓN
+Topic: Límites reales del terreno
+Chip: TERRENO
+Kicker: La cerca no manda
+Keyword: CASA
+
+Hook — spoken: Esa cerca que ves no necesariamente marca dónde termina tu terreno.
+screen: ¿La cerca / marca todo? / *NO SIEMPRE*
+
+Body:
+
+Comprar una casa con terreno grande emociona. Pero una cerca vieja no siempre coincide con los límites legales de la propiedad. Si quieres construir, ampliar o instalar otra barda, necesitas entender dónde empieza y termina tu lote. Consulta plano, límites y registros disponibles. Cuando sea necesario, un agrimensor autorizado puede determinar la ubicación de los linderos. No confundas lo que parece tuyo con lo que muestran los documentos. Una suposición puede provocar conflictos costosos.
+
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: ¿Estás considerando una casa con terreno? Comenta CASA y te mando información.
+
+Caption: Una cerca existente no siempre define los límites legales del terreno. Consulta registros y considera una medición profesional antes de construir o modificar. Comenta CASA.
+
+Hashtags: #TerrenosArizona #ComprarCasa #LimitesDePropiedad #HomePros
+
+Headline: Límites del lote
+Callouts: cerca vieja, lote, documentos
+Checklist: plano, límites, registros disponibles
+Snap: Una suposición puede provocar conflictos costosos.
+
+Word count: hook 12 / body 90 / CTA 13
+Background: kitchen.jpg

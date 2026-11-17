@@ -1,0 +1,29 @@
+SCRIPT #66 | Audience: CONSUMER | Hook style: WARNING
+Topic: Riesgo de inundación en Arizona
+Chip: MONZÓN
+Kicker: Antes de comprar
+Keyword: CASA
+
+Hook — spoken: Ojo, vivir en el desierto no significa que tu casa no pueda inundarse.
+screen: ¿Desierto / sin agua? / *CUIDADO*
+
+Body:
+
+En Arizona, las tormentas pueden provocar inundaciones aunque no vivas cerca de un río. Y aquí viene la sorpresa: muchas pólizas normales no cubren daños por inundación. Antes de comprar, revisa mapas de riesgo, historial de agua y cobertura disponible. Pregunta cuánto costaría proteger esa propiedad. Estar fuera de una zona de alto riesgo tampoco significa estar libre de peligro. El desierto también se inunda.
+
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si estás buscando casa en Arizona, comenta CASA y te mando información.
+
+Caption: En Arizona también hay riesgo de inundaciones. Revisa mapas, antecedentes y opciones de seguro antes de comprar. Tu póliza normal podría no cubrir inundaciones. Comenta CASA.
+
+Hashtags: #InundacionesArizona #ComprarCasa #MonzonArizona #HomePros
+
+Headline: Desierto con agua
+Callouts: tormentas, inundaciones, pólizas
+Checklist: mapas de riesgo, historial de agua, cobertura disponible
+Snap: El desierto también se inunda.
+
+Word count: hook 14 / body 86 / CTA 12
+Background: kitchen.jpg
+

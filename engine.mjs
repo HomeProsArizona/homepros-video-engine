@@ -104,7 +104,23 @@ async function hg(method, p, body) {
   if (!r.ok || j.error) throw new Error(`HeyGen ${p} ${r.status}: ${JSON.stringify(j.error || j).slice(0, 400)}`);
   return j;
 }
+// Avatar 6 (ENGINE=a6 or a6turbo): HeyGen's newer model, only on the v3 Application API. Same green-screen
+// approach as FX mode: HeyGen cuts Josh out onto green, the engine keys it and builds the scene itself.
+const A6 = { a6: 'heygen-avatar-6', a6turbo: 'heygen-avatar-6-turbo' };
+async function submitClipA6(text, job) {
+  const body = { type: 'avatar', avatar_id: job.avatarId, script: speakable(text), voice_id: job.voiceId,
+    engine: { type: A6[job.engine] }, resolution: '1080p', aspect_ratio: '9:16', title: 'HomePros A6 test' };
+  if (job.bgUrl || job.green) {
+    body.remove_background = true;
+    body.background = job.green ? { type: 'color', value: '#00FF00' } : { type: 'image', url: job.bgUrl };
+  }
+  const j = await hg('POST', '/v3/videos', body);
+  const id = j.data?.video_id || j.video_id || j.data?.id;
+  if (!id) throw new Error('Avatar 6 submit: no video id in ' + JSON.stringify(j).slice(0, 300));
+  return 'v3:' + id;
+}
 async function submitClip(text, job) {
+  if (A6[job.engine]) return submitClipA6(text, job);
   const character = job.avatarType === 'avatar'
     ? { type: 'avatar', avatar_id: job.avatarId, avatar_style: 'normal' }
     : { type: 'talking_photo', talking_photo_id: job.avatarId, use_avatar_iv_model: job.engine !== 'iii' };
@@ -120,6 +136,17 @@ async function submitClip(text, job) {
   return j.data.video_id;
 }
 async function waitClip(id) {
+  if (id.startsWith('v3:')) {
+    const v = id.slice(3);
+    for (let i = 0; i < 160; i++) {
+      const j = await hg('GET', `/v3/videos/${v}`);
+      const d = j.data || j;
+      if (d.status === 'completed') return d.video_url;
+      if (d.status === 'failed' || d.status === 'cancelled') throw new Error(`HeyGen A6 render ${v} ${d.status}: ${JSON.stringify(d.failure_code || d.error || d).slice(0, 300)}`);
+      await sleep(15000);
+    }
+    throw new Error(`HeyGen A6 render ${v} timed out`);
+  }
   for (let i = 0; i < 120; i++) {
     const j = await hg('GET', `/v1/video_status.get?video_id=${id}`);
     const d = j.data || {};
@@ -257,6 +284,10 @@ async function runOne(raw, submitOnly = false) {
   job.chip ||= job.number ? `Mito #${String(job.number).padStart(2, '0')}` : 'HomePros';
   job.kicker ||= 'Nadie te lo dice';
   const id = crypto.createHash('sha1').update(JSON.stringify([job.variants, job.body, job.cta, job.avatarId, job.voiceId, job.engine, job.avatarType, ...(job.background ? [job.background] : []), ...(job.green ? ['green'] : [])])).digest('hex').slice(0, 12);
+  if (A6[job.engine] && !job.lookChecked) {
+    try { const l = await hg('GET', `/v3/avatars/looks/${job.avatarId}`); log('A6 look engines:', JSON.stringify(l.data?.supported_api_engines ?? l.data ?? l).slice(0, 300)); }
+    catch (e) { log('A6 look check failed:', e.message); }
+  }
   if (job.background && !job.green) {
     const f = path.join(ROOT, 'assets', 'backgrounds', path.basename(job.background));
     if (!fs.existsSync(f)) { log('JOB REJECTED: background not found', job.background); return; }
@@ -271,7 +302,7 @@ async function runOne(raw, submitOnly = false) {
   // cost guard: estimate seconds before spending anything
   const texts = { body: job.body, cta: job.cta, ...Object.fromEntries(job.variants.map(v => ['hook' + v.key, v.spoken])) };
   const estSec = Object.values(texts).reduce((s, t) => s + words(t) / 2.6 + 0.6, 0);
-  const rate = { talking_photo: { iv: 0.0385, iii: 0.0165 }, avatar: { iv: 0.0805, iii: 0.01, v: 0.12 } }[job.avatarType]?.[job.engine] ?? 0.12;
+  const rate = { talking_photo: { iv: 0.0385, iii: 0.0165 }, avatar: { iv: 0.0805, iii: 0.01, v: 0.12, a6: 0.10, a6turbo: 0.05 } }[job.avatarType]?.[job.engine] ?? 0.12;
   log(`Job ${pre}: ${job.variants.length} hook(s), ~${estSec.toFixed(0)}s of avatar video, est. $${(estSec * rate).toFixed(2)}`);
   if (estSec > Number(env.MAX_SECONDS || 150)) { log(`JOB REJECTED: ~${estSec.toFixed(0)}s exceeds MAX_SECONDS`); return; }
 
