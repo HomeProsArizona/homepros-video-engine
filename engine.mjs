@@ -306,6 +306,18 @@ async function runOne(raw, submitOnly = false) {
   log(`Job ${pre}: ${job.variants.length} hook(s), ~${estSec.toFixed(0)}s of avatar video, est. $${(estSec * rate).toFixed(2)}`);
   if (estSec > Number(env.MAX_SECONDS || 150)) { log(`JOB REJECTED: ~${estSec.toFixed(0)}s exceeds MAX_SECONDS`); return; }
 
+  // Voice check: confirm the voice exists in this HeyGen account before spending anything
+  if (env.VOICE_CHECK) {
+    try {
+      const vj = await hg('GET', '/v2/voices');
+      const list = vj.data?.voices || [];
+      const hit = list.find(v => v.voice_id === job.voiceId);
+      log('VOICE CHECK:', hit ? `found ${job.voiceId} (${hit.name}, ${hit.language || ''})` : `NOT FOUND ${job.voiceId}`);
+      for (const v of list.filter(v => /josh|marquez|eleven|clone/i.test(`${v.name} ${v.type || ''} ${v.provider || ''}`)).slice(0, 15))
+        log('VOICE CANDIDATE:', v.voice_id, '|', v.name, '|', v.language || '', '|', v.type || v.provider || '');
+      if (!hit) { log('JOB REJECTED: voice not in HeyGen account'); return; }
+    } catch (e) { log('VOICE CHECK failed:', e.message); }
+  }
   // CLIPS='{"body":"<heygen video id>",...}' uses clips that already exist in HeyGen instead of rendering new ones
   if (env.CLIPS) Object.assign(state.clips, JSON.parse(env.CLIPS));
   // 1. submit every clip once (IDs saved immediately)
