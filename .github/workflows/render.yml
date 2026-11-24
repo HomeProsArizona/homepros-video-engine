@@ -65,4 +65,7 @@ jobs:
         run: |
           tag="render-${{ github.run_id }}"
           gh release create "$tag" --title "Render ${{ github.run_id }}" --notes "Batch ${{ inputs.batch }}" --prerelease $(find out -name '*.mp4' | sed 's#^#./#')
+          # Save the HeyGen clip IDs of every job so videos can be re-edited or recycled later with no new HeyGen cost
+          for s in $(find out -name state.json); do cp "$s" "./$(basename "$(dirname "$s")")-clips.json"; done
+          ls ./*-clips.json >/dev/null 2>&1 && gh release upload "$tag" ./*-clips.json || true
           for f in $(find out -name '*.mp4'); do echo "VIDEO https://github.com/${{ github.repository }}/releases/download/$tag/$(basename "$f")" | tee -a "$GITHUB_STEP_SUMMARY"; done
