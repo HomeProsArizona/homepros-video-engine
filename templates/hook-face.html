@@ -12,7 +12,8 @@ html,body{background:transparent}
 .ln{display:block;overflow:hidden;line-height:1.08;padding-bottom:6px}
 .ln>span{display:inline-block;white-space:nowrap;font-size:var(--hs,120px);font-weight:900;letter-spacing:-.035em;color:var(--white);text-shadow:0 6px 26px rgba(0,0,0,.5);animation:rise .6s cubic-bezier(.2,.8,.2,1) both}
 .ln:nth-child(2)>span{animation-delay:.12s}.ln:nth-child(3)>span{animation-delay:.24s}.ln:nth-child(4)>span{animation-delay:.36s}.ln:nth-child(5)>span{animation-delay:.48s}
-.ln:first-of-type>span{animation:none}
+/* Static title: the very first frame is the grid/thumbnail cover, so the whole headline must be on it */
+.ln>span{animation:none!important}.hl,.hl:before{animation:none!important}
 </style></head><body>
 <div class="shade"></div>
 <div class="top">
