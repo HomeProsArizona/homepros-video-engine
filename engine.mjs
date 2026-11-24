@@ -306,6 +306,14 @@ async function runOne(raw, submitOnly = false) {
   log(`Job ${pre}: ${job.variants.length} hook(s), ~${estSec.toFixed(0)}s of avatar video, est. $${(estSec * rate).toFixed(2)}`);
   if (estSec > Number(env.MAX_SECONDS || 150)) { log(`JOB REJECTED: ~${estSec.toFixed(0)}s exceeds MAX_SECONDS`); return; }
 
+  // VOICE_ID=list: print this account's Josh avatars/looks and voices, render nothing
+  if (job.voiceId === 'list') {
+    try { const vj = await hg('GET', '/v2/voices'); for (const v of (vj.data?.voices || []).filter(v => /josh|marquez/i.test(v.name))) log('LIST VOICE:', v.voice_id, '|', v.name, '|', v.language || ''); } catch (e) { log('LIST voices failed:', e.message); }
+    try { const aj = await hg('GET', '/v2/avatars'); for (const a of [...(aj.data?.avatars || []), ...(aj.data?.talking_photos || [])].filter(a => /josh|marquez/i.test(a.avatar_name || a.talking_photo_name || ''))) log('LIST AVATAR:', a.avatar_id || a.talking_photo_id, '|', a.avatar_name || a.talking_photo_name, '|', a.type || ''); } catch (e) { log('LIST avatars failed:', e.message); }
+    try { const gj = await hg('GET', '/v2/avatar_group.list?include_public=false'); for (const g of (gj.data?.avatar_group_list || [])) { log('LIST GROUP:', g.id, '|', g.name); try { const lj = await hg('GET', `/v2/avatar_group/${g.id}/avatars`); for (const a of (lj.data?.avatar_list || [])) log('LIST LOOK:', a.id || a.avatar_id, '|', a.name || a.avatar_name, '|', a.status || ''); } catch (e) { log('LIST looks failed:', e.message); } } } catch (e) { log('LIST groups failed:', e.message); }
+    try { const l = await hg('GET', `/v3/avatars/looks/${job.avatarId}`); log('CURRENT LOOK engines:', JSON.stringify(l.data?.supported_api_engines ?? l.data ?? l).slice(0, 200)); } catch {}
+    return;
+  }
   // Voice check: confirm the voice exists in this HeyGen account before spending anything
   if (env.VOICE_CHECK) {
     try {
