@@ -170,6 +170,16 @@ async function download(url, out) {
   fs.writeFileSync(out, Buffer.from(await r.arrayBuffer()));
 }
 
+// FRAME=full: full-body looks render small with feet showing. Scale the avatar up (knees up) and keep the head
+// near the top, so the face reads on a phone and there is no floor to float over. FG_SCALE / FG_HEAD tune it.
+const FULL = env.FRAME === 'full';
+function fullFrame() {
+  if (!FULL) return '';
+  const S = Number(env.FG_SCALE || 1.5), head = Number(env.FG_HEAD || 0.267), top = Number(env.FG_TOP || 0.12);
+  const sw = Math.round(W * S / 2) * 2, sh = Math.round(H * S / 2) * 2;
+  const x = Math.round((sw - W) / 2), y = Math.max(0, Math.round(H * (head * S - top)));
+  return `,scale=${sw}:${sh},crop=${W}:${H}:${x}:${y}`;
+}
 // HeyGen API wallet balance in USD (null if unavailable). Used to log the real cost of each batch.
 async function wallet() {
   if (env.MOCK_HEYGEN) return null;
@@ -339,7 +349,7 @@ async function runOne(raw, submitOnly = false) {
   for (const [k, vid] of Object.entries(state.clips)) { const url = await waitClip(vid); clip[k] = path.join(work, 'clip-' + k + '.mp4'); await download(url, clip[k]); log('clip ready', k, dur(clip[k]).toFixed(1) + 's', size(clip[k])); }
 
   // 3. shared pieces: body segment with name card + captions, end card with CTA voice
-  await renderPNG(fill('card.html', { CARD_MODE: env.CARD_MODE === 'cover' ? 'cover' : '', LIVE: en ? 'HomePros · Real Estate' : 'HomePros · Bienes raíces' }), path.join(work, 'card.png'), work);
+  await renderPNG(fill('card.html', { CARD_MODE: FULL ? 'full' : env.CARD_MODE === 'cover' ? 'cover' : '', LIVE: en ? 'HomePros · Real Estate' : 'HomePros · Bienes raíces' }), path.join(work, 'card.png'), work);
   const bodyLen = dur(clip.body);
   fs.writeFileSync(path.join(work, 'cap.ass'), captionsASS(job.body, bodyLen));
   const fontsdir = path.join(ROOT, 'fonts');
@@ -361,7 +371,7 @@ async function runOne(raw, submitOnly = false) {
       if (sfx) extra.push('-i', sfx);
       const [ib, iback] = [idx, idx + 1];
       base = `[${ib}:v]scale=${W}:${H},fps=${FPS},setsar=1[bgi];[${iback}:v]setpts=PTS-STARTPTS[bk];[bgi][bk]overlay=0:0:eof_action=pass[bgx];` +
-        `[0:v]scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H},fps=${FPS},setsar=1,chromakey=0x00FF00:0.16:0.06,despill=type=green${matchFilter(bg)}[fg];` +
+        `[0:v]scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H},fps=${FPS},setsar=1${fullFrame()},chromakey=0x00FF00:0.16:0.06,despill=type=green${matchFilter(bg)}[fg];` +
         `[bgx][fg]overlay=0:0:shortest=1`;
     }
     const front = fx?.front ? `[o0];[${idx + 2}:v]setpts=PTS-STARTPTS+${fx.frontStart.toFixed(3)}/TB[fr];[o0][fr]overlay=0:0:eof_action=pass` : '';
@@ -406,7 +416,8 @@ async function runOne(raw, submitOnly = false) {
 }
 // BLUR_BOX="x,y,w,h" (1080x1920 coordinates): blurs a band of the avatar video, e.g. captions burned into the
 // avatar's training footage. Applied before the name card and our captions, so those stay sharp on top.
-const blurBox = () => { const b = (env.BLUR_BOX || '').split(',').map(Number); return b.length === 4 && !b.some(isNaN) ? b : null; };
+// BLUR_AVATAR limits the blur to the avatar whose footage has the burned-in text; other avatars are left alone.
+const blurBox = () => { if (env.BLUR_AVATAR && env.AVATAR_ID !== env.BLUR_AVATAR) return null; const b = (env.BLUR_BOX || '').split(',').map(Number); return b.length === 4 && !b.some(isNaN) ? b : null; };
 // soft-edged mask so the blurred band fades out instead of showing a hard rectangle
 function makeBlurMask(work, seconds) {
   const b = blurBox(); if (!b) return [];
@@ -547,7 +558,7 @@ async function buildFx(job, bodyLen, work) {
   const html = (kind, end) => items.filter(x => x.kind === kind).map((x, i) =>
     `<div class="${kind}" style="--in:${((x.t - s0) * 1000).toFixed(0)}ms;--out:${((end - s0) * 1000).toFixed(0)}ms;--i:${i}"><span>${esc(x.text)}</span></div>`).join('');
   const front = path.join(work, 'fx-front.mov');
-  await renderAlpha(fill('fx-front.html', { CALLS: html('call', endCall), CHECKS: html('check', endCheck) }), seconds, front, work);
+  await renderAlpha(fill('fx-front.html', { EXTRA: FULL ? '.calls{top:1180px}.checks{top:1180px;right:44px}' : '', CALLS: html('call', endCall), CHECKS: html('check', endCheck) }), seconds, front, work);
   log('fx', `${items.length} item(s) from ${s0.toFixed(1)}s`, snap ? `snap ${snap.map(x => x.toFixed(1)).join('-')}` : '');
   return { back, front, frontStart: s0, snap, zoomsA, zoomsB, sfxFor };
 }
