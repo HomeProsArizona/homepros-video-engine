@@ -1,0 +1,263 @@
+SCRIPT #87 | Audience: CONSUMER | Hook style: CHISTE
+Topic: Horarios que bloquean las visitas al vender. National Association of REALTORS®
+Chip: VISITAS
+Kicker: Abre la puerta
+Keyword: CASA
+
+Hook — spoken: Tu casa está en venta, pero visitarla parece trámite de gobierno.
+       screen: Casa en venta / puerta cerrada / *¿CÓMO?*
+
+Body:
+Si tu casa en Phoenix lleva semanas anunciada, revisa el acceso antes de culpar solamente al precio. Rechazar cada visita puede dejar compradores afuera. No tienes que vivir disponible a todas horas. Acuerda con tu agente horarios, avisos y alternativas que puedas cumplir. Luego pregúntale a tu agente cuántas visitas se perdieron. Ajustar el calendario no garantiza ofertas, pero evita ponerle otra barrera a la venta. Facilitar visitas no es regalar tu casa.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si vender se está complicando, comenta CASA y revisamos cómo facilitar las visitas.
+
+Caption: ¿Tu casa sigue anunciada, pero casi nunca puede visitarse? Coordina horarios y alternativas con tu agente. Abrir espacio en el calendario no garantiza ofertas, pero facilita mostrarla. Comenta CASA.
+Hashtags: #VenderCasa #PhoenixArizona #VisitasDeCasa #HomePros
+
+Headline: Puertas abiertas
+Callouts: acceso, precio
+Checklist: horarios, avisos, alternativas
+Snap: Facilitar visitas no es regalar tu casa.
+Background: living-b.jpg
+
+SCRIPT #88 | Audience: CONSUMER | Hook style: MYTH
+Topic: Abonar a capital no reduce automáticamente la mensualidad. Chase
+Chip: CAPITAL
+Kicker: No es automático
+Keyword: CASA
+
+Hook — spoken: ¿Abonaste extra a tu hipoteca y esperabas una mensualidad menor? No automáticamente.
+       screen: Abonaste extra / ¿Bajó el pago? / *DEPENDE*
+
+Body:
+Abonar al capital reduce lo que debes, pero no necesariamente cambia tu mensualidad obligatoria. Algunos préstamos permiten recalcular ese pago después de un abono, sin cambiar la tasa. Otros no. Pregunta a quien administra tu hipoteca por requisitos, cargos y trámite antes de mandar dinero. Ese ajuste puede tener costo y necesita autorización. No reduzcas por tu cuenta el siguiente pago. Deber menos no siempre significa pagar menos cada mes.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Para entender qué preguntar antes de abonar, comenta CASA.
+
+Caption: Un abono al capital no baja automáticamente el pago obligatorio. Algunos préstamos permiten recalcularlo, con requisitos que debes confirmar. No cambies tu pago sin autorización. Comenta CASA.
+Hashtags: #Hipoteca #Capital #DueñosDeCasa #HomePros
+
+Headline: Abono y pago
+Callouts: capital, mensualidad
+Checklist: requisitos, cargos, trámite
+Snap: Deber menos no siempre significa pagar menos cada mes.
+Background: street.jpg
+
+SCRIPT #89 | Audience: CONSUMER | Hook style: DRAMA
+Topic: Casa manufacturada sobre terreno rentado. HUD
+Chip: TERRENO
+Kicker: ¿Incluye terreno?
+Keyword: CASA
+
+Hook — spoken: Compraste la casa, celebraste las llaves… y el terreno seguía siendo rentado.
+       screen: Casa propia / terreno / *RENTADO*
+
+Body:
+Pasa más de lo que crees. En Arizona puedes comprar una casa manufacturada sin adquirir el terreno. La vivienda es tuya, pero el espacio se renta. Pide el contrato y aclara el pago del lote, los aumentos y la renovación con un profesional. No compares ese anuncio con otro que sí incluye terreno. Una renta que puede subir cambia tus cuentas. Comprar la casa no siempre incluye el suelo.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si estás viendo casas manufacturadas, comenta CASA y aclaremos qué incluye la compra.
+
+Caption: Una casa manufacturada puede venderse sin el terreno. Confirma qué compras y qué seguirías rentando. Revisa el contrato del espacio antes de comparar precios. Comenta CASA.
+Hashtags: #CasasManufacturadas #TerrenosArizona #CompraInformada #HomePros
+
+Headline: Casa sin terreno
+Callouts: Arizona, espacio
+Checklist: pago del lote, aumentos, renovación
+Snap: Comprar la casa no siempre incluye el suelo.
+Background: newbuild.jpg
+
+SCRIPT #90 | Audience: CONSUMER | Hook style: DICHO
+Topic: Rentar una casa que no se vende exige otro plan. Fannie Mae
+Chip: ¿RENTAR?
+Kicker: No decidas por enojo
+Keyword: CASA
+
+Hook — spoken: No todo es miel sobre hojuelas: rentar la casa que no se vende también cuesta.
+       screen: ¿No se vende? / ¿La rentas? / *CALCULA*
+
+Body:
+Llevas semanas intentando vender y decides rentar para no ajustar el precio. Puede ser una opción, pero ahora estarías administrando una propiedad. Cobrar renta no es lo mismo que ganar dinero. Considera mantenimiento, administración y meses vacíos al comparar ambos caminos. Pide un estimado de renta basado en casas parecidas, no en lo que necesitas cobrar. Consulta las obligaciones con un profesional. Cambiar el letrero no reemplaza hacer las cuentas.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si estás entre vender o rentar, comenta CASA y comparemos los escenarios.
+
+Caption: Rentar una propiedad que no se vende exige analizar ingresos, gastos y periodos sin inquilino. No cambies de estrategia solamente para evitar ajustar el precio. Comenta CASA.
+Hashtags: #VenderORentar #PropietariosArizona #RentaConPlan #HomePros
+
+Headline: Rentar con plan
+Callouts: vender, precio
+Checklist: mantenimiento, administración, meses vacíos
+Snap: Cobrar renta no es lo mismo que ganar dinero.
+Background: office-b.jpg
+
+SCRIPT #91 | Audience: CONSUMER | Hook style: WARNING
+Topic: Cambio de administrador hipotecario y pagos automáticos. Consumer Financial Protection Bureau
+Chip: PAGOS
+Kicker: No ignores el aviso
+Keyword: CASA
+
+Hook — spoken: Cuidado: tu hipoteca cambió de administrador, pero tu pago automático quizá no.
+       screen: Cambió quién / cobra tu pago / *CONFIRMA*
+
+Body:
+Llega una carta diciendo que otra compañía recibirá tus pagos. No necesariamente es fraude: quien administra el préstamo puede cambiar. Confirma el aviso directamente con tu administrador actual usando un contacto conocido. Después verifica destinatario, fecha y pago automático. Si programaste transferencias desde tu banco, quizá tengas que actualizarlas. Guarda comprobantes y revisa que el dinero se aplique correctamente. Que sea automático no significa que puedas olvidarlo.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si recibiste un aviso de cambio, comenta CASA y revisamos qué debes confirmar.
+
+Caption: El administrador de tu hipoteca puede cambiar. Verifica el aviso, actualiza los pagos cuando corresponda y confirma que se apliquen correctamente. No supongas que todo se transfiere solo. Comenta CASA.
+Hashtags: #Hipoteca #PagosAutomáticos #DueñosDeCasa #HomePros
+
+Headline: Cambia quien cobra
+Callouts: carta, compañía
+Checklist: destinatario, fecha, pago automático
+Snap: Que sea automático no significa que puedas olvidarlo.
+Background: living.jpg
+
+SCRIPT #92 | Audience: CONSUMER | Hook style: PROVOCACIÓN
+Topic: Renta vacacional en Phoenix antes de contar ingresos. City of Phoenix
+Chip: POR NOCHE
+Kicker: Primero confirma
+Keyword: CASA
+
+Hook — spoken: Cobrar por noche suena bonito, hasta que descubres que te faltan permisos.
+       screen: Rentar noches / ¿Ya puedes? / *VERIFICA*
+
+Body:
+¿Comprar para rentar por noche en Phoenix? Publicar fotos no sustituye la autorización. La ciudad exige un permiso para operar rentas de corta estancia. También necesitas revisar las restricciones particulares de la propiedad. Consulta permiso, reglamento y cobertura con la ciudad y los profesionales correspondientes. Incumplir puede traer multas o suspensión. Y tener permiso tampoco garantiza reservas ni ganancias. No cuentes ingresos de una operación que todavía no has confirmado.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si buscas una propiedad para renta vacacional, comenta CASA y revisemos el plan.
+
+Caption: En Phoenix, las rentas de corta estancia requieren permiso municipal. Confirma además restricciones y cobertura. Un permiso no garantiza ocupación ni ingresos. Comenta CASA.
+Hashtags: #RentaVacacional #PhoenixArizona #InversiónInformada #HomePros
+
+Headline: Primero el permiso
+Callouts: fotos, autorización
+Checklist: permiso, reglamento, cobertura
+Snap: Publicar fotos no sustituye la autorización.
+Background: kitchen-b.jpg
+
+SCRIPT #93 | Audience: CONSUMER | Hook style: NADIE TE DICE
+Topic: Fotos editadas que crean expectativas falsas al vender. National Association of REALTORS®
+Chip: FOTOS
+Kicker: Vende lo que existe
+Keyword: CASA
+
+Hook — spoken: Nadie te dice esto: la foto perfecta también puede espantar al comprador.
+       screen: Foto arreglada / casa igual / *CUIDADO*
+
+Body:
+En pantalla, tu patio parece enorme. En persona, el comprador descubre otra cosa. Esa diferencia puede romper la confianza antes de empezar a negociar. Puedes mostrar muebles virtuales, identificándolos como una simulación, pero no inventes espacios ni borres desperfectos para esconderlos. Pide a tu agente que la publicidad represente lo que realmente vendes. Mejorar la luz no es cambiar la realidad. La visita debe confirmar la foto, no desmentirla.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Para vender sin crear expectativas falsas, comenta CASA y revisemos tu presentación.
+
+Caption: Las fotos deben representar lo que vendes. Identifica las simulaciones y no uses edición para ocultar defectos o inventar espacios. La visita no debería contradecir el anuncio. Comenta CASA.
+Hashtags: #VenderCasa #FotosInmobiliarias #VentaTransparente #HomePros
+
+Headline: Fotos sin cuentos
+Callouts: pantalla, confianza
+Checklist: none
+Snap: La visita debe confirmar la foto, no desmentirla.
+Background: street-b.jpg
+
+SCRIPT #94 | Audience: CONSUMER | Hook style: MYTH
+Topic: Solicitud de cancelación del seguro hipotecario privado. Consumer Financial Protection Bureau
+Chip: REVISA
+Kicker: Ese cargo mensual
+Keyword: CASA
+
+Hook — spoken: ¿Vas a pagar seguro hipotecario para siempre? Depende de tu préstamo.
+       screen: Seguro del / préstamo / *¿ETERNO?*
+
+Body:
+Abre tu estado de cuenta y ubica el cargo por seguro hipotecario privado. ¿Qué préstamo tienes? En ciertos préstamos convencionales puedes solicitar cancelarlo cuando tu saldo llega al ochenta por ciento del valor original de la casa. En los del gobierno las reglas cambian. Pide el procedimiento por escrito a quien administra tu hipoteca. Podría pedir documentos o una valoración con costo. No suspendas ese pago por tu cuenta. El tipo de préstamo cambia la respuesta.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si ya eres dueño y pagas seguro hipotecario, comenta CASA para orientarte.
+
+Caption: El seguro hipotecario privado puede cancelarse cuando se cumplen los requisitos aplicables. Confirma el tipo de préstamo y el procedimiento con quien administra tu hipoteca. Comenta CASA.
+Hashtags: #SeguroHipotecario #DueñosDeCasa #Hipoteca #HomePros
+
+Headline: Revisa ese cargo
+Callouts: estado, cargo
+Checklist: none
+Snap: El tipo de préstamo cambia la respuesta.
+Background: newbuild-b.jpg
+
+SCRIPT #95 | Audience: CONSUMER | Hook style: CHISTE
+Topic: Límites de una garantía de vivienda. DIFI
+Chip: GARANTÍA
+Kicker: No cubre por magia
+Keyword: CASA
+
+Hook — spoken: La garantía de tu casa no viene con varita mágica incluida.
+       screen: Garantía / ¿Cubre todo? / *LÍMITES*
+
+Body:
+¿Se descompuso un equipo y esperabas que la garantía pagara todo? La cobertura depende del contrato, no de cómo sonó el anuncio. Busca exclusiones, límites y deducible. Pregunta a la compañía qué cubre ese aparato y qué condiciones debes cumplir para solicitar servicio. Algunas fallas o parte del costo podrían quedar fuera. Acláralo antes de contratar. No estás comprando reparaciones ilimitadas. Estás comprando lo que el contrato realmente ofrece.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si te ofrecen una garantía de vivienda, comenta CASA y revisemos qué preguntar.
+
+Caption: Una garantía de vivienda tiene coberturas, límites y exclusiones. Confirma qué incluye y cómo solicitar servicio antes de contratarla. No equivale a reparaciones ilimitadas. Comenta CASA.
+Hashtags: #GarantíaDeVivienda #CompraInformada #PropietariosArizona #HomePros
+
+Headline: Garantía con letra
+Callouts: equipo, cobertura
+Checklist: exclusiones, límites, deducible
+Snap: No estás comprando reparaciones ilimitadas.
+Background: office.jpg
+
+SCRIPT #96 | Audience: CONSUMER | Hook style: DRAMA
+Topic: Responder a una oferta baja sin negociar desde el enojo. HAR.com
+Chip: RESPONDE
+Kicker: No vendas con coraje
+Keyword: CASA
+
+Hook — spoken: Llegó una oferta bajita y ya querías bloquear al comprador.
+       screen: Oferta bajita / coraje grande / *RESPIRA*
+
+Body:
+Respira. Esa cifra puede ser una propuesta inicial, no un ataque personal. Contestar desde el enojo puede cerrar una conversación que todavía tenía camino. Pide a tu agente revisar qué respalda la oferta y preparar una contraoferta que puedas justificar. El comprador puede rechazarla o retirarse; negociar no garantiza acuerdo. Tampoco tienes que aceptar algo que no te conviene. Defender tu precio necesita argumentos, no solamente coraje.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si recibiste una oferta que te molestó, comenta CASA y analicemos cómo responder.
+
+Caption: Una oferta baja no obliga a aceptar ni a contestar con enojo. Evalúa sus fundamentos y una posible contraoferta con tu agente. No hay garantía de acuerdo. Comenta CASA.
+Hashtags: #VenderCasa #Contraoferta #VendedoresArizona #HomePros
+
+Headline: Negocia sin coraje
+Callouts: cifra, enojo
+Checklist: none
+Snap: Defender tu precio necesita argumentos, no solamente coraje.
+Background: kitchen.jpg
+
+SCRIPT #97 | Audience: CONSUMER | Hook style: WARNING
+Topic: Alertas gratuitas de documentos registrados en Maricopa. Maricopa County Recorder's Office
+Chip: ALERTAS
+Kicker: Después de comprar
+Keyword: CASA
+
+Hook — spoken: ¿Quién te avisa si registran un documento con tu nombre en Maricopa?
+       screen: Usaron tu / nombre / *ENTÉRATE*
+
+Body:
+El condado de Maricopa ofrece alertas gratuitas para documentos nuevos registrados bajo los nombres que inscribes. Puedes recibir avisos después de darte de alta. Pero atención: es una notificación, no un bloqueo contra fraude ni una garantía sobre tu propiedad. Si llega un aviso, revisa el documento. Puede corresponder a otra persona con nombre parecido. Si detectas posible fraude, contacta a las autoridades. Recibir la alerta no sustituye revisar lo ocurrido.
+Soy Josh Marquez, broker con veintiún años de experiencia ayudando a familias y agentes en el Valle.
+
+CTA: Si tienes propiedad en Maricopa, comenta CASA y te comparto dónde activar las alertas.
+
+Caption: Maricopa ofrece alertas gratuitas sobre documentos registrados bajo los nombres inscritos. No bloquean fraudes. Revisa cada aviso y reporta posibles irregularidades a las autoridades. Comenta CASA.
+Hashtags: #Maricopa #ProtegeTuCasa #PropietariosArizona #HomePros
+
+Headline: Avisos del condado
+Callouts: alertas, documentos
+Checklist: none
+Snap: Recibir la alerta no sustituye revisar lo ocurrido.
+Background: living-b.jpg

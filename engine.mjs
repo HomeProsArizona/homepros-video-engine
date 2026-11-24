@@ -256,6 +256,7 @@ function captionsASS(body, seconds) {
     ev.map(e => e.replace('{\\fad', '{\\pos(540,1060)\\fad')).join('\n') + '\n';
 }
 
+let CLIPSEC = 0; // seconds of HeyGen video rendered fresh in this batch (for $/minute)
 // ---------- main ----------
 // A job can hold one script or a whole batch (several "SCRIPT #" blocks). Each script runs on its own;
 // one bad script is skipped and logged, the rest still render.
@@ -265,6 +266,14 @@ async function main() {
   const scripts = raw.trim().startsWith('{') ? [raw] : raw.split(/(?=SCRIPT\s*#\s*\d+)/i).map(s => s.trim()).filter(s => /SCRIPT\s*#/i.test(s));
   log(`Batch: ${scripts.length} script(s)`);
   const before = await wallet();
+  // Cost meter: HeyGen auto-reload can top up the wallet mid-batch and hide spending in a simple before/after.
+  // Read the balance every 15s and add up only the drops (spend) and the rises (reloads) separately.
+  const meter = { last: before, spent: 0, reloads: 0 };
+  const tick = async () => { const b = await wallet(); if (b == null || meter.last == null) { meter.last ??= b; return; }
+    if (b < meter.last - 0.001) { meter.spent += meter.last - b; log(`WALLET -$${(meter.last - b).toFixed(2)} (now $${b.toFixed(2)})`); }
+    else if (b > meter.last + 0.001) { meter.reloads += b - meter.last; log(`WALLET RELOAD +$${(b - meter.last).toFixed(2)} (now $${b.toFixed(2)})`); }
+    meter.last = b; };
+  const timer = before != null ? setInterval(() => { tick().catch(() => {}); }, 15000) : null;
   let rendered = 0;
   const name = s => (s.match(/SCRIPT\s*#\s*\d+/i) || ['?'])[0];
   // Pass 1: send every script's clips to HeyGen up front so they render side by side (same cost, much less waiting).
@@ -275,6 +284,9 @@ async function main() {
   for (const s of scripts) {
     try { await runOne(s); } catch (e) { log('SCRIPT FAILED:', name(s), e.message); }
   }
+  if (timer) { clearInterval(timer); await new Promise(r => setTimeout(r, 20000)); await tick(); } // let late charges land
+  if (timer) log(`COST TRUE: spent $${meter.spent.toFixed(2)} (reloads +$${meter.reloads.toFixed(2)} excluded) on ${rendered} new video(s), ${CLIPSEC.toFixed(1)}s of new HeyGen video` +
+    (rendered ? `, $${(meter.spent / rendered).toFixed(2)} per video` : '') + (CLIPSEC ? `, $${(meter.spent / CLIPSEC * 60).toFixed(2)} per minute` : ''));
   const after = await wallet();
   if (before != null && after != null) {
     const spent = before - after;
@@ -354,7 +366,7 @@ async function runOne(raw, submitOnly = false) {
   // 2. wait + download
   const work = fs.mkdtempSync('/tmp/job-');
   const clip = {};
-  for (const [k, vid] of Object.entries(state.clips)) { const url = await waitClip(vid); clip[k] = path.join(work, 'clip-' + k + '.mp4'); await download(url, clip[k]); log('clip ready', k, dur(clip[k]).toFixed(1) + 's', size(clip[k])); }
+  for (const [k, vid] of Object.entries(state.clips)) { const url = await waitClip(vid); clip[k] = path.join(work, 'clip-' + k + '.mp4'); await download(url, clip[k]); if (job.newClips) CLIPSEC += dur(clip[k]); log('clip ready', k, dur(clip[k]).toFixed(1) + 's', size(clip[k])); }
 
   // 3. shared pieces: body segment with name card + captions, end card with CTA voice
   await renderPNG(fill('card.html', { CARD_MODE: FULL ? 'full' : env.CARD_MODE === 'cover' ? 'cover' : '', LIVE: en ? 'HomePros · Real Estate' : 'HomePros · Bienes raíces' }), path.join(work, 'card.png'), work);
