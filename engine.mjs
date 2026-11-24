@@ -173,9 +173,16 @@ async function download(url, out) {
 // FRAME=full: full-body looks render small with feet showing. Scale the avatar up (knees up) and keep the head
 // near the top, so the face reads on a phone and there is no floor to float over. FG_SCALE / FG_HEAD tune it.
 const FULL = env.FRAME === 'full';
-function fullFrame() {
+// REALISM (default on with FRAME=full): soft-focus background like a real camera, a touch of softness on the avatar
+// so both share one look, and light film grain over the whole frame so nothing reads as a pasted green screen.
+const HOOK_FACE = env.HOOK_FACE ? env.HOOK_FACE === '1' : FULL;
+const REAL = env.REALISM ? env.REALISM === '1' : FULL;
+const bgSoft = () => REAL ? `,gblur=sigma=${env.BG_BLUR || 9}` : '';
+const fgSoft = () => REAL ? `,gblur=sigma=${env.FG_SOFT || 0.6}` : '';
+const grain = () => REAL ? `,noise=alls=${env.GRAIN || 5}:allf=t` : '';
+function fullFrame(topAt) {
   if (!FULL) return '';
-  const S = Number(env.FG_SCALE || 1.5), head = Number(env.FG_HEAD || 0.267), top = Number(env.FG_TOP || 0.12);
+  const S = Number(env.FG_SCALE || 1.5), head = Number(env.FG_HEAD || 0.267), top = topAt ?? Number(env.FG_TOP || 0.12);
   const sw = Math.round(W * S / 2) * 2, sh = Math.round(H * S / 2) * 2;
   const x = Math.round((sw - W) / 2), y = Math.max(0, Math.round(H * (head * S - top)));
   return `,scale=${sw}:${sh},crop=${W}:${H}:${x}:${y}`;
@@ -337,7 +344,8 @@ async function runOne(raw, submitOnly = false) {
     } catch (e) { log('VOICE CHECK failed:', e.message); }
   }
   // CLIPS='{"body":"<heygen video id>",...}' uses clips that already exist in HeyGen instead of rendering new ones
-  if (env.CLIPS) Object.assign(state.clips, JSON.parse(env.CLIPS));
+  if (env.CLIPS) Object.assign(state.clips, env.CLIPS.trim().startsWith('{') ? JSON.parse(env.CLIPS) : Object.fromEntries(env.CLIPS.split(',').map(x => x.split('=')).map(([k, ...v]) => [k.trim(), v.join('=').trim()])));
+  if (env.CLIPS) log('Reusing HeyGen clips (no new HeyGen cost):', JSON.stringify(state.clips));
   // 1. submit every clip once (IDs saved immediately)
   for (const [k, t] of Object.entries(texts)) if (!state.clips[k]) {
     state.clips[k] = await submitClip(t, job); job.newClips = true; await putJSON(`${pre}/state.json`, state); log('submitted', k, state.clips[k]);
@@ -370,9 +378,9 @@ async function runOne(raw, submitOnly = false) {
       extra.push('-loop', '1', '-t', (bodyLen + 1).toFixed(2), '-i', bg, '-i', fx.back, '-i', fx.front || fx.back);
       if (sfx) extra.push('-i', sfx);
       const [ib, iback] = [idx, idx + 1];
-      base = `[${ib}:v]scale=${W}:${H},fps=${FPS},setsar=1[bgi];[${iback}:v]setpts=PTS-STARTPTS[bk];[bgi][bk]overlay=0:0:eof_action=pass[bgx];` +
-        `[0:v]scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H},fps=${FPS},setsar=1${fullFrame()},chromakey=0x00FF00:0.16:0.06,despill=type=green${matchFilter(bg)}[fg];` +
-        `[bgx][fg]overlay=0:0:shortest=1`;
+      base = `[${ib}:v]scale=${W}:${H},fps=${FPS},setsar=1${bgSoft()}[bgi];[${iback}:v]setpts=PTS-STARTPTS[bk];[bgi][bk]overlay=0:0:eof_action=pass[bgx];` +
+        `[0:v]scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H},fps=${FPS},setsar=1${fullFrame()},chromakey=0x00FF00:0.16:0.06,despill=type=green${matchFilter(bg)}${fgSoft()}[fg];` +
+        `[bgx][fg]overlay=0:0:shortest=1${grain()}`;
     }
     const front = fx?.front ? `[o0];[${idx + 2}:v]setpts=PTS-STARTPTS+${fx.frontStart.toFixed(3)}/TB[fr];[o0][fr]overlay=0:0:eof_action=pass` : '';
     run('ffmpeg', ['-y', '-loglevel', 'error', '-i', clip.body, '-i', path.join(work, 'card.png'), ...blurIn, ...extra, '-filter_complex',
@@ -399,8 +407,20 @@ async function runOne(raw, submitOnly = false) {
   const outputs = {};
   for (const v of job.variants) for (const [tag] of versions) {
     const hk = clip['hook' + v.key], hookLen = Math.max(2.8, dur(hk) + 0.35);
+    if (HOOK_FACE && bg) {
+      // Hook over Josh's face (not a black card), so the first frame and the Instagram grid cover show him.
+      // Head sits lower (FG_TOP 0.21) so it survives the 3:4 grid crop; the headline sits in the lower half.
+      const ov = path.join(work, `hookface${v.key}.mov`);
+      await renderAlpha(fill('hook-face.html', { CHIP: esc(job.chip), KICKER: esc(job.kicker), LINES: hookLines(v.screen) }), hookLen, ov, work);
+      run('ffmpeg', ['-y', '-loglevel', 'error', '-i', hk, '-loop', '1', '-t', (hookLen + 0.5).toFixed(2), '-i', bg, '-i', ov, '-filter_complex',
+        `[1:v]scale=${W}:${H},fps=${FPS},setsar=1${bgSoft()}[bg];` +
+        `[0:v]scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H},fps=${FPS},setsar=1${fullFrame(0.21)},chromakey=0x00FF00:0.16:0.06,despill=type=green${matchFilter(bg)}${fgSoft()},tpad=stop_mode=clone:stop_duration=2[fg];` +
+        `[bg][fg]overlay=0:0${grain()}[b];[b][2:v]overlay=0:0[v];[0:a]aresample=48000,aformat=channel_layouts=stereo,apad[a]`,
+        '-map', '[v]', '-map', '[a]', '-t', hookLen.toFixed(3), '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '19', '-preset', 'veryfast', '-c:a', 'aac', '-b:a', '160k', path.join(work, `seg-hook${v.key}.mp4`)]);
+    } else {
     await renderAnim(fill('hook.html', { CHIP: esc(job.chip), KICKER: esc(job.kicker), COUNT: esc(job.count), LINES: hookLines(v.screen) }), hookLen, path.join(work, `hook${v.key}.mp4`), work);
     voiceOver(path.join(work, `hook${v.key}.mp4`), hk, hookLen, path.join(work, `seg-hook${v.key}.mp4`), 0.0);
+    }
     const out = path.join(work, `final-${v.key}${tag}.mp4`);
     const total = hookLen + dur(path.join(work, `seg-body${tag}.mp4`)) + endLen;
     run('ffmpeg', ['-y', '-loglevel', 'error', '-i', path.join(work, `seg-hook${v.key}.mp4`), '-i', path.join(work, `seg-body${tag}.mp4`), '-i', path.join(work, 'seg-end.mp4'), '-loop', '1', '-i', path.join(work, 'bar.png'), '-filter_complex',
